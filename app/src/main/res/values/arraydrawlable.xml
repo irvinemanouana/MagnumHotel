@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="drawlablearray">
+        <item>@drawable/ic_action_delete</item>
+        <item>@drawable/ic_action_settings</item>
+        <item>@drawable/ic_action_new</item>
+    </array>
+</resources>

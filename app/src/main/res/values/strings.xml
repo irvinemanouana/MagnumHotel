@@ -1,0 +1,29 @@
+<resources>
+    <string name="app_name">MagnumHotel</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="add_room">ajouter une chambre</string>
+    <string name="update">modifier</string>
+    <string-array name="menu">
+        <item>GÉRER LES CHAMBRES</item>
+        <item>GÉRER LES CLIENTS</item>
+        <item>CONSULTER LES RÉSERVATIONS</item>
+    </string-array>
+    <string name="title_activity_room_gestion">Chambres</string>
+    <string name="text_nothing">Il n\'y a aucune chambre</string>
+    <string name="title_activity_add_room">Ajouter une chambre</string>
+    <string name="title">Titre</string>
+    <string name="desc">Description</string>
+    <string name="bt_add">Ajouter</string>
+    <string name="bt_supp">Supprimer</string>
+
+    <string name="gest_rom">GÉRER LES CHAMBRES</string>
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_detail_room">DetailRoomActivity</string>
+    <string name="trash">trash</string>
+    <string name="title_activity_new_room">NewRoomActivity</string>
+    <string name="price">Prix</string>
+    <string name="title_activity_update_room">modifier</string>
+
+</resources>
