@@ -23,11 +23,12 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         actionBar = getActionBar();
-        //on modifie l'icone
         actionBar.setIcon(R.drawable.ic_action_logo);
-        //on n'affiche plus le titre
+        //On enlève le titre
         actionBar.setDisplayShowTitleEnabled(false);
+
         ArrayList menuList = new ArrayList();
         String[]menu =getResources().getStringArray(R.array.menu);
         for (int i =0;i<menu.length;i++){
@@ -64,6 +65,7 @@ public class MainActivity extends Activity {
 
     }
 
+    /*
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -85,4 +87,5 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
+    */
 }

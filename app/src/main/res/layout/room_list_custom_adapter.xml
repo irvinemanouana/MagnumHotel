@@ -1,55 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:padding="12dp"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="15dp"
+    android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <LinearLayout
-        android:id="@+id/firstLayout"
-        android:orientation="horizontal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="3"
+        android:orientation="vertical">
+
         <TextView
-            android:drawableLeft="@drawable/ic_action_bed"
             android:gravity="center"
             android:id="@+id/RoomName"
-            android:layout_gravity="center"
-            android:textStyle="bold|italic"
+            android:textStyle="bold"
             android:textSize="@dimen/text_size"
+            android:textAllCaps="true"
+            android:text="@string/room_number"
             android:textColor="@color/black_900"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-    </LinearLayout>
-
-
-    <LinearLayout
-        android:id="@+id/secondlayout"
-        android:orientation="horizontal"
-        android:layout_below="@+id/firstLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
 
         <TextView
-            android:drawableLeft="@drawable/ic_action_person"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:id="@+id/nbperson"
-            android:layout_gravity="center"
-            android:textStyle="bold|italic"
             android:textColor="@color/black_900"
             android:textSize="@dimen/text_size"
+            android:text="@string/customers_max" />
+
+        <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:id="@+id/priceRoom"
+            android:textColor="@color/green_900"
+            android:textSize="@dimen/text_size"
+            android:text="@string/room_price"
+            android:textStyle="bold"
+            android:gravity="center" />
+
     </LinearLayout>
-    <TextView
-        android:drawableLeft="@drawable/ic_action_price"
-        android:id="@+id/priceRoom"
-        android:layout_below="@+id/secondlayout"
-        android:textStyle="bold|italic"
-        android:textColor="@color/green_900"
-        android:textSize="@dimen/text_size"
-        android:gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_weight="1"
+        android:layout_gravity="right">
 
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/view_room"
+            android:layout_gravity="center"
+            android:layout_marginLeft="20dp"
+            android:contentDescription="@string/delete_room"
+            android:src="@drawable/delete"/>
 
-</RelativeLayout>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete_room"
+            android:layout_gravity="center"
+            android:contentDescription="@string/delete_room"
+            android:src="@drawable/delete"/>
+
+    </LinearLayout>
+
+</LinearLayout>

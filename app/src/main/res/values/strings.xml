@@ -1,15 +1,23 @@
 <resources>
-    <string name="app_name">Magnum Hotel</string>
 
+    <!-- Menu -->
+    <string name="menu_element_home">Home</string>
+    <string name="menu_element_rooms">Chambres</string>
+    <string name="menu_element_customers">Clients</string>
+    <string name="menu_element_bookings">Réservations</string>
+
+    <string name="app_name">Magnum Hotel</string>
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="add_room">Ajouter une chambre</string>
     <string name="update">Modifier</string>
+
     <string-array name="menu">
         <item>GÉRER LES CHAMBRES</item>
         <item>GÉRER LES CLIENTS</item>
         <item>CONSULTER LES RÉSERVATIONS</item>
     </string-array>
+
     <string name="title_activity_room_gestion">Chambres</string>
     <string name="text_nothing">Il n\'y a aucune chambre</string>
     <string name="title">Titre</string>
@@ -30,6 +38,8 @@
     <string name="room_description">Description</string>
     <string name="room_price">Prix</string>
     <string name="room_number">N° de la chambre</string>
+    <string name="update_room">Modifier la chambre</string>
+    <string name="delete_room">Supprimer la chambre</string>
 
     <!-- Customers -->
     <string name="title_activity_add_customer">Ajouter un client</string>

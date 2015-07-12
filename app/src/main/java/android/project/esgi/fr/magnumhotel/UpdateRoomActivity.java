@@ -1,7 +1,9 @@
 package android.project.esgi.fr.magnumhotel;
 
+import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -10,17 +12,25 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 
 public class UpdateRoomActivity extends Activity {
     EditText Edtitle,EdDes,EdiPrice;
     Button buttonM;
     private MySqlLite database;
+    private ActionBar actionBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_room);
+
+        actionBar = getActionBar();
+        actionBar.setIcon(R.drawable.ic_action_logo);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+
         final Intent intent = getIntent();
         final Room room = (Room) intent.getSerializableExtra("room");
         database = new MySqlLite(getApplicationContext());
@@ -50,23 +60,27 @@ public class UpdateRoomActivity extends Activity {
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_update_room, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        super.onOptionsItemSelected(item);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
+        switch(item.getItemId()){
+            case R.id.rooms:
+                Toast.makeText(getBaseContext(), "You selected rooms", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.customers:
+                Toast.makeText(getBaseContext(), "You selected customers", Toast.LENGTH_SHORT).show();
+                break;
+
+            case R.id.bookings:
+                Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
+                break;
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }

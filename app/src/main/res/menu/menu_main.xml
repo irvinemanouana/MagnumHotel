@@ -1,6 +1,29 @@
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools" tools:context=".MainActivity">
-    <item android:id="@+id/action_settings" android:title="@string/action_settings"
-        android:orderInCategory="100" app:showAsAction="never" />
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Single menu item
+         Set id, icon and Title for each menu item
+    -->
+    <item
+        android:id="@+id/mehome"
+        android:icon="@drawable/menu_elem_home"
+        android:title="@string/menu_element_home"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/rooms"
+        android:icon="@drawable/menu_elem_room"
+        android:title="@string/menu_element_rooms"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/customers"
+        android:icon="@drawable/menu_elem_customer"
+        android:title="@string/menu_element_customers"
+        android:showAsAction="always" />
+
+    <item
+        android:id="@+id/bookings"
+        android:icon="@drawable/menu_elem_booking"
+        android:title="@string/menu_element_bookings"
+        android:showAsAction="always" />
 </menu>
