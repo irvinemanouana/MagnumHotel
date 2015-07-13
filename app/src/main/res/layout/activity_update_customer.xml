@@ -82,7 +82,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"
             android:textSize="@dimen/input_size"
-            android:inputType="phone"
+            android:inputType="textEmailAddress"
             android:padding="5dp" />
 
         <Button

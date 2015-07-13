@@ -2,15 +2,19 @@ package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
+import android.project.esgi.fr.magnumhotel.UpdateCustomerActivity;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +53,33 @@ public class DetailCustomerActivity extends Activity {
         customerName.setText(customer.getLastName());
         customerFirstname.setText(customer.getFirstName());
         customerEmail.setText(customer.getEmail());
+    }
+
+    public void updateCustomer(View view) {
+        Intent intent = new Intent(getApplicationContext(), UpdateCustomerActivity.class);
+        intent.putExtra("customer", customer);
+        startActivity(intent);
+    }
+
+    public void deleteCustomer(View view) {
+        new AlertDialog.Builder(context)
+        .setTitle("Supprimer le client "+ customer.getLastName() + " " + customer.getFirstName())
+        .setMessage("Etes-vous sûr de vouloir supprimer  ce client ?")
+        .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // continue with delete
+                database.deleteCustomer(customer);
+                Intent back = new Intent(getApplicationContext(),RoomGestionActivity.class);
+                startActivity(back);
+            }
+        })
+        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing
+            }
+        })
+        .setIcon(android.R.drawable.ic_dialog_alert)
+        .show();
     }
 
     @Override

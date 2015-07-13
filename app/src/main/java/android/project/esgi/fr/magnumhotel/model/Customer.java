@@ -5,8 +5,7 @@ import java.io.Serializable;
 /**
  * Created by Sylvain on 03/07/15.
  */
-public class Customer implements Serializable{
-
+public class Customer implements Serializable {
     private int id;
     private String lastName;
     private String firstName;

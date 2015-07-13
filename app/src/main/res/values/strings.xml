@@ -49,7 +49,7 @@
     <string name="customer_email">Email</string>
     <string name="no_customer">Il n\'y a actuellement aucun client</string>
 
-    <!-- Réservations -->
-    <string name="all_bookings">Les réservations</string>
+    <!-- Bookings -->
+    <string name="all_bookings">Réservations</string>
 
 </resources>

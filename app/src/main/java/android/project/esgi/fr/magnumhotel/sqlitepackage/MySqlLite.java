@@ -35,14 +35,16 @@ public class MySqlLite extends SQLiteOpenHelper {
     public MySqlLite(Context context) {
         super(context, db_name, null, version);
     }
+
     public void deleteRoom(Room room){
         db = this.getWritableDatabase();
         db.delete(db_table_room, "id_room = ?", new String[]{String.valueOf(room.getId())});
         db.close();
     }
+
     public void deleteCustomer(Customer customer){
         db = this.getWritableDatabase();
-        db.delete(db_table_customer, "id_room = ?", new String[]{String.valueOf(customer.getId())});
+        db.delete(db_table_customer, "id_customer = ?", new String[]{String.valueOf(customer.getId())});
         db.close();
     }
 
@@ -129,6 +131,17 @@ public class MySqlLite extends SQLiteOpenHelper {
         values.put(price, room.getPrice());
         db.update(db_table_room,values,id_room + " = ?",new String[] {
                 String.valueOf(room.getId())
+        });
+    }
+
+    public void updateCustomer(Customer customer){
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(name, customer.getLastName());
+        values.put(lastname, customer.getFirstName());
+        values.put(email,customer.getEmail());
+        db.update(db_table_customer, values, id_customer + " = ?", new String[] {
+                String.valueOf(customer.getId())
         });
     }
 }
