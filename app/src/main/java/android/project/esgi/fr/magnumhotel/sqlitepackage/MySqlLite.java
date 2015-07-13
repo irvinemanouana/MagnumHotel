@@ -15,6 +15,7 @@ import java.util.ArrayList;
  * Created by Christopher on 03/07/2015.
  */
 public class MySqlLite extends SQLiteOpenHelper {
+
     private static final  String db_name ="magnum";
     private static final String db_table_room = "room";
     private static final String db_table_customer="customer";
