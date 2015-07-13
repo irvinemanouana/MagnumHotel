@@ -34,7 +34,6 @@ public class DetailRoomActivity extends Activity {
 
         database = new MySqlLite(getApplicationContext());
         textView =(TextView)findViewById(R.id.text);
-
         roomNumber = (TextView)findViewById(R.id.room_number);
         detailprice =(TextView)findViewById(R.id.dprice);
         detailSizeRoom =(TextView)findViewById(R.id.dnbp);

@@ -6,9 +6,8 @@
     android:layout_height="match_parent">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_weight="3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical">
 
         <TextView
@@ -39,32 +38,6 @@
             android:text="@string/room_price"
             android:textStyle="bold"
             android:gravity="center" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="0dp"
-        android:layout_height="60dp"
-        android:layout_weight="1"
-        android:layout_gravity="right">
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/view_room"
-            android:layout_gravity="center"
-            android:layout_marginLeft="20dp"
-            android:contentDescription="@string/delete_room"
-            android:src="@drawable/delete"/>
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/delete_room"
-            android:layout_gravity="center"
-            android:contentDescription="@string/delete_room"
-            android:src="@drawable/delete"/>
 
     </LinearLayout>
 

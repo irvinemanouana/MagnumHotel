@@ -72,13 +72,13 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/customer_phone_number"
+            android:text="@string/customer_email"
             android:layout_marginTop="20dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/phone_number"
+            android:id="@+id/email"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"
             android:textSize="@dimen/input_size"

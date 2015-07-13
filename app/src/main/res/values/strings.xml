@@ -46,6 +46,8 @@
     <string name="title_activity_update_customer">Modifier un client</string>
     <string name="customer_name">Nom du client</string>
     <string name="customer_firstName">Prénom du client</string>
-    <string name="customer_phone_number">Prénom du client</string>
+    <string name="customer_email">Email</string>
+    <string name="no_customer">Il n\
+        'y a aucun client.</string>
 
 </resources>

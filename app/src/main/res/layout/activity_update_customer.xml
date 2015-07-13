@@ -17,7 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/title_activity_add_customer"
+            android:text="@string/title_activity_update_customer"
             android:textAllCaps="true"
             android:gravity="center"
             android:textStyle="bold"
@@ -72,13 +72,13 @@
             android:textStyle="bold"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/customer_phone_number"
+            android:text="@string/customer_email"
             android:layout_marginTop="20dp" />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/phone_number"
+            android:id="@+id/email"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"
             android:textSize="@dimen/input_size"
@@ -87,7 +87,7 @@
 
         <Button
             android:id="@+id/update_customer"
-            android:text="@string/bt_add"
+            android:text="@string/update"
             android:textColor="@color/white"
             android:background="@drawable/button_add"
             android:textAllCaps="true"

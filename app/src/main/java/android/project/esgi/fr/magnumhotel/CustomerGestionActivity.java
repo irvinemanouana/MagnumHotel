@@ -3,13 +3,12 @@ package android.project.esgi.fr.magnumhotel;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.customList.CustomListMenu;
+import android.project.esgi.fr.magnumhotel.customList.CustomersListAdapter;
 import android.project.esgi.fr.magnumhotel.customList.RoomsListAdapter;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
-import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -19,11 +18,12 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
-
-public class RoomGestionActivity extends Activity {
+/**
+ * Created by Amélie on 13/07/2015.
+ */
+public class CustomerGestionActivity extends Activity {
     MySqlLite database;
     TextView textView;
     ListView listView;
@@ -32,36 +32,35 @@ public class RoomGestionActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_gestion);
+        setContentView(R.layout.activity_customer_gestion);
 
+        //ActionBar Settings
         actionBar = getActionBar();
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 
-        listView = (ListView) findViewById(R.id.allRom);
-        textView = (TextView)findViewById(R.id.nothing);
+        listView = (ListView) findViewById(R.id.allCustomer);
+        textView = (TextView)findViewById(R.id.no_customer);
         database = new MySqlLite(getApplicationContext());
-        ArrayList allRom = database.roomArrayList();
-        int size = allRom.size();
-        Log.d("size",String.valueOf(size));
+        final ArrayList allCustomer = database.customerArrayList();
+        int size = allCustomer.size();
 
-       if(size <= 0){
-           textView.setText(getResources().getString(R.string.text_nothing));
-       } else {
-           ArrayAdapter adapter = new RoomsListAdapter(getApplicationContext(),allRom);
-           listView.setAdapter(adapter);
-           listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-               @Override
-               public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   //String s =String.valueOf(parent.getItemAtPosition(position)) ;
-                   Room room = (Room) parent.getItemAtPosition(position);
-                   Intent intent = new Intent(getApplicationContext(),DetailRoomActivity.class);
-                   intent.putExtra("Room",room);
-                   startActivity(intent);
-               }
-           });
-       }
+        if(size <= 0) {
+            textView.setText(getResources().getString(R.string.no_customer));
+        } else {
+            ArrayAdapter adapter = new CustomersListAdapter(getApplicationContext(), allCustomer);
+            listView.setAdapter(adapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    Customer customer = (Customer) parent.getItemAtPosition(position);
+                    Intent intent = new Intent(getApplicationContext(), DetailCustomerActivity.class);
+                    intent.putExtra("Customer", (android.os.Parcelable) customer);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 
     @Override
@@ -86,7 +85,8 @@ public class RoomGestionActivity extends Activity {
                 break;
 
             case R.id.customers:
-                Toast.makeText(getBaseContext(), "You selected customers", Toast.LENGTH_SHORT).show();
+                Intent customers = new Intent(this, CustomerGestionActivity.class);
+                startActivity(customers);
                 break;
 
             case R.id.bookings:

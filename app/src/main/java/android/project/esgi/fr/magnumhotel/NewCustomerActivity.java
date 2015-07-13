@@ -4,36 +4,28 @@ import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-
-public class NewRoomActivity extends Activity {
+/**
+ * Created by Amélie on 13/07/2015.
+ */
+public class NewCustomerActivity extends Activity {
     private MySqlLite mySqlLite;
     ActionBar actionBar;
-    private EditText inptitle, inpdes, inpprice, inpnbperson;
+    private EditText customerName, customerFirstName, customerEmail;
     Button addButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_room);
+        setContentView(R.layout.activity_new_customer);
 
         //ActionBar Settings
         actionBar = getActionBar();
@@ -41,23 +33,21 @@ public class NewRoomActivity extends Activity {
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 
-        inptitle = (EditText) findViewById(R.id.title);
-        inpdes = (EditText) findViewById(R.id.description);
-        inpprice = (EditText) findViewById(R.id.prix);
-        inpnbperson = (EditText) findViewById(R.id.place);
-        addButton = (Button) findViewById(R.id.ajouter);
+        customerName = (EditText)findViewById(R.id.name);
+        customerFirstName = (EditText)findViewById(R.id.firstname);
+        customerEmail = (EditText)findViewById(R.id.email);
+        addButton = (Button) findViewById(R.id.add_customer);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titre = inptitle.getText().toString();
-                String descriprion = inpdes.getText().toString();
-                String pricetxt = inpprice.getText().toString();
-                String placeRoom = inpnbperson.getText().toString();
-                Room room = new Room(0, titre, Integer.parseInt(placeRoom), descriprion, Integer.parseInt(pricetxt));
+                String name = customerName.getText().toString();
+                String firstname = customerFirstName.getText().toString();
+                String phoneNumber = customerEmail.getText().toString();
+                Customer customer = new Customer(0, name, firstname, phoneNumber);
                 mySqlLite = new MySqlLite(getApplicationContext());
-                mySqlLite.addRoom(room);
-                Intent intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
+                mySqlLite.addCustomer(customer);
+                Intent intent = new Intent(getApplicationContext(), CustomerGestionActivity.class);
                 startActivity(intent);
                 finish();
             }

@@ -105,7 +105,7 @@ public class MySqlLite extends SQLiteOpenHelper {
         return allRoomArrayList;
     }
 
-    public ArrayList<Customer> allCustomers(){
+    public ArrayList<Customer> customerArrayList(){
         db = this.getWritableDatabase();
         ArrayList<Customer> customers = new ArrayList<>();
         String request = "SELECT * FROM " + db_table_customer;

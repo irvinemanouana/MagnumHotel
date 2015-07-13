@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/customer_name"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:textAllCaps="true"
+            android:text="@string/customer_name"
+            android:textColor="@color/black_900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/customer_firstname"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:textAllCaps="true"
+            android:layout_marginLeft="5dp"
+            android:text="@string/customer_firstName"
+            android:textColor="@color/black_900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/customer_email"
+        android:textColor="@color/black"
+        android:textSize="@dimen/text_size"
+        android:text="@string/customer_email"
+        android:gravity="center" />
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/update_customer"
+            android:layout_marginRight="10dp"
+            android:contentDescription="@string/update"
+            android:onClick="updateCustomer"
+            android:src="@drawable/settings"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/delete_customer"
+            android:contentDescription="@string/update"
+            android:onClick="deleteCustomer"
+            android:src="@drawable/delete"/>
+
+    </LinearLayout>
+
+</LinearLayout>
