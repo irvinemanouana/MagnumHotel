@@ -64,6 +64,11 @@ public class RoomGestionActivity extends Activity {
        }
     }
 
+    public void addNewRoom(View view) {
+        Intent addNewRoom = new Intent(this, NewRoomActivity.class);
+        startActivity(addNewRoom);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);

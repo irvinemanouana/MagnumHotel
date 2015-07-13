@@ -47,7 +47,6 @@
     <string name="customer_name">Nom du client</string>
     <string name="customer_firstName">Prénom du client</string>
     <string name="customer_email">Email</string>
-    <string name="no_customer">Il n\
-        'y a aucun client.</string>
+    <string name="no_customer">Il n\'y a aucun client.</string>
 
 </resources>

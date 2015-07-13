@@ -49,12 +49,12 @@ public class MainActivity extends Activity {
                 String item = String.valueOf(parent.getItemAtPosition(position));
                 switch ((int) id){
                     case 0:
-                        intent = new Intent(getApplicationContext(),RoomGestionActivity.class);
+                        intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
                         startActivity(intent);
-                        Toast.makeText(getApplicationContext(),getResources().getString(R.string.title_activity_room_gestion),Toast.LENGTH_SHORT).show();
                         break;
                     case 1:
-                        Toast.makeText(getApplicationContext(),item,Toast.LENGTH_SHORT).show();
+                        intent = new Intent(getApplicationContext(), CustomerGestionActivity.class);
+                        startActivity(intent);
                         break;
                     case 2:
                         Toast.makeText(getApplicationContext(),item,Toast.LENGTH_SHORT).show();

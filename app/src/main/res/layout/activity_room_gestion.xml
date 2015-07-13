@@ -23,7 +23,7 @@
             android:paddingTop="10dp"
             android:paddingBottom="10dp"
             android:onClick="addNewRoom"
-            android:id="@+id/add_room" />
+             />
 
     </LinearLayout>
 
@@ -31,6 +31,14 @@
         android:id="@+id/nothing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/add_room"
+        android:onClick="addNewRoom"
+        android:src="@drawable/add_button"
+        android:layout_marginLeft="20dp"/>
 
     <ListView
         android:id="@+id/allRom"
