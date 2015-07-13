@@ -30,6 +30,7 @@ public class MySqlLite extends SQLiteOpenHelper {
     private static String email = "email";
 
     private static int version =1;
+
     private SQLiteDatabase db;
 
     public MySqlLite(Context context) {
