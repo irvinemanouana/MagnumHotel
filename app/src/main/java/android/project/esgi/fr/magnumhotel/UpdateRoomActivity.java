@@ -69,12 +69,19 @@ public class UpdateRoomActivity extends Activity {
         super.onOptionsItemSelected(item);
 
         switch(item.getItemId()){
+            case R.id.home:
+                Intent home = new Intent(this, MainActivity.class);
+                startActivity(home);
+                break;
+
             case R.id.rooms:
-                Toast.makeText(getBaseContext(), "You selected rooms", Toast.LENGTH_SHORT).show();
+                Intent rooms = new Intent(this, RoomGestionActivity.class);
+                startActivity(rooms);
                 break;
 
             case R.id.customers:
-                Toast.makeText(getBaseContext(), "You selected customers", Toast.LENGTH_SHORT).show();
+                Intent customers = new Intent(this, CustomerGestionActivity.class);
+                startActivity(customers);
                 break;
 
             case R.id.bookings:

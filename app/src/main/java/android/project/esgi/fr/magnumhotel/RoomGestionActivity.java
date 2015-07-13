@@ -91,7 +91,8 @@ public class RoomGestionActivity extends Activity {
                 break;
 
             case R.id.customers:
-                Toast.makeText(getBaseContext(), "You selected customers", Toast.LENGTH_SHORT).show();
+                Intent customers = new Intent(this, CustomerGestionActivity.class);
+                startActivity(customers);
                 break;
 
             case R.id.bookings:

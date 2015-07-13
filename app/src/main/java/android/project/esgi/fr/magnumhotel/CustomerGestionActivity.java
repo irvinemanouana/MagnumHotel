@@ -56,11 +56,16 @@ public class CustomerGestionActivity extends Activity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Customer customer = (Customer) parent.getItemAtPosition(position);
                     Intent intent = new Intent(getApplicationContext(), DetailCustomerActivity.class);
-                    intent.putExtra("Customer", (android.os.Parcelable) customer);
+                    intent.putExtra("Customer", customer);
                     startActivity(intent);
                 }
             });
         }
+    }
+
+    public void addNewCustomer(View view) {
+        Intent addNewCustomer = new Intent(this, NewCustomerActivity.class);
+        startActivity(addNewCustomer);
     }
 
     @Override
