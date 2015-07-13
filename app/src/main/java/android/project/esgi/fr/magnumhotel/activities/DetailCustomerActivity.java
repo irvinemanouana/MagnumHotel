@@ -1,61 +1,54 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.R;
+import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
-
-public class UpdateRoomActivity extends Activity {
-    EditText Edtitle,EdDes,EdiPrice;
-    Button buttonM;
+/**
+ * Created by Amélie on 13/07/2015.
+ */
+public class DetailCustomerActivity extends Activity {
     private MySqlLite database;
+    private TextView customerName, customerFirstname, customerEmail;
     private ActionBar actionBar;
+    private ImageView updateCustomer, deleteCustomer;
+    private final Context context = this;
+    private Customer customer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_update_room);
+        setContentView(R.layout.activity_detail_customer);
 
+        //ActionBar Settings
         actionBar = getActionBar();
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
 
-        final Intent intent = getIntent();
-        final Room room = (Room) intent.getSerializableExtra("room");
         database = new MySqlLite(getApplicationContext());
-        Edtitle = (EditText) findViewById(R.id.title);
-        Edtitle.setText(room.getTitle());
-        EdDes =(EditText) findViewById(R.id.description);
-        EdDes.setText(room.getDescription());
-        EdiPrice = (EditText) findViewById(R.id.prix);
-        EdiPrice.setText(String.valueOf(room.getPrice()));
-        buttonM = (Button) findViewById(R.id.modifier);
-        buttonM.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String title = Edtitle.getText().toString();
-                String desc = EdDes.getText().toString();
-                String price = EdiPrice.getText().toString();
-                Room room1 = new Room(room.getId(),title,2,desc,Integer.parseInt(price));
-                database.updateRoom(room1);
-                Intent intent1 = new Intent(getApplicationContext(),RoomGestionActivity.class);
-                startActivity(intent1);
-                finish();
-            }
-        });
+        customerName =(TextView)findViewById(R.id.customer_name);
+        customerFirstname =(TextView)findViewById(R.id.customer_firstname);
+        customerEmail =(TextView)findViewById(R.id.customer_email);
+        updateCustomer = (ImageView)findViewById(R.id.update_customer);
+        deleteCustomer = (ImageView)findViewById(R.id.delete_customer);
 
-
+        final Intent intent = getIntent();
+        customer = (Customer)intent.getSerializableExtra("Customer");
+        customerName.setText(customer.getLastName());
+        customerFirstname.setText(customer.getFirstName());
+        customerEmail.setText(customer.getEmail());
     }
 
     @Override

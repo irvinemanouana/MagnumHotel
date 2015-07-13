@@ -1,14 +1,14 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.ColorDrawable;
-import android.project.esgi.fr.magnumhotel.customList.RoomsListAdapter;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.R;
+import android.project.esgi.fr.magnumhotel.customList.RoomsListAdapter;
+import android.project.esgi.fr.magnumhotel.model.Room;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +19,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 
 

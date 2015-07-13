@@ -1,4 +1,4 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.model;
 
 import java.io.Serializable;
 

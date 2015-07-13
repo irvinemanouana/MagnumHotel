@@ -1,9 +1,12 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.model;
+
+import java.io.Serializable;
 
 /**
  * Created by Sylvain on 03/07/15.
  */
-public class Customer {
+public class Customer implements Serializable{
+
     private int id;
     private String lastName;
     private String firstName;

@@ -5,7 +5,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="android.project.esgi.fr.magnumhotel.UpdateRoomActivity">
+    tools:context="android.project.esgi.fr.magnumhotel.activities.UpdateRoomActivity">
 
     <LinearLayout
         android:orientation="vertical"

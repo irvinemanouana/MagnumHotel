@@ -1,4 +1,4 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
@@ -7,19 +7,20 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.R;
+import android.project.esgi.fr.magnumhotel.model.Room;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class DetailRoomActivity extends Activity {
+
     private MySqlLite database;
     private TextView textView, roomNumber, detailprice, detailSizeRoom;
     private ActionBar actionBar;

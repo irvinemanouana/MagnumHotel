@@ -1,7 +1,7 @@
 package android.project.esgi.fr.magnumhotel.customList;
 
 import android.content.Context;
-import android.project.esgi.fr.magnumhotel.Customer;
+import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.R;
 import android.view.LayoutInflater;
 import android.view.View;

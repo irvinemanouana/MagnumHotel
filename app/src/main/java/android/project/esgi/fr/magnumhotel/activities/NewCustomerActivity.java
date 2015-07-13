@@ -1,10 +1,12 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.R;
+import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;

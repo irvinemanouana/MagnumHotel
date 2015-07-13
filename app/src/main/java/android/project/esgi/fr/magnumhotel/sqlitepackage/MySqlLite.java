@@ -5,9 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.project.esgi.fr.magnumhotel.Customer;
-import android.project.esgi.fr.magnumhotel.Room;
-import android.util.Log;
+import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.model.Room;
 
 import java.util.ArrayList;
 

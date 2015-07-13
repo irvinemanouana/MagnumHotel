@@ -8,7 +8,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,7 +16,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RoomGestionActivity"
+            android:name=".activities.RoomGestionActivity"
             android:label="@string/title_activity_room_gestion"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
@@ -24,7 +24,7 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".DetailRoomActivity"
+            android:name=".activities.DetailRoomActivity"
             android:label="@string/title_activity_detail_room"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
@@ -32,7 +32,7 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".NewRoomActivity"
+            android:name=".activities.NewRoomActivity"
             android:label="@string/title_activity_new_room"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
@@ -40,7 +40,7 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".UpdateRoomActivity"
+            android:name=".activities.UpdateRoomActivity"
             android:label="@string/title_activity_update_room"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
@@ -48,21 +48,21 @@
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".CustomerGestionActivity"
+            android:name=".activities.CustomerGestionActivity"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".DetailCustomerActivity"
+            android:name=".activities.DetailCustomerActivity"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".NewCustomerActivity"
+            android:name=".activities.NewCustomerActivity"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"

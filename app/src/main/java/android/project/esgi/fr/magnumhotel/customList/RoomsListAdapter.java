@@ -2,7 +2,7 @@ package android.project.esgi.fr.magnumhotel.customList;
 
 import android.content.Context;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.Room;
+import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import java.util.List;
-
-import static android.support.v4.app.ActivityCompat.startActivityForResult;
 
 /**
  * Created by Christopher on 05/07/2015.

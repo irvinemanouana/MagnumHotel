@@ -1,4 +1,4 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.model;
 
 /**
  * Created by Sylvain on 03/07/15.
