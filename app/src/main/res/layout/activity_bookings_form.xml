@@ -105,7 +105,7 @@
 
         <Button
             android:id="@+id/submit_room"
-            android:text="@string/bt_add"
+            android:text="@string/add"
             android:textColor="@color/white"
             android:background="@drawable/button_add"
             android:textAllCaps="true"

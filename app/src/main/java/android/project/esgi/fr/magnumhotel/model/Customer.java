@@ -11,6 +11,7 @@ public class Customer implements Serializable {
     private String firstName;
     private String email;
 
+    public Customer(){};
 
     public Customer(String lastName, String firstName, String email) {
         this.lastName = lastName;
@@ -57,4 +58,13 @@ public class Customer implements Serializable {
         this.email = email;
     }
 
+    @Override
+    public String toString() {
+        return "Customer{" +
+                "id=" + id +
+                ", lastName='" + lastName + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }

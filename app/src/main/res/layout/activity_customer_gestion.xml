@@ -22,7 +22,7 @@
         android:textColor="@color/white"
         android:textAllCaps="true"
         android:textStyle="bold"
-        android:text="@string/title_activity_add_customer"
+        android:text="@string/add_customer"
         android:id="@+id/button" />
 
     <ListView

@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.project.esgi.fr.magnumhotel.Function;
+import android.project.esgi.fr.magnumhotel.others.Function;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
@@ -14,7 +14,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 /**
@@ -82,10 +81,11 @@ public class AddCustomerActivity extends Activity {
         firstname = firstnameField.getText().toString();
         email = emailField.getText().toString();
 
-        if(lastname.equals("") || firstname.equals("") || email.equals("")){
-            // Champ obligatoire
+        if(lastname.equals("")){
             lastnameField.setError(getResources().getString(R.string.required_field));
+        }else if(firstname.equals("")){
             firstnameField.setError(getResources().getString(R.string.required_field));
+        }else if(email.equals("")){
             emailField.setError(getResources().getString(R.string.required_field));
         }else if(!Function.isString(lastname)){
             // Nom non conforme

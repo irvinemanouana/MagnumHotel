@@ -5,7 +5,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.project.esgi.fr.magnumhotel.Function;
+import android.project.esgi.fr.magnumhotel.others.Function;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
@@ -32,7 +32,7 @@ public class UpdateCustomerActivity extends Activity {
 
     // CONTENU DES CHAMPS
     String lastname;
-    String firstName;
+    String firstname;
     String email;
 
 
@@ -43,6 +43,10 @@ public class UpdateCustomerActivity extends Activity {
 
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); // configuration de l'action bar
+
+        // Changement du titre et du bouton du formulaire
+        titleText.setText(getResources().getString(R.string.update_customer));
+        updateButton.setText(getResources().getString(R.string.update));
 
         // Récuperation des informations du client
         customer = (Customer) getIntent().getSerializableExtra("customer");
@@ -58,7 +62,7 @@ public class UpdateCustomerActivity extends Activity {
                 // Verification de la conformité du formulaire
                 if(checkForm()){
                     // Modification du client
-                    customer = new Customer(lastname, firstName, email);
+                    customer = new Customer(customer.getId(), lastname, firstname, email);
                     database = new MySqlLite(UpdateCustomerActivity.this);
                     database.updateCustomer(customer);
                     Intent intent1 = new Intent(getApplicationContext(), CustomerGestionActivity.class);
@@ -95,20 +99,21 @@ public class UpdateCustomerActivity extends Activity {
 
         boolean isCorrect = false;
         lastname = lastnameField.getText().toString();
-        firstName = firstnameField.getText().toString();
+        firstname = firstnameField.getText().toString();
         email = emailField.getText().toString();
 
-        if(!(lastname.equals(customer.getLastName()) && firstName.equals(customer.getFirstName()) && email.equals(customer.getEmail()))){
+        if(!(lastname.equals(customer.getLastName()) && firstname.equals(customer.getFirstName()) && email.equals(customer.getEmail()))){
             // S'il y a eu du changement dans le formulaire on vérifie la conformité des champs si on retourne faux
-            if(lastname.equals("") || firstName.equals("") || email.equals("")){
-                // Champ obligatoire
+            if(lastname.equals("")){
                 lastnameField.setError(getResources().getString(R.string.required_field));
+            }else if(firstname.equals("")){
                 firstnameField.setError(getResources().getString(R.string.required_field));
+            }else if(email.equals("")){
                 emailField.setError(getResources().getString(R.string.required_field));
             }else if(!Function.isString(lastname)){
                 // Nom non conforme
                 lastnameField.setError(getResources().getString(R.string.improper_field));
-            }else if(!Function.isString(firstName)){
+            }else if(!Function.isString(firstname)){
                 // Prénom non conforme
                 firstnameField.setError(getResources().getString(R.string.improper_field));
             }else if(!Function.isEmailAddress(email)){

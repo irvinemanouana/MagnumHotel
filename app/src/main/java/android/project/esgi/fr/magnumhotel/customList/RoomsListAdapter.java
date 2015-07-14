@@ -21,14 +21,14 @@ public class RoomsListAdapter extends ArrayAdapter {
     Context context;
 
     public RoomsListAdapter(Context context, List<Room> roomList) {
-        super(context, R.layout.room_list_custom_adapter, roomList);
+        super(context, R.layout.row_room, roomList);
         this.roomList = roomList;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.room_list_custom_adapter,parent,false);
+        convertView = inflater.inflate(R.layout.row_room,parent,false);
         textView = (TextView) convertView.findViewById(R.id.RoomName);
         textView2 = (TextView) convertView.findViewById(R.id.nbperson);
         textView3 = (TextView) convertView.findViewById(R.id.priceRoom);

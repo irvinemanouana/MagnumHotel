@@ -21,11 +21,20 @@ public class UpdateRoomActivity extends Activity {
 
     // ELEMENT DE LA VUE
     TextView titleText;
-    EditText titleField, descriptionField, priceField, capacityField;
+    EditText titleField,
+             descriptionField,
+             priceField,
+             capacityField;
     Button modifyButton;
 
     private MySqlLite database;
-    private ActionBar actionBar;
+    private Room room;
+
+    // Contenu des champs
+    String title;
+    int capacity = 0;
+    float price = 0;
+    String description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,73 +48,26 @@ public class UpdateRoomActivity extends Activity {
         titleText.setText(getResources().getString(R.string.update_room_title));
         modifyButton.setText(getResources().getString(R.string.update));
 
-        final Intent intent = getIntent();
-        final Room room = (Room) intent.getSerializableExtra("room");
+        room = (Room) getIntent().getSerializableExtra("room");
         database = new MySqlLite(getApplicationContext());
 
         // Mise à jour des champs avec les informations de la chambre
         titleField.setText(room.getTitle());
+        capacityField.setText(String.valueOf(room.getCapacity()));
         descriptionField.setText(room.getDescription());
         priceField.setText(String.valueOf(room.getPrice()));
         modifyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String roomNumber = null; // Numero de chambre
-                float roomPrice = 0; // prix
-                int roomCapacity = 0; // nombre maximum de personne
-                String description = descriptionField.getText().toString(); // description
-
-                int countError = 0; // nombre d'erreur
-/*
-                if (titleField.getText().toString().equals("")) {
-                    titleField.setError("Champ obligatoire");
-                    countError++;
-                } else {
-                    roomNumber = titleField.getText().toString();
-                }
-
-                if (priceField.getText().toString().equals("")) {
-                    priceField.setError("Champ obligatoire");
-                    countError++;
-                } else {
-                    roomPrice = Integer.parseInt(inpprice.getText().toString());
-                }
-
-                if (!inpnbperson.getText().toString().equals("")) {
-                    if (Integer.parseInt(inpnbperson.getText().toString()) > 6) {
-                        inpnbperson.setError("Un chambre ne peut contenir plus de 6 personnes");
-                        countError++;
-                    } else if (Integer.parseInt(inpnbperson.getText().toString()) < 1) {
-                        inpnbperson.setError("Un chambre doit contenir au moins une personne");
-                        countError++;
-                    } else {
-                        roomCapacity = Integer.parseInt(inpnbperson.getText().toString());
-                    }
-                } else {
-                    inpnbperson.setError("Champ obligatoire");
-                    countError++;
-                }
-
-                if (countError <= 0) {
-                    Room room = new Room(0, roomNumber, roomCapacity, description, roomPrice);
-                    mySqlLite = new MySqlLite(getApplicationContext());
-                    mySqlLite.addRoom(room);
+                if(checkForm()){
+                    room = new Room(room.getId(), title, capacity, price, description);
+                    database.updateRoom(room);
                     Intent intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
                     startActivity(intent);
                     finish();
                 }
 
-
-                String title = Edtitle.getText().toString();
-                String desc = EdDes.getText().toString();
-                String price = EdiPrice.getText().toString();
-                Room room1 = new Room(room.getId(), title, 2, desc, Integer.parseInt(price));
-                database.updateRoom(room1);
-                Intent intent1 = new Intent(getApplicationContext(), RoomGestionActivity.class);
-                startActivity(intent1);
-                finish();
-                */
             }
         });
     }
@@ -114,7 +76,7 @@ public class UpdateRoomActivity extends Activity {
         // Layout "activity_update_room"
         titleText = (TextView) findViewById(R.id.room_form_title);
         titleField = (EditText) findViewById(R.id.edit_title);
-        descriptionField =(EditText) findViewById(R.id.edit_description);
+        descriptionField = (EditText) findViewById(R.id.edit_description);
         capacityField = (EditText) findViewById(R.id.edit_capacity);
         priceField = (EditText) findViewById(R.id.edit_price);
         modifyButton = (Button) findViewById(R.id.submit_room);
@@ -122,15 +84,45 @@ public class UpdateRoomActivity extends Activity {
     }
 
     private void actionBarSettings(){
-        actionBar = getActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setIcon(R.drawable.ic_action_logo);
-        }
-        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
+    private boolean checkForm(){
+
+        boolean isCorrect = false;
+
+        if(!capacityField.getText().toString().equals("")){
+            capacity = Integer.parseInt(capacityField.getText().toString());
+        }
+        if(!priceField.getText().toString().equals("")){
+            price = Float.parseFloat(priceField.getText().toString());
+        }
+
+        title = titleField.getText().toString();
+        description = descriptionField.getText().toString(); // description
+
+        if(!(room.getTitle().equals(title) && room.getCapacity() == capacity && room.getPrice() == price && room.getDescription().equals(description))){
+            if(title.equals("")){
+                titleField.setError(getResources().getString(R.string.required_field));
+            }else if(capacityField.getText().toString().equals("") ){
+                capacityField.setError(getResources().getString(R.string.required_field));
+            }else if(priceField.getText().toString().equals("")){
+                priceField.setError(getResources().getString(R.string.required_field));
+            } else if(capacity < 1 || capacity > 6 ){
+                capacityField.setError("Une chambre ne peut contenir qu'entre 1 à 6 personnes");
+            }else if (price <= 0){
+                priceField.setError("Prix invalide");
+            }else{
+                isCorrect = true;
+            }
+        }
+        return isCorrect;
     }
 
     @Override

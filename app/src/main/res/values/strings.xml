@@ -41,24 +41,25 @@
     <string name="room_number">Number of room</string>
 
     <!-- Customers -->
-    <string name="title_activity_add_customer">Add a customer</string>
-    <string name="title_activity_update_customer">Modify a customer</string>
+    <string name="add_customer">Add a customer</string>
+    <string name="update_customer">Modify a customer</string>
     <string name="customer_name">Customer\'s lastname</string>
     <string name="customer_firstName">Customer\'s firstname</string>
     <string name="customer_email">Email</string>
     <string name="no_customer">There is no customer</string>
 
     <!-- Bookings -->
-    <string name="title_activity_add_booking">Ajouter une réservation</string>
-    <string name="all_bookings">Réservations</string>
-    <string name="specify_room">Attribution d'une chambre</string>
-    <string name="arrival_day">Date d'arrivée</string>
-    <string name="departure_day">Date de départ</string>
+    <string name="title_activity_add_booking">Add a reservation</string>
+    <string name="all_bookings">Bookings</string>
+    <string name="specify_room">Room attribution</string>
+    <string name="arrival_day">Arrival day</string>
+    <string name="departure_day">Departure day</string>
 
     <!-- Error management-->
     <string name="required_field">Required field</string>
     <string name="improper_field">Improper field</string>
     <string name="improper_email">Improper email</string>
-
+    <string name="capacity_room_error">a room can contain only between one or two people.</string>
+    <string name="price_error">Invalid price</string>
 
 </resources>

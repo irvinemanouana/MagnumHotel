@@ -33,17 +33,12 @@ public class RoomGestionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_gestion);
 
-        //ActionBar Settings
-        actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.ic_action_logo);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        this.actionBarSettings();
 
         listView = (ListView) findViewById(R.id.allRom);
         textView = (TextView)findViewById(R.id.nothing);
         database = new MySqlLite(getApplicationContext());
-        ArrayList allRom = database.roomArrayList();
+        ArrayList allRom = database.getRoomList();
         int size = allRom.size();
         Log.d("size",String.valueOf(size));
 
@@ -69,6 +64,19 @@ public class RoomGestionActivity extends Activity {
         Intent addNewRoom = new Intent(this, AddRoomActivity.class);
         startActivity(addNewRoom);
     }
+
+    private void actionBarSettings(){
+        actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setIcon(R.drawable.ic_action_logo);
+        }
+        if (actionBar != null) {
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

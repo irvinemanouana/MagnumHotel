@@ -23,22 +23,23 @@ public class AddRoomActivity extends Activity {
                      capacityField,
                      priceField,
                      descriptionField;
-
+    private Button addButton;
 
     private MySqlLite mySqlLite;
-    ActionBar actionBar;
-    Button addButton;
 
     // Contenu des champs
-    String title;
-    int capacity = 0;
-    float price = 0;
-    String description;
+    private String title;
+    private int capacity = 0;
+    private float price = 0;
+    private String description;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_form);
+
+        this.initialize(); // Initialisation des elements de la vue
+        this.actionBarSettings(); // configuration de l'action bar
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,12 +80,14 @@ public class AddRoomActivity extends Activity {
         title = titleField.getText().toString();
         description = descriptionField.getText().toString(); // description
 
-        if(title.equals("") || capacityField.getText().toString().equals("") || priceField.getText().toString().equals("")){
-            titleField.setError("Champ obligatoire");
-            capacityField.setError("Champ obligatoire");
-            priceField.setError("Champ obligatoire");
-        }else if(capacity < 1 || capacity > 6 ){
-            capacityField.setError("Une chambre ne peut contenir qu'entre 1 à 6 personnes");
+        if(title.equals("")){
+            titleField.setError(getResources().getString(R.string.required_field));
+        }else if(capacityField.getText().toString().equals("") ){
+            capacityField.setError(getResources().getString(R.string.required_field));
+        }else if(priceField.getText().toString().equals("")){
+            priceField.setError(getResources().getString(R.string.required_field));
+        } else if(capacity < 1 || capacity > 6 ){
+            capacityField.setError(getResources().getString(R.string.capacity_room_error));
         }else if (price <= 0){
             priceField.setError("Prix invalide");
         }else{
@@ -94,15 +97,13 @@ public class AddRoomActivity extends Activity {
     }
 
     private void actionBarSettings(){
-        actionBar = getActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setIcon(R.drawable.ic_action_logo);
-        }
-        if (actionBar != null) {
+            actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

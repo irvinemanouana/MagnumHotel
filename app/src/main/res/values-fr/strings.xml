@@ -41,8 +41,8 @@
     <string name="room_number">N° de la chambre</string>
 
     <!-- Clients -->
-    <string name="title_activity_add_customer">Ajouter un client</string>
-    <string name="title_activity_update_customer">Modifier un client</string>
+    <string name="add_customer">Ajouter un client</string>
+    <string name="update_customer">Modifier un client</string>
     <string name="customer_name">Nom du client</string>
     <string name="customer_firstName">Prénom du client</string>
     <string name="customer_email">Email</string>
@@ -51,10 +51,15 @@
     <!-- Bookings -->
     <string name="title_activity_add_booking">Ajouter une réservation</string>
     <string name="all_bookings">Réservations</string>
+    <string name="specify_room">Attribution d\'une chambre</string>
+    <string name="arrival_day">Date d\'arrivée</string>
+    <string name="departure_day">Date de départ</string>
 
     <!-- Gestion d'erreur-->
     <string name="required_field">Champ obligatoire</string>
     <string name="improper_field">Champ non conforme</string>
     <string name="improper_email">Email non conforme</string>
+    <string name="capacity_room_error">Une chambre ne peut contenir qu\'entre 1 à 6 personnes</string>
+    <string name="price_error">Prix invalide</string>
 
 </resources>

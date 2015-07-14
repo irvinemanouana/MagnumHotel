@@ -1,4 +1,4 @@
-package android.project.esgi.fr.magnumhotel;
+package android.project.esgi.fr.magnumhotel.others;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

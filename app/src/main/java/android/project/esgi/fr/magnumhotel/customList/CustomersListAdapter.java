@@ -20,14 +20,14 @@ public class CustomersListAdapter extends ArrayAdapter {
     private TextView textView,textView2,textView3;
 
     public CustomersListAdapter(Context context, List<Customer> customerList) {
-        super(context, R.layout.customer_list_custom_adapter, customerList);
+        super(context, R.layout.row_customer, customerList);
         this.customerList = customerList;
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         LayoutInflater inflater = LayoutInflater.from(getContext());
-        convertView = inflater.inflate(R.layout.customer_list_custom_adapter, parent, false);
+        convertView = inflater.inflate(R.layout.row_customer, parent, false);
         textView = (TextView) convertView.findViewById(R.id.customer_name);
         textView2 = (TextView) convertView.findViewById(R.id.customer_firstname);
         textView3 = (TextView) convertView.findViewById(R.id.customer_email);

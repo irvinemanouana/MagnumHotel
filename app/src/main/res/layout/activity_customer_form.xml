@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/title_activity_add_customer"
+            android:text="@string/add_customer"
             android:textAllCaps="true"
             android:gravity="center"
             android:textStyle="bold"

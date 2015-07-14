@@ -44,7 +44,7 @@ public class CustomerGestionActivity extends Activity {
         listView = (ListView) findViewById(R.id.allCustomer);
         textView = (TextView)findViewById(R.id.no_customer);
         database = new MySqlLite(getApplicationContext());
-        final ArrayList allCustomer = database.customerArrayList();
+        final ArrayList allCustomer = database.getCustomerList();
         int size = allCustomer.size();
 
         if(size <= 0) {

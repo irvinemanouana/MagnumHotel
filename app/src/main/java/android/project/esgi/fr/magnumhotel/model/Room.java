@@ -14,6 +14,8 @@ public class Room implements Serializable {
     private int capacity;
     private float price;
 
+    public Room(){};
+
     public Room(String title, int capacity, float price, String description) {
         this.title = title;
         this.description = description;
@@ -35,28 +37,43 @@ public class Room implements Serializable {
     public void setId(int id) {
         this.id = id;
     }
+
     public String getTitle() {
         return title;
     }
     public void setTitle(String title) {
         this.title = title;
     }
+
     public String getDescription() {
         return description;
     }
     public void setDescription(String description) {
         this.description = description;
     }
+
     public int getCapacity() {
         return capacity;
     }
     public void setCapacity(int capacity) {
         this.capacity = capacity;
     }
+
     public float getPrice() {
         return price;
     }
-    public void setPrice(int price) {
+    public void setPrice(float price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Room{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", capacity=" + capacity +
+                ", price=" + price +
+                '}';
     }
 }
