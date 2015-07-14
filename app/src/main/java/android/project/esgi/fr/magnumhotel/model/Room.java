@@ -7,17 +7,18 @@ import java.io.Serializable;
  * cette classe donne la description d'une chambre
  */
 public class Room implements Serializable {
+
     private int id;
     private String title;
     private String description;
-    private int nbplace;
-    private int price;
+    private int capacity;
+    private float price;
 
-    public Room(int id, String title, int nbplace, String description,int price) {
+    public Room(int id, String title, int capacity, String description, float price) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.nbplace = nbplace;
+        this.capacity = capacity;
         this.price = price;
 
     }
@@ -40,13 +41,13 @@ public class Room implements Serializable {
     public void setDescription(String description) {
         this.description = description;
     }
-    public int getNbplace() {
-        return nbplace;
+    public int getCapacity() {
+        return capacity;
     }
-    public void setNbplace(int nbplace) {
-        this.nbplace = nbplace;
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
     }
-    public int getPrice() {
+    public float getPrice() {
         return price;
     }
     public void setPrice(int price) {

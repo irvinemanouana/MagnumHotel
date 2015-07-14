@@ -7,69 +7,85 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+
         <activity
             android:name=".activities.MainActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activities.RoomGestionActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_room_gestion"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
+
         <activity
             android:name=".activities.DetailRoomActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_detail_room"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
+
         <activity
             android:name=".activities.NewRoomActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_new_room"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
+
         <activity
             android:name=".activities.UpdateRoomActivity"
+            android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_update_room"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
+
         <activity
             android:name=".activities.CustomerGestionActivity"
+            android:windowSoftInputMode="stateHidden"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
+
         <activity
             android:name=".activities.DetailCustomerActivity"
+            android:windowSoftInputMode="stateHidden"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
+
         <activity
             android:name=".activities.NewCustomerActivity"
+            android:windowSoftInputMode="stateHidden"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
                 android:value="splitActionBarWhenNarrow" />
         </activity>
         <activity
-            android:name=".UpdateCustomerActivity"
+            android:name=".activities.UpdateCustomerActivity"
             android:label="@string/title_activity_update_customer"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data

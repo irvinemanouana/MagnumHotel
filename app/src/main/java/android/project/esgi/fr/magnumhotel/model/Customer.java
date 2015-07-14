@@ -17,7 +17,6 @@ public class Customer implements Serializable {
         this.lastName = lastName;
         this.firstName = firstName;
         this.email= email;
-
     }
 
     public int getId() {

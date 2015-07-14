@@ -46,7 +46,7 @@
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"
             android:textSize="@dimen/input_size"
-            android:inputType="text"
+            android:inputType="number"
             android:padding="5dp" />
 
         <TextView
@@ -62,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:padding="5dp"
-            android:inputType="text"
+            android:inputType="number"
             android:textSize="@dimen/input_size"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"/>
@@ -80,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:padding="5dp"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:textSize="@dimen/input_size"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"/>

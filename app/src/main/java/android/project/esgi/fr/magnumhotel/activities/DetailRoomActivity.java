@@ -53,7 +53,7 @@ public class DetailRoomActivity extends Activity {
         textView.setText(room.getDescription());
         roomNumber.setText("Chambre N°" + room.getTitle());
         detailprice.setText(String.valueOf(room.getPrice()) + " euros la nuit");
-        detailSizeRoom.setText(String.valueOf(room.getNbplace()) + " personne(s) maximum");
+        detailSizeRoom.setText(String.valueOf(room.getCapacity()) + " personne(s) maximum");
     }
 
     public void updateRoom(View view) {

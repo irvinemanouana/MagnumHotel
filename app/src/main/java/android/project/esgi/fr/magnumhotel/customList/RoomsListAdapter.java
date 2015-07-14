@@ -35,7 +35,7 @@ public class RoomsListAdapter extends ArrayAdapter {
 
         final Room room =  roomList.get(position);
         textView.setText("Chambre N°" + room.getTitle());
-        textView2.setText(String.valueOf(room.getNbplace()) + " personne(s) maximum");
+        textView2.setText(String.valueOf(room.getCapacity()) + " personne(s) maximum");
         textView3.setText(String.valueOf(room.getPrice())+" euros la nuit");
 
         return convertView;

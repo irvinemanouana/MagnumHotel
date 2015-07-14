@@ -17,11 +17,11 @@ import android.widget.Toast;
 
 
 public class NewRoomActivity extends Activity {
+
     private MySqlLite mySqlLite;
     ActionBar actionBar;
     private EditText inptitle, inpdes, inpprice, inpnbperson;
     Button addButton;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,16 +44,52 @@ public class NewRoomActivity extends Activity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String titre = inptitle.getText().toString();
-                String descriprion = inpdes.getText().toString();
-                String pricetxt = inpprice.getText().toString();
-                String placeRoom = inpnbperson.getText().toString();
-                Room room = new Room(0, titre, Integer.parseInt(placeRoom), descriprion, Integer.parseInt(pricetxt));
-                mySqlLite = new MySqlLite(getApplicationContext());
-                mySqlLite.addRoom(room);
-                Intent intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
-                startActivity(intent);
-                finish();
+
+                String roomNumber = null; // Numero de chambre
+                float roomPrice = 0; // prix
+                int roomCapacity = 0; // nombre maximum de personne
+                String description = inpdes.getText().toString(); // description
+
+                int countError = 0; // nombre d'erreur
+
+                if(inptitle.getText().toString().equals("")){
+                    inptitle.setError("Champ obligatoire");
+                    countError++;
+                }else{
+                    roomNumber = inptitle.getText().toString();
+                }
+
+                if(inpprice.getText().toString().equals("")){
+                    inpprice.setError("Champ obligatoire");
+                    countError++;
+                }else{
+                    roomPrice = Integer.parseInt(inpprice.getText().toString());
+                }
+
+                if(!inpnbperson.getText().toString().equals("")){
+                    if(Integer.parseInt(inpnbperson.getText().toString()) > 6){
+                        inpnbperson.setError("Un chambre ne peut contenir plus de 6 personnes");
+                        countError++;
+                    }else if(Integer.parseInt(inpnbperson.getText().toString()) < 1){
+                        inpnbperson.setError("Un chambre doit contenir au moins une personne");
+                        countError++;
+                    }else{
+                        roomCapacity = Integer.parseInt(inpnbperson.getText().toString());
+                    }
+                }else{
+                    inpnbperson.setError("Champ obligatoire");
+                    countError++;
+                }
+
+                if(countError <= 0){
+                    Room room = new Room(0, roomNumber, roomCapacity, description, roomPrice);
+                    mySqlLite = new MySqlLite(getApplicationContext());
+                    mySqlLite.addRoom(room);
+                    Intent intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
     }

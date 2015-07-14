@@ -15,15 +15,20 @@ import java.util.ArrayList;
  */
 public class MySqlLite extends SQLiteOpenHelper {
 
+    // NOM DES TABLES
     private static final  String db_name ="magnum";
     private static final String db_table_room = "room";
     private static final String db_table_customer="customer";
+
+    // CHAMPS DE LA TABLE ROOM
     private static String id_room = "id_room";
     private static String libelle_room ="libelle";
+    private static String price ="price";
     private static String nb_place = "max_size";
     private static String description ="description";
+
+    // CHAMPS DE LA TABLE CUSTOMER
     private static String id_customer = "id_customer";
-    private static String price ="price";
     private static String name ="name";
     private static String lastname ="lastname";
     private static String email = "email";
@@ -52,7 +57,7 @@ public class MySqlLite extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(libelle_room,room.getTitle());
-        values.put(nb_place,room.getNbplace());
+        values.put(nb_place,room.getCapacity());
         values.put(description,room.getDescription());
         values.put(price, room.getPrice());
         db.insert(db_table_room, null, values);
@@ -72,14 +77,15 @@ public class MySqlLite extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String create_table_room = "CREATE TABLE " + db_table_room+"(" + id_room + " INTEGER PRIMARY KEY, " +
+        String create_table_room = "CREATE TABLE " + db_table_room + "(" +
+                id_room + " INTEGER PRIMARY KEY, " +
                 libelle_room + " TEXT, " +
-                nb_place + " INTEGER , " +
-                description+
-                " TEXT," +
-                price + " INTEGER)";
+                nb_place + " INTEGER, " +
+                description + " TEXT, " +
+                price + " REAL)";
 
-        String create_table_customer = "CREATE TABLE "+ db_table_customer + "(" + id_customer + " INTEGER PRIMARY KEY,"+
+        String create_table_customer = "CREATE TABLE "+ db_table_customer + "(" +
+                id_customer + " INTEGER PRIMARY KEY,"+
                 name + " TEXT," +
                 lastname + " TEXT," +
                 email + " TEXT)";
@@ -126,7 +132,7 @@ public class MySqlLite extends SQLiteOpenHelper {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(libelle_room,room.getTitle());
-        values.put(nb_place,room.getNbplace());
+        values.put(nb_place,room.getCapacity());
         values.put(description,room.getDescription());
         values.put(price, room.getPrice());
         db.update(db_table_room,values,id_room + " = ?",new String[] {
