@@ -39,7 +39,7 @@ public class NewRoomActivity extends Activity {
         inpdes = (EditText) findViewById(R.id.edit_description);
         inpprice = (EditText) findViewById(R.id.edit_prix);
         inpnbperson = (EditText) findViewById(R.id.edit_capacity);
-        addButton = (Button) findViewById(R.id.ajouter);
+        addButton = (Button) findViewById(R.id.submit_room);
 
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override

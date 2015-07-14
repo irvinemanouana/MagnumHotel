@@ -49,6 +49,7 @@
     <string name="no_customer">Il n\'y a actuellement aucun client</string>
 
     <!-- Bookings -->
+    <string name="title_activity_add_booking">Ajouter une réservation</string>
     <string name="all_bookings">Réservations</string>
 
 </resources>
