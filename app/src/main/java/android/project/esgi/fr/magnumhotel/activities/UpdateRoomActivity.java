@@ -36,7 +36,8 @@ public class UpdateRoomActivity extends Activity {
         this.actionBarSettings(); // configuration de l'action bar
 
         // Changement du titre et du bouton du formulaire
-        //titleText.setText();
+        titleText.setText(getResources().getString(R.string.update_room_title));
+        modifyButton.setText(getResources().getString(R.string.update));
 
         final Intent intent = getIntent();
         final Room room = (Room) intent.getSerializableExtra("room");
@@ -115,7 +116,7 @@ public class UpdateRoomActivity extends Activity {
         titleField = (EditText) findViewById(R.id.edit_title);
         descriptionField =(EditText) findViewById(R.id.edit_description);
         capacityField = (EditText) findViewById(R.id.edit_capacity);
-        priceField = (EditText) findViewById(R.id.edit_prix);
+        priceField = (EditText) findViewById(R.id.edit_price);
         modifyButton = (Button) findViewById(R.id.submit_room);
 
     }

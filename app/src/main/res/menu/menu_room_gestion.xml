@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="android.project.esgi.fr.magnumhotel.activities.RoomGestionActivity">
     <item android:id="@+id/action_new"
-        android:title="@string/add_room"
+        android:title="@string/add"
         android:icon="@drawable/ic_action_new"
         android:showAsAction="always"/>
 </menu>

@@ -66,7 +66,7 @@ public class RoomGestionActivity extends Activity {
     }
 
     public void addNewRoom(View view) {
-        Intent addNewRoom = new Intent(this, NewRoomActivity.class);
+        Intent addNewRoom = new Intent(this, AddRoomActivity.class);
         startActivity(addNewRoom);
     }
 

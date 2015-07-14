@@ -129,7 +129,7 @@ public class MySqlLite extends SQLiteOpenHelper {
         Cursor cursor = db.rawQuery(request,null);
         if (cursor.moveToFirst()){
             while (cursor.moveToNext()){
-                Room room = new Room(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3),cursor.getInt(4));
+                Room room = new Room(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getFloat(3),cursor.getString(4));
                 allRoomArrayList.add(room);
             }
         }

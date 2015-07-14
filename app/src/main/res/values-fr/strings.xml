@@ -3,8 +3,12 @@
 
     <!-- General -->
     <string name="app_name">Magnum Hotel</string>
+    <string name="action_settings">Configuration</string>
+    <string name="title">Titre</string>
+    <string name="description">Description</string>
+    <string name="add">Ajouter</string>
     <string name="update">Modifier</string>
-
+    <string name="delete">Supprimer</string>
 
     <!-- Menu -->
     <string name="menu_element_home">Home</string>
@@ -19,28 +23,24 @@
     </string-array>
 
     <string name="title_activity_room_gestion">Chambres</string>
-    <string name="text_nothing">Il n\'y a aucune chambre</string>
-    <string name="title">Titre</string>
-    <string name="desc">Description</string>
-    <string name="bt_add">Ajouter</string>
-    <string name="bt_supp">Supprimer</string>
     <string name="separator">Border</string>
     <string name="title_activity_detail">DetailActivity</string>
     <string name="title_activity_detail_room">DetailRoomActivity</string>
     <string name="trash">trash</string>
     <string name="title_activity_new_room">NewRoomActivity</string>
 
-    <!-- Rooms -->
+    <!-- Chambres -->
+    <string name="text_nothing">Il n\'y a aucune chambre</string>
     <string name="gest_rom">GÉRER LES CHAMBRES</string>
-    <string name="title_activity_add_room">Ajouter une chambre</string>
-    <string name="title_activity_update_room">Modifier une chambre</string>
-    <string name="delete_room">Supprimer la chambre</string>
+    <string name="add_room_title">Ajouter une chambre</string>
+    <string name="update_room_title">Modifier une chambre</string>
+    <string name="delete_room_title">Supprimer la chambre</string>
     <string name="customers_max">Nombre de personnes maximum</string>
     <string name="room_description">Description</string>
     <string name="room_price">Prix</string>
     <string name="room_number">N° de la chambre</string>
 
-    <!-- Customers -->
+    <!-- Clients -->
     <string name="title_activity_add_customer">Ajouter un client</string>
     <string name="title_activity_update_customer">Modifier un client</string>
     <string name="customer_name">Nom du client</string>
@@ -51,5 +51,10 @@
     <!-- Bookings -->
     <string name="title_activity_add_booking">Ajouter une réservation</string>
     <string name="all_bookings">Réservations</string>
+
+    <!-- Gestion d'erreur-->
+    <string name="required_field">Champ obligatoire</string>
+    <string name="improper_field">Champ non conforme</string>
+    <string name="improper_email">Email non conforme</string>
 
 </resources>

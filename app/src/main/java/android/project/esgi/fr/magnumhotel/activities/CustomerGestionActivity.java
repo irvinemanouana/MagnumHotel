@@ -65,7 +65,7 @@ public class CustomerGestionActivity extends Activity {
     }
 
     public void addNewCustomer(View view) {
-        Intent addNewCustomer = new Intent(this, NewCustomerActivity.class);
+        Intent addNewCustomer = new Intent(this, AddCustomerActivity.class);
         startActivity(addNewCustomer);
     }
 

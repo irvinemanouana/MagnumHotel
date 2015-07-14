@@ -12,7 +12,13 @@ public class Customer implements Serializable {
     private String email;
 
 
-    public Customer(int id, String lastName, String firstName,String email) {
+    public Customer(String lastName, String firstName, String email) {
+        this.lastName = lastName;
+        this.firstName = firstName;
+        this.email= email;
+    }
+
+    public Customer(int id, String lastName, String firstName, String email) {
         this.id = id;
         this.lastName = lastName;
         this.firstName = firstName;

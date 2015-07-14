@@ -18,23 +18,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 /**
- * Created by Amélie on 14/07/2015.
+ * Created by Amélie on 13/07/2015.
  */
-public class UpdateCustomerActivity extends Activity {
+public class AddCustomerActivity extends Activity {
 
     // ELEMENT DE VUE
-    TextView titleText;
     EditText lastnameField, firstnameField, emailField;
-    Button updateButton;
-
-    private MySqlLite database;
-    private Customer customer;
+    Button addButton;
 
     // CONTENU DES CHAMPS
     String lastname;
-    String firstName;
+    String firstname;
     String email;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,25 +39,15 @@ public class UpdateCustomerActivity extends Activity {
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); // configuration de l'action bar
 
-        // Récuperation des informations du client
-        customer = (Customer) getIntent().getSerializableExtra("customer");
-
-        // On met à jour les champs avec les informations de l'utilisateur
-        lastnameField.setText(customer.getLastName());
-        firstnameField.setText(customer.getFirstName());
-        emailField.setText(customer.getEmail());
-
-        updateButton.setOnClickListener(new View.OnClickListener() {
+        addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Verification de la conformité du formulaire
                 if(checkForm()){
-                    // Modification du client
-                    customer = new Customer(lastname, firstName, email);
-                    database = new MySqlLite(UpdateCustomerActivity.this);
-                    database.updateCustomer(customer);
-                    Intent intent1 = new Intent(getApplicationContext(), CustomerGestionActivity.class);
-                    startActivity(intent1);
+                    final Customer customer = new Customer(lastname, firstname, email);
+                    MySqlLite mySqlLite = new MySqlLite(getApplicationContext());
+                    mySqlLite.addCustomer(customer);
+                    Intent intent = new Intent(getApplicationContext(), CustomerGestionActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }
@@ -70,11 +55,10 @@ public class UpdateCustomerActivity extends Activity {
     }
 
     private void initialize(){
-        titleText = (TextView) findViewById(R.id.customer_form_title);
         lastnameField = (EditText) findViewById(R.id.customer_lastname);
         firstnameField = (EditText) findViewById(R.id.customer_firstname);
         emailField = (EditText) findViewById(R.id.customer_email);
-        updateButton = (Button) findViewById(R.id.submit_customer);
+        addButton = (Button) findViewById(R.id.submit_customer);
     }
 
     private void actionBarSettings(){
@@ -95,28 +79,25 @@ public class UpdateCustomerActivity extends Activity {
 
         boolean isCorrect = false;
         lastname = lastnameField.getText().toString();
-        firstName = firstnameField.getText().toString();
+        firstname = firstnameField.getText().toString();
         email = emailField.getText().toString();
 
-        if(!(lastname.equals(customer.getLastName()) && firstName.equals(customer.getFirstName()) && email.equals(customer.getEmail()))){
-            // S'il y a eu du changement dans le formulaire on vérifie la conformité des champs si on retourne faux
-            if(lastname.equals("") || firstName.equals("") || email.equals("")){
-                // Champ obligatoire
-                lastnameField.setError(getResources().getString(R.string.required_field));
-                firstnameField.setError(getResources().getString(R.string.required_field));
-                emailField.setError(getResources().getString(R.string.required_field));
-            }else if(!Function.isString(lastname)){
-                // Nom non conforme
-                lastnameField.setError(getResources().getString(R.string.improper_field));
-            }else if(!Function.isString(firstName)){
-                // Prénom non conforme
-                firstnameField.setError(getResources().getString(R.string.improper_field));
-            }else if(!Function.isEmailAddress(email)){
-                // Email non conforme
-                emailField.setError(getResources().getString(R.string.improper_field));
-            }else{
-                isCorrect = true;
-            }
+        if(lastname.equals("") || firstname.equals("") || email.equals("")){
+            // Champ obligatoire
+            lastnameField.setError(getResources().getString(R.string.required_field));
+            firstnameField.setError(getResources().getString(R.string.required_field));
+            emailField.setError(getResources().getString(R.string.required_field));
+        }else if(!Function.isString(lastname)){
+            // Nom non conforme
+            lastnameField.setError(getResources().getString(R.string.improper_field));
+        }else if(!Function.isString(firstname)){
+            // Prénom non conforme
+            firstnameField.setError(getResources().getString(R.string.improper_field));
+        }else if(!Function.isEmailAddress(email)){
+            // Email non conforme
+            emailField.setError(getResources().getString(R.string.improper_field));
+        }else{
+            isCorrect = true;
         }
 
         return isCorrect;
@@ -151,8 +132,10 @@ public class UpdateCustomerActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }
-
 }

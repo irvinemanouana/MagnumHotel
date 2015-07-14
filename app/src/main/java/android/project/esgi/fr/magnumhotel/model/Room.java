@@ -14,13 +14,19 @@ public class Room implements Serializable {
     private int capacity;
     private float price;
 
-    public Room(int id, String title, int capacity, String description, float price) {
+    public Room(String title, int capacity, float price, String description) {
+        this.title = title;
+        this.description = description;
+        this.capacity = capacity;
+        this.price = price;
+    }
+
+    public Room(int id, String title, int capacity, float price, String description) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.capacity = capacity;
         this.price = price;
-
     }
 
     public int getId() {
