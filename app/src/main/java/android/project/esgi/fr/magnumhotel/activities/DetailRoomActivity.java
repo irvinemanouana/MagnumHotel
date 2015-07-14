@@ -11,19 +11,19 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.RoomDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class DetailRoomActivity extends Activity {
 
-    private MySqlLite database;
     private TextView textView, roomNumber, detailprice, detailSizeRoom;
-    private ActionBar actionBar;
     private ImageView updateRoom, deleteRoom;
     private final Context context=this;
     private Room room;
@@ -33,27 +33,33 @@ public class DetailRoomActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
 
-        //ActionBar Settings
-        actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.ic_action_logo);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        this.actionBarSettings();
+        this.initialize();
 
-        database = new MySqlLite(getApplicationContext());
+        room = (Room) getIntent().getSerializableExtra("Room");
+        textView.setText(room.getDescription());
+        roomNumber.setText("Chambre N°" + room.getTitle());
+        detailprice.setText(String.valueOf(room.getPrice()) + " euros la nuit");
+        detailSizeRoom.setText(String.valueOf(room.getCapacity()) + " personne(s) maximum");
+    }
+
+    private void initialize(){
         textView =(TextView)findViewById(R.id.text);
         roomNumber = (TextView)findViewById(R.id.room_number);
         detailprice =(TextView)findViewById(R.id.dprice);
         detailSizeRoom =(TextView)findViewById(R.id.dnbp);
         updateRoom = (ImageView)findViewById(R.id.update_room);
         deleteRoom = (ImageView)findViewById(R.id.delete_room);
+    }
 
-        final Intent intent = getIntent();
-        room = (Room) intent.getSerializableExtra("Room");
-        textView.setText(room.getDescription());
-        roomNumber.setText("Chambre N°" + room.getTitle());
-        detailprice.setText(String.valueOf(room.getPrice()) + " euros la nuit");
-        detailSizeRoom.setText(String.valueOf(room.getCapacity()) + " personne(s) maximum");
+    private void actionBarSettings(){
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setIcon(R.drawable.ic_action_logo);
+            actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public void updateRoom(View view) {
@@ -68,8 +74,10 @@ public class DetailRoomActivity extends Activity {
         .setMessage("Etes-vous sûr de vouloir supprimer  cette chambre?")
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                // continue with delete
-                database.deleteRoom(room);
+                RoomDAO roomDAO = new RoomDAO(DetailRoomActivity.this);
+                roomDAO.open();
+                roomDAO.deleteRoom(room);
+                roomDAO.close();
                 Intent back = new Intent(getApplicationContext(), RoomGestionActivity.class);
                 startActivity(back);
             }

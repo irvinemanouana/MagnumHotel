@@ -35,17 +35,17 @@
     <string name="add_room_title">Add a room</string>
     <string name="update_room_title">Modify a room</string>
     <string name="delete_room_title">Delete a room</string>
-    <string name="customers_max">Maximum number of person</string>
+    <string name="customers_max">Maximum number of person<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_description">Description</string>
-    <string name="room_price">Price</string>
-    <string name="room_number">Number of room</string>
+    <string name="room_price">Price<font fgcolor="#FFFF0000">*</font></string>
+    <string name="room_number">Number of room<font fgcolor="#FFFF0000">*</font></string>
 
     <!-- Customers -->
     <string name="add_customer">Add a customer</string>
     <string name="update_customer">Modify a customer</string>
-    <string name="customer_name">Customer\'s lastname</string>
-    <string name="customer_firstName">Customer\'s firstname</string>
-    <string name="customer_email">Email</string>
+    <string name="customer_name">Customer\'s lastname<font fgcolor="#FFFF0000">*</font></string>
+    <string name="customer_firstName">Customer\'s firstname<font fgcolor="#FFFF0000">*</font></string>
+    <string name="customer_email">Email<font fgcolor="#FFFF0000">*</font></string>
     <string name="no_customer">There is no customer</string>
 
     <!-- Bookings -->

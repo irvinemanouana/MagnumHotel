@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.others.Function;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -43,8 +44,10 @@ public class AddCustomerActivity extends Activity {
             public void onClick(View v) {
                 if(checkForm()){
                     final Customer customer = new Customer(lastname, firstname, email);
-                    MySqlLite mySqlLite = new MySqlLite(getApplicationContext());
-                    mySqlLite.addCustomer(customer);
+                    CustomerDAO customerDAO = new CustomerDAO(AddCustomerActivity.this);
+                    customerDAO.open();
+                    customerDAO.addCustomer(customer);
+                    customerDAO.close();
                     Intent intent = new Intent(getApplicationContext(), CustomerGestionActivity.class);
                     startActivity(intent);
                     finish();

@@ -3,6 +3,7 @@ package android.project.esgi.fr.magnumhotel.activities;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.customList.CustomListMenu;
@@ -23,16 +24,16 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.ic_action_logo);
-        //On enlève le titre
-        actionBar.setDisplayShowTitleEnabled(false);
+        this.actionBarSettings();
 
         ArrayList menuList = new ArrayList();
         String[]menu =getResources().getStringArray(R.array.menu);
         for (int i =0;i<menu.length;i++){
             menuList.add(menu[i]);
         }
+
+
+
         ArrayList<Integer> myImageList = new ArrayList<>();
         myImageList.add(R.drawable.ic_action_room);
         myImageList.add(R.drawable.ic_action_person);
@@ -63,6 +64,17 @@ public class MainActivity extends Activity {
         });
 
     }
+
+    private void actionBarSettings(){
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar = getActionBar();
+            actionBar.setIcon(R.drawable.ic_action_logo);
+            //On enlève le titre
+            actionBar.setDisplayShowTitleEnabled(false);
+        }
+    }
+
 
     /*
     @Override

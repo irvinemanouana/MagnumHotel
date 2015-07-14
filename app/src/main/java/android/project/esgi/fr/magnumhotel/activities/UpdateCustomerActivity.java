@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.others.Function;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,14 +28,12 @@ public class UpdateCustomerActivity extends Activity {
     EditText lastnameField, firstnameField, emailField;
     Button updateButton;
 
-    private MySqlLite database;
     private Customer customer;
 
     // CONTENU DES CHAMPS
     String lastname;
     String firstname;
     String email;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +62,12 @@ public class UpdateCustomerActivity extends Activity {
                 if(checkForm()){
                     // Modification du client
                     customer = new Customer(customer.getId(), lastname, firstname, email);
-                    database = new MySqlLite(UpdateCustomerActivity.this);
-                    database.updateCustomer(customer);
-                    Intent intent1 = new Intent(getApplicationContext(), CustomerGestionActivity.class);
-                    startActivity(intent1);
+                    CustomerDAO customerDAO = new CustomerDAO(UpdateCustomerActivity.this);
+                    customerDAO.open();
+                    customerDAO.updateCustomer(customer);
+                    customerDAO.close();
+                    Intent intent = new Intent(UpdateCustomerActivity.this, CustomerGestionActivity.class);
+                    startActivity(intent);
                     finish();
                 }
             }

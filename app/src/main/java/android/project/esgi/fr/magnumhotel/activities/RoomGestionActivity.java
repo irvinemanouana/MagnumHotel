@@ -9,6 +9,7 @@ import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.customList.RoomsListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.RoomDAO;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +24,7 @@ import java.util.ArrayList;
 
 
 public class RoomGestionActivity extends Activity {
-    MySqlLite database;
+
     TextView textView;
     ListView listView;
     ActionBar actionBar;
@@ -36,28 +37,29 @@ public class RoomGestionActivity extends Activity {
         this.actionBarSettings();
 
         listView = (ListView) findViewById(R.id.allRom);
-        textView = (TextView)findViewById(R.id.nothing);
-        database = new MySqlLite(getApplicationContext());
-        ArrayList allRom = database.getRoomList();
-        int size = allRom.size();
-        Log.d("size",String.valueOf(size));
+        textView = (TextView) findViewById(R.id.nothing);
 
-       if(size <= 0){
+        RoomDAO roomDAO = new RoomDAO(RoomGestionActivity.this);
+        roomDAO.open();
+        ArrayList<Room> allRom = roomDAO.getRoomList();
+        roomDAO.close();
+
+        if(allRom.size() <= 0){
            textView.setText(getResources().getString(R.string.text_nothing));
-       } else {
+        } else {
            ArrayAdapter adapter = new RoomsListAdapter(getApplicationContext(),allRom);
            listView.setAdapter(adapter);
            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                @Override
                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                   //String s =String.valueOf(parent.getItemAtPosition(position)) ;
+                   //String s = String.valueOf(parent.getItemAtPosition(position)) ;
                    Room room = (Room) parent.getItemAtPosition(position);
                    Intent intent = new Intent(getApplicationContext(),DetailRoomActivity.class);
                    intent.putExtra("Room",room);
                    startActivity(intent);
                }
            });
-       }
+        }
     }
 
     public void addNewRoom(View view) {
@@ -76,7 +78,6 @@ public class RoomGestionActivity extends Activity {
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
         actionBar.setDisplayHomeAsUpEnabled(true);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

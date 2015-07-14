@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.RoomDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,7 +28,6 @@ public class UpdateRoomActivity extends Activity {
              capacityField;
     Button modifyButton;
 
-    private MySqlLite database;
     private Room room;
 
     // Contenu des champs
@@ -49,7 +49,6 @@ public class UpdateRoomActivity extends Activity {
         modifyButton.setText(getResources().getString(R.string.update));
 
         room = (Room) getIntent().getSerializableExtra("room");
-        database = new MySqlLite(getApplicationContext());
 
         // Mise à jour des champs avec les informations de la chambre
         titleField.setText(room.getTitle());
@@ -62,7 +61,10 @@ public class UpdateRoomActivity extends Activity {
 
                 if(checkForm()){
                     room = new Room(room.getId(), title, capacity, price, description);
-                    database.updateRoom(room);
+                    RoomDAO roomDAO = new RoomDAO(UpdateRoomActivity.this);
+                    roomDAO.open();
+                    roomDAO.updateRoom(room);
+                    roomDAO.close();
                     Intent intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
                     startActivity(intent);
                     finish();

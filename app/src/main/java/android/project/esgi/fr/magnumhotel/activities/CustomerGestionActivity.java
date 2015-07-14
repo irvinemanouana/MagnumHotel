@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.customList.CustomersListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,27 +25,22 @@ import java.util.ArrayList;
  * Created by Amélie on 13/07/2015.
  */
 public class CustomerGestionActivity extends Activity {
-    MySqlLite database;
+
     TextView textView;
     ListView listView;
-    ActionBar actionBar;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_gestion);
 
-        //ActionBar Settings
-        actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.ic_action_logo);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
+        this.initialize();
+        this.actionBarSettings();
 
-        listView = (ListView) findViewById(R.id.allCustomer);
-        textView = (TextView)findViewById(R.id.no_customer);
-        database = new MySqlLite(getApplicationContext());
-        final ArrayList allCustomer = database.getCustomerList();
+        CustomerDAO customerDAO = new CustomerDAO(this);
+        customerDAO.open();
+        final ArrayList<Customer> allCustomer = customerDAO.getCustomerList();
+        customerDAO.close();
         int size = allCustomer.size();
 
         if(size <= 0) {
@@ -61,6 +57,21 @@ public class CustomerGestionActivity extends Activity {
                     startActivity(intent);
                 }
             });
+        }
+    }
+
+    private void initialize(){
+        listView = (ListView) findViewById(R.id.allCustomer);
+        textView = (TextView)findViewById(R.id.no_customer);
+    }
+
+    private void actionBarSettings(){
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setIcon(R.drawable.ic_action_logo);
+            actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
     }
 

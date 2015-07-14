@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,7 +23,6 @@ import android.widget.Toast;
  * Created by Amélie on 13/07/2015.
  */
 public class DetailCustomerActivity extends Activity {
-    private MySqlLite database;
     private TextView customerName, customerFirstname, customerEmail;
     private ActionBar actionBar;
     private ImageView updateCustomer, deleteCustomer;
@@ -34,25 +34,32 @@ public class DetailCustomerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_customer);
 
-        //ActionBar Settings
-        actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.ic_action_logo);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
 
-        database = new MySqlLite(getApplicationContext());
-        customerName =(TextView)findViewById(R.id.customer_name);
-        customerFirstname =(TextView)findViewById(R.id.customer_firstname);
-        customerEmail =(TextView)findViewById(R.id.customer_email);
-        updateCustomer = (ImageView)findViewById(R.id.update_customer);
-        deleteCustomer = (ImageView)findViewById(R.id.delete_customer);
+        this.initialize();
+        this.actionBarSettings();
 
-        final Intent intent = getIntent();
-        customer = (Customer)intent.getSerializableExtra("Customer");
+        customer = (Customer)getIntent().getSerializableExtra("Customer");
         customerName.setText(customer.getLastName());
         customerFirstname.setText(customer.getFirstName());
         customerEmail.setText(customer.getEmail());
+    }
+
+    private void initialize(){
+        customerName = (TextView)findViewById(R.id.customer_name);
+        customerFirstname = (TextView)findViewById(R.id.customer_firstname);
+        customerEmail = (TextView)findViewById(R.id.customer_email);
+        updateCustomer = (ImageView)findViewById(R.id.update_customer);
+        deleteCustomer = (ImageView)findViewById(R.id.delete_customer);
+    }
+
+    private void actionBarSettings(){
+        ActionBar actionBar = getActionBar();
+        if (actionBar != null) {
+            actionBar.setIcon(R.drawable.ic_action_logo);
+            actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+            actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
     public void updateCustomer(View view) {
@@ -67,17 +74,15 @@ public class DetailCustomerActivity extends Activity {
         .setMessage("Etes-vous sûr de vouloir supprimer  ce client ?")
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                // continue with delete
-                database.deleteCustomer(customer);
+                CustomerDAO customerDAO = new CustomerDAO(DetailCustomerActivity.this);
+                customerDAO.open();
+                customerDAO.deleteCustomer(customer);
+                customerDAO.close();
                 Intent back = new Intent(getApplicationContext(), CustomerGestionActivity.class);
                 startActivity(back);
             }
         })
-        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                // do nothing
-            }
-        })
+        .setNegativeButton(android.R.string.no, null)
         .setIcon(android.R.drawable.ic_dialog_alert)
         .show();
     }

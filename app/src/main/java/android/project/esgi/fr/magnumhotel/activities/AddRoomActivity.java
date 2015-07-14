@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.sqlitepackage.RoomDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,8 +48,10 @@ public class AddRoomActivity extends Activity {
 
                 if(checkForm()){
                     Room room = new Room(title, capacity, price, description);
-                    mySqlLite = new MySqlLite(getApplicationContext());
-                    mySqlLite.addRoom(room);
+                    RoomDAO roomDAO = new RoomDAO(AddRoomActivity.this);
+                    roomDAO.open();
+                    roomDAO.addRoom(room);
+                    roomDAO.close();
                     Intent intent = new Intent(getApplicationContext(), RoomGestionActivity.class);
                     startActivity(intent);
                     finish();
