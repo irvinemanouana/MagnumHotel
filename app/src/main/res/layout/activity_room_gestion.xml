@@ -4,41 +4,26 @@
     android:orientation="vertical"
     tools:context="android.project.esgi.fr.magnumhotel.activities.RoomGestionActivity">
 
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/black">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/add_room"
-            android:textAllCaps="true"
-            android:textStyle="bold"
-            android:textColor="@color/white"
-            android:textSize="14sp"
-            android:paddingLeft="20dp"
-            android:paddingTop="10dp"
-            android:paddingBottom="10dp"
-            android:onClick="addNewRoom"
-             />
-
-    </LinearLayout>
-
     <TextView
         android:id="@+id/nothing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
-    <ImageView
+    <Button
+        style="?android:attr/buttonStyleSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/add_room"
+        android:drawableLeft="@drawable/add_button"
         android:onClick="addNewRoom"
-        android:src="@drawable/add_button"
-        android:layout_marginLeft="20dp"/>
+        android:background="@color/black"
+        android:layout_marginLeft="20dp"
+        android:paddingLeft="15dp"
+        android:paddingRight="15dp"
+        android:textColor="@color/white"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:text="@string/title_activity_add_room"
+        android:id="@+id/button" />
 
     <ListView
         android:id="@+id/allRom"

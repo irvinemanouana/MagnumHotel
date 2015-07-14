@@ -34,6 +34,7 @@ public class NewCustomerActivity extends Activity {
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         customerName = (EditText)findViewById(R.id.name);
         customerFirstName = (EditText)findViewById(R.id.firstname);
@@ -85,6 +86,9 @@ public class NewCustomerActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }

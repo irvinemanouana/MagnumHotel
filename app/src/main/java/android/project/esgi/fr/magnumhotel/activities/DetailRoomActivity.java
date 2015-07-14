@@ -33,6 +33,13 @@ public class DetailRoomActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_room);
 
+        //ActionBar Settings
+        actionBar = getActionBar();
+        actionBar.setIcon(R.drawable.ic_action_logo);
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         database = new MySqlLite(getApplicationContext());
         textView =(TextView)findViewById(R.id.text);
         roomNumber = (TextView)findViewById(R.id.room_number);
@@ -47,11 +54,6 @@ public class DetailRoomActivity extends Activity {
         roomNumber.setText("Chambre N°" + room.getTitle());
         detailprice.setText(String.valueOf(room.getPrice()) + " euros la nuit");
         detailSizeRoom.setText(String.valueOf(room.getNbplace()) + " personne(s) maximum");
-
-        actionBar = getActionBar();
-        actionBar.setIcon(R.drawable.ic_action_logo);
-        actionBar.setDisplayShowTitleEnabled(false);
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
     }
 
     public void updateRoom(View view) {
@@ -157,6 +159,9 @@ public class DetailRoomActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }

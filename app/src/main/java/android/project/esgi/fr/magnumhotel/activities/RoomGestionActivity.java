@@ -33,10 +33,12 @@ public class RoomGestionActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_gestion);
 
+        //ActionBar Settings
         actionBar = getActionBar();
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         listView = (ListView) findViewById(R.id.allRom);
         textView = (TextView)findViewById(R.id.nothing);
@@ -97,6 +99,9 @@ public class RoomGestionActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }

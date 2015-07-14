@@ -33,6 +33,7 @@ public class NewRoomActivity extends Activity {
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         inptitle = (EditText) findViewById(R.id.title);
         inpdes = (EditText) findViewById(R.id.description);
@@ -86,6 +87,9 @@ public class NewRoomActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }

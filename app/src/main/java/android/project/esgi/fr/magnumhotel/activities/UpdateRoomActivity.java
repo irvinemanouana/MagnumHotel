@@ -32,6 +32,7 @@ public class UpdateRoomActivity extends Activity {
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         final Intent intent = getIntent();
         final Room room = (Room) intent.getSerializableExtra("room");
@@ -87,6 +88,9 @@ public class UpdateRoomActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }

@@ -40,6 +40,7 @@ public class DetailCustomerActivity extends Activity {
         actionBar.setIcon(R.drawable.ic_action_logo);
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+        actionBar.setDisplayHomeAsUpEnabled(true);
 
         database = new MySqlLite(getApplicationContext());
         customerName =(TextView)findViewById(R.id.customer_name);
@@ -69,7 +70,7 @@ public class DetailCustomerActivity extends Activity {
             public void onClick(DialogInterface dialog, int which) {
                 // continue with delete
                 database.deleteCustomer(customer);
-                Intent back = new Intent(getApplicationContext(),RoomGestionActivity.class);
+                Intent back = new Intent(getApplicationContext(), CustomerGestionActivity.class);
                 startActivity(back);
             }
         })
@@ -111,6 +112,9 @@ public class DetailCustomerActivity extends Activity {
             case R.id.bookings:
                 Toast.makeText(getBaseContext(), "You selected bookings", Toast.LENGTH_SHORT).show();
                 break;
+
+            default:
+                finish();
         }
         return true;
     }
