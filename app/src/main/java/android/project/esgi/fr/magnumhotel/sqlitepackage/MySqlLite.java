@@ -41,41 +41,12 @@ public class MySqlLite extends SQLiteOpenHelper {
         super(context, db_name, null, version);
     }
 
-    public void deleteRoom(Room room){
-        db = this.getWritableDatabase();
-        db.delete(db_table_room, "id_room = ?", new String[]{String.valueOf(room.getId())});
-        db.close();
-    }
-
-    public void deleteCustomer(Customer customer){
-        db = this.getWritableDatabase();
-        db.delete(db_table_customer, "id_customer = ?", new String[]{String.valueOf(customer.getId())});
-        db.close();
-    }
-
-    public void addRoom(Room room){
-        db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(libelle_room,room.getTitle());
-        values.put(nb_place,room.getCapacity());
-        values.put(description,room.getDescription());
-        values.put(price, room.getPrice());
-        db.insert(db_table_room, null, values);
-        db.close();
-    }
-
-    public void addCustomer(Customer customer){
-        db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(name,customer.getFirstName());
-        values.put(lastname,customer.getLastName());
-        values.put(email,customer.getEmail());
-        db.insert(db_table_customer, null, values);
-        db.close();
-    }
-
-
     @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+
+    }
+
+    @Override // CREATION DES TABLES
     public void onCreate(SQLiteDatabase db) {
         String create_table_room = "CREATE TABLE " + db_table_room + "(" +
                 id_room + " INTEGER PRIMARY KEY, " +
@@ -95,23 +66,16 @@ public class MySqlLite extends SQLiteOpenHelper {
 
     }
 
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+    // CLIENT ---------------------
 
-    }
-
-    public ArrayList<Room> roomArrayList(){
+    public void addCustomer(Customer customer){
         db = this.getWritableDatabase();
-        ArrayList<Room> allRoomArrayList = new ArrayList();
-        String request = "SELECT * FROM " + db_table_room;
-        Cursor cursor = db.rawQuery(request,null);
-        if (cursor.moveToFirst()){
-            while (cursor.moveToNext()){
-                Room room = new Room(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3),cursor.getInt(4));
-                allRoomArrayList.add(room);
-            }
-        }
-        return allRoomArrayList;
+        ContentValues values = new ContentValues();
+        values.put(name,customer.getFirstName());
+        values.put(lastname,customer.getLastName());
+        values.put(email,customer.getEmail());
+        db.insert(db_table_customer, null, values);
+        db.close();
     }
 
     public ArrayList<Customer> customerArrayList(){
@@ -128,6 +92,50 @@ public class MySqlLite extends SQLiteOpenHelper {
         return customers;
     }
 
+    public void updateCustomer(Customer customer){
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(name, customer.getLastName());
+        values.put(lastname, customer.getFirstName());
+        values.put(email,customer.getEmail());
+        db.update(db_table_customer, values, id_customer + " = ?", new String[] {
+                String.valueOf(customer.getId())
+        });
+    }
+
+    public void deleteCustomer(Customer customer){
+        db = this.getWritableDatabase();
+        db.delete(db_table_customer, "id_customer = ?", new String[]{String.valueOf(customer.getId())});
+        db.close();
+    }
+
+    // CHAMBRE ---------------
+
+    public void addRoom(Room room){
+        db = this.getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(libelle_room,room.getTitle());
+        values.put(nb_place,room.getCapacity());
+        values.put(description,room.getDescription());
+        values.put(price, room.getPrice());
+        db.insert(db_table_room, null, values);
+        db.close();
+    }
+
+    public ArrayList<Room> roomArrayList(){
+        db = this.getWritableDatabase();
+        ArrayList<Room> allRoomArrayList = new ArrayList();
+        String request = "SELECT * FROM " + db_table_room;
+        Cursor cursor = db.rawQuery(request,null);
+        if (cursor.moveToFirst()){
+            while (cursor.moveToNext()){
+                Room room = new Room(cursor.getInt(0),cursor.getString(1),cursor.getInt(2),cursor.getString(3),cursor.getInt(4));
+                allRoomArrayList.add(room);
+            }
+        }
+        return allRoomArrayList;
+    }
+
     public void updateRoom(Room room){
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
@@ -140,14 +148,16 @@ public class MySqlLite extends SQLiteOpenHelper {
         });
     }
 
-    public void updateCustomer(Customer customer){
+    public void deleteRoom(Room room){
         db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(name, customer.getLastName());
-        values.put(lastname, customer.getFirstName());
-        values.put(email,customer.getEmail());
-        db.update(db_table_customer, values, id_customer + " = ?", new String[] {
-                String.valueOf(customer.getId())
-        });
+        db.delete(db_table_room, "id_room = ?", new String[]{String.valueOf(room.getId())});
+        db.close();
     }
+
+
+
+
+
+
+
 }

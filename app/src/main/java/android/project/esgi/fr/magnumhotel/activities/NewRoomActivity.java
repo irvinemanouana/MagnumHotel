@@ -26,7 +26,7 @@ public class NewRoomActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_new_room);
+        setContentView(R.layout.activity_room_form);
 
         //ActionBar Settings
         actionBar = getActionBar();
@@ -35,10 +35,10 @@ public class NewRoomActivity extends Activity {
         actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
         actionBar.setDisplayHomeAsUpEnabled(true);
 
-        inptitle = (EditText) findViewById(R.id.title);
-        inpdes = (EditText) findViewById(R.id.description);
-        inpprice = (EditText) findViewById(R.id.prix);
-        inpnbperson = (EditText) findViewById(R.id.place);
+        inptitle = (EditText) findViewById(R.id.edit_title);
+        inpdes = (EditText) findViewById(R.id.edit_description);
+        inpprice = (EditText) findViewById(R.id.edit_prix);
+        inpnbperson = (EditText) findViewById(R.id.edit_capacity);
         addButton = (Button) findViewById(R.id.ajouter);
 
         addButton.setOnClickListener(new View.OnClickListener() {

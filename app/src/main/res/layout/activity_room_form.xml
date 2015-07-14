@@ -1,11 +1,12 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:layout_height="match_parent"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
-    tools:context="android.project.esgi.fr.magnumhotel.activities.UpdateRoomActivity">
+    tools:context="android.project.esgi.fr.magnumhotel.activities.NewRoomActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -13,10 +14,11 @@
         android:layout_height="wrap_content">
 
         <TextView
+            android:id="@+id/room_form_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="@string/title_activity_update_room"
+            android:text="@string/title_activity_add_room"
             android:textAllCaps="true"
             android:gravity="center"
             android:textStyle="bold"
@@ -39,13 +41,13 @@
             android:text="@string/room_number" />
 
         <EditText
+            android:id="@+id/edit_title"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:id="@+id/title"
-            android:inputType="text"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"
             android:textSize="@dimen/input_size"
+            android:inputType="number"
             android:padding="5dp" />
 
         <TextView
@@ -57,11 +59,11 @@
             android:text="@string/customers_max" />
 
         <EditText
-            android:id="@+id/place"
+            android:id="@+id/edit_capacity"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:padding="5dp"
-            android:inputType="text"
+            android:inputType="number"
             android:textSize="@dimen/input_size"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"/>
@@ -75,11 +77,11 @@
             android:text="@string/room_price" />
 
         <EditText
-            android:id="@+id/prix"
+            android:id="@+id/edit_prix"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:padding="5dp"
-            android:inputType="text"
+            android:inputType="numberDecimal"
             android:textSize="@dimen/input_size"
             android:layout_marginTop="5dp"
             android:background="@drawable/input_style"/>
@@ -93,19 +95,19 @@
             android:text="@string/room_description" />
 
         <EditText
+            android:id="@+id/edit_description"
             android:layout_width="match_parent"
             android:layout_height="90dp"
-            android:id="@+id/description"
             android:padding="5dp"
             android:layout_marginTop="5dp"
             android:textSize="@dimen/input_size"
-            android:gravity="top|left"
             android:inputType="text"
+            android:gravity="top|left"
             android:background="@drawable/input_style" />
 
         <Button
-            android:id="@+id/modifier"
-            android:text="@string/update"
+            android:id="@+id/submit_room"
+            android:text="@string/bt_add"
             android:textColor="@color/white"
             android:background="@drawable/button_add"
             android:textAllCaps="true"
