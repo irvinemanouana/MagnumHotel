@@ -70,7 +70,7 @@ public class AddBookingActivity extends Activity {
 
          if(customerSelected.getText().toString().equals("")){
              customerSelected.setError(getResources().getString(R.string.required_field));
-         }else if(!roomSelected.getText().toString().equals("")){
+         }else if(roomSelected.getText().toString().equals("")){
              roomSelected.setError(getResources().getString(R.string.required_field));
          }else{
              isCorrect = true;

@@ -39,7 +39,6 @@ public class MainActivity extends Activity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent;
-                String item = String.valueOf(parent.getItemAtPosition(position));
                 switch ((int) id) {
 
                     case 0:

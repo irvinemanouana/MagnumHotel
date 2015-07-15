@@ -38,7 +38,7 @@
     <string name="customers_max">Maximum number of person<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_description">Description</string>
     <string name="room_price">Price<font fgcolor="#FFFF0000">*</font></string>
-    <string name="room_number">Number of room<font fgcolor="#FFFF0000">*</font></string>
+    <string name="room_number">Room\'s number<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_title_detail">Room N° %1$s</string>
     <string name="room_capacity_detail">Maximum %1$d person%2$s</string>
     <string name="room_price_detail">%1$s euros the night</string>

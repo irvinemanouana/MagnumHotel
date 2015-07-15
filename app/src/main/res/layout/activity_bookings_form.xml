@@ -34,7 +34,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
             android:gravity="center_horizontal|center_vertical"
             android:orientation="horizontal"
             android:layout_marginTop="20dp">
@@ -42,14 +42,14 @@
             <EditText
                 android:id="@+id/choose_customer_text"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:inputType="none"/>
 
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:text="@string/choose_customer"
                 android:id="@+id/choose_customer_button"
@@ -63,14 +63,14 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="bottom"
             android:orientation="horizontal"
-            android:gravity="center_horizontal|center_vertical"
             android:layout_marginTop="20dp">
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="30dp"
+                android:layout_height="match_parent"
                 android:layout_weight="4"
                 android:id="@+id/choose_room_text"
                 android:inputType="none"/>
@@ -78,15 +78,14 @@
             <Button
                 style="?android:attr/buttonStyleSmall"
                 android:layout_width="0dp"
-                android:layout_height="50dp"
+                android:layout_height="match_parent"
                 android:layout_weight="3"
                 android:text="@string/choose_room"
                 android:id="@+id/choose_room_button"
                 android:onClick="selectRoom"
                 android:background="@color/black"
                 android:textColor="@color/white"
-                android:paddingLeft="20dp"
-                android:paddingRight="20dp"
+
                 android:textSize="15sp"
                 android:textStyle="bold"
                 android:textAllCaps="true"/>
@@ -114,6 +113,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
             android:textSize="@dimen/label_size"
             android:textStyle="bold"
             android:text="@string/arrival_day" />
@@ -121,12 +121,15 @@
         <DatePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"
             android:id="@+id/arrival_day" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:layout_gravity="center_horizontal"
             android:textSize="@dimen/label_size"
             android:textStyle="bold"
             android:text="@string/departure_day" />
@@ -134,6 +137,8 @@
         <DatePicker
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:calendarViewShown="false"
             android:id="@+id/departure_day" />
 
 
