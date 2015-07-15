@@ -6,11 +6,9 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
+import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.project.esgi.fr.magnumhotel.others.Function;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.ReservationDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,10 +25,17 @@ import android.widget.Toast;
 public class AddBookingActivity extends Activity {
 
     // ELEMENT DE VUE
-    TextView customerName, customerFirstname;
-    DatePicker arrivalDay, departureDay;
-    Spinner addRoom;
-    Button addButton;
+    EditText customerSelected,
+             roomSelected;
+    DatePicker arrivalDay,
+               departureDay;
+    Spinner selectRoom;
+    Button selectCustomer,
+           addBookingButton;
+
+    // Autres variables
+    int customerId,
+        roomId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,28 +45,49 @@ public class AddBookingActivity extends Activity {
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); //Configuration de l'action bar
 
-        addButton.setOnClickListener(new View.OnClickListener() {
+
+        addBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final Reservation booking = new Reservation(1, 2, arrivalDay.getDayOfMonth() + "/" + arrivalDay.getMonth() + "/" + arrivalDay.getYear(), departureDay.getDayOfMonth() + "/" + departureDay.getMonth() + "/" + departureDay.getYear());
-                ReservationDAO bookingDAO = new ReservationDAO(AddBookingActivity.this);
-                bookingDAO.open();
-                bookingDAO.addBooking(booking);
-                bookingDAO.close();
-                Intent intent = new Intent(AddBookingActivity.this, BookingGestionActivity.class);
-                startActivity(intent);
-                finish();
+                if(checkForm()){
+                    final Reservation booking = new Reservation(customerId, roomId, arrivalDay.getDayOfMonth() + "/" + arrivalDay.getMonth() + "/" + arrivalDay.getYear(), departureDay.getDayOfMonth() + "/" + departureDay.getMonth() + "/" + departureDay.getYear());
+                    ReservationDAO bookingDAO = new ReservationDAO(AddBookingActivity.this);
+                    bookingDAO.open();
+                    bookingDAO.addBooking(booking);
+                    bookingDAO.close();
+                    Intent intent = new Intent(AddBookingActivity.this, BookingGestionActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+
             }
         });
     }
 
+    private boolean checkForm(){
+
+        boolean isCorrect = false;
+
+         if(customerSelected.getText().toString().equals("")){
+             customerSelected.setError(getResources().getString(R.string.required_field));
+         }else if(!roomSelected.getText().toString().equals("")){
+             roomSelected.setError(getResources().getString(R.string.required_field));
+         }else{
+             isCorrect = true;
+         }
+
+        return isCorrect;
+    }
+
+
     private void initialize(){
-        customerName = (TextView) findViewById(R.id.customer_name);
-        customerFirstname = (TextView) findViewById(R.id.customer_firstname);
+        customerSelected = (EditText) findViewById(R.id.choose_customer_text);
+        roomSelected = (EditText) findViewById(R.id.choose_room_text);
         arrivalDay = (DatePicker)findViewById(R.id.arrival_day);
         departureDay = (DatePicker)findViewById(R.id.departure_day);
-        addRoom = (Spinner)findViewById(R.id.choose_room);
-        addButton = (Button) findViewById(R.id.submit_booking);
+        selectCustomer = (Button)findViewById(R.id.choose_customer_button);
+        selectRoom = (Spinner)findViewById(R.id.choose_room_button);
+        addBookingButton = (Button) findViewById(R.id.submit_booking);
     }
 
     private void actionBarSettings(){
@@ -110,4 +136,25 @@ public class AddBookingActivity extends Activity {
         return true;
     }
 
+    public void selectCustomer(View view) {
+
+        startActivityForResult(new Intent(this,SelectCustomerActivity.class),1);
+
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(requestCode == 1){
+            if(resultCode == RESULT_OK){
+                customerId = data.getIntExtra("customerId",0);
+                customerSelected.setText(data.getStringExtra("customerFirstname")+" "+data.getStringExtra("customerLastname"));
+            }
+
+        }else if(requestCode == 2){
+            if(resultCode == RESULT_OK){
+                roomId = data.getIntExtra("roomId",0);
+                customerSelected.setText(String.format(getResources().getString(R.string.room_title_detail), data.getStringExtra("roomTitle")));
+            }
+        }
+    }
 }

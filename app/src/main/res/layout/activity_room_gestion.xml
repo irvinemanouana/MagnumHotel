@@ -5,7 +5,7 @@
     tools:context="android.project.esgi.fr.magnumhotel.activities.RoomGestionActivity">
 
     <TextView
-        android:id="@+id/nothing"
+        android:id="@+id/empty_room_list_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 
@@ -23,10 +23,10 @@
         android:textAllCaps="true"
         android:textStyle="bold"
         android:text="@string/add_room_title"
-        android:id="@+id/button" />
+        android:id="@+id/link_to_add_customer" />
 
     <ListView
-        android:id="@+id/allRom"
+        android:id="@+id/room_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_margin="20dp"/>

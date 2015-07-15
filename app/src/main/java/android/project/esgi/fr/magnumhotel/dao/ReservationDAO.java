@@ -1,4 +1,4 @@
-package android.project.esgi.fr.magnumhotel.sqlitepackage;
+package android.project.esgi.fr.magnumhotel.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -18,12 +18,12 @@ public class ReservationDAO {
     private SQLiteDatabase database = null;
 
     // Base de données inutilisable
-    private MySqlLite mySqlLite;
+    private DataBaseHandler mySqlLite;
 
     private static final String TABLE_BOOKING = "booking";
 
     public ReservationDAO(Context context){
-        mySqlLite = new MySqlLite(context);
+        mySqlLite = new DataBaseHandler(context);
     }
 
     /**
@@ -44,10 +44,10 @@ public class ReservationDAO {
 
     public void addBooking(Reservation booking){
         ContentValues values = new ContentValues();
-        values.put(MySqlLite.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
-        values.put(MySqlLite.KEY_RESERVATION_START_DAY, booking.getStartDate());
-        values.put(MySqlLite.KEY_RESERVATION_END_DAY, booking.getEndDate());
-        values.put(MySqlLite.KEY_RESERVATION_ROOM_ID, booking.getRoomId());
+        values.put(DataBaseHandler.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
+        values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, booking.getStartDate());
+        values.put(DataBaseHandler.KEY_RESERVATION_END_DAY, booking.getEndDate());
+        values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID, booking.getRoomId());
         database.insert(TABLE_BOOKING, null, values);
     }
 
@@ -65,26 +65,26 @@ public class ReservationDAO {
 
     public void updateBooking(Reservation booking){
         ContentValues values = new ContentValues();
-        values.put(MySqlLite.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
-        values.put(MySqlLite.KEY_RESERVATION_START_DAY, booking.getStartDate());
-        values.put(MySqlLite.KEY_RESERVATION_END_DAY,booking.getEndDate());
-        values.put(MySqlLite.KEY_RESERVATION_ROOM_ID,booking.getRoomId());
-        database.update(TABLE_BOOKING, values, MySqlLite.KEY_RESERVATION_ID + " = ?", new String[] {
+        values.put(DataBaseHandler.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
+        values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, booking.getStartDate());
+        values.put(DataBaseHandler.KEY_RESERVATION_END_DAY,booking.getEndDate());
+        values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID,booking.getRoomId());
+        database.update(TABLE_BOOKING, values, DataBaseHandler.KEY_RESERVATION_ID + " = ?", new String[] {
                 String.valueOf(booking.getId())
         });
     }
 
     public void deleteBooking(Reservation booking){
-        database.delete(TABLE_BOOKING, MySqlLite.KEY_RESERVATION_ID+" = ?", new String[]{String.valueOf(booking.getId())});
+        database.delete(TABLE_BOOKING, DataBaseHandler.KEY_RESERVATION_ID+" = ?", new String[]{String.valueOf(booking.getId())});
     }
 
     // Transformer un cursor en un objet Customer
     private Reservation cursorToReservation(Cursor cursor){
         Reservation booking = new Reservation() ;
-        booking.setId(cursor.getInt(MySqlLite.POSITION_RESERVATION_CUSTOMER_ID));
-        booking.setStartDate(cursor.getString(MySqlLite.POSITION_RESERVATION_START_DAY));
-        booking.setEndDate(cursor.getString(MySqlLite.POSITION_RESERVATION_END_DAY));
-        booking.setRoomId(cursor.getInt(MySqlLite.POSITION_RESERVATION_ROOM_ID));
+        booking.setId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_CUSTOMER_ID));
+        booking.setStartDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_START_DAY));
+        booking.setEndDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_END_DAY));
+        booking.setRoomId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ROOM_ID));
         return booking;
     }
 }

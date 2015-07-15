@@ -8,8 +8,7 @@ import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.others.Function;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,6 +41,7 @@ public class AddCustomerActivity extends Activity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if(checkForm()){
                     final Customer customer = new Customer(lastname, firstname, email);
                     CustomerDAO customerDAO = new CustomerDAO(AddCustomerActivity.this);

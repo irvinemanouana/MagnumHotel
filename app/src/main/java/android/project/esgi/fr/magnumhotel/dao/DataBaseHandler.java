@@ -1,20 +1,13 @@
-package android.project.esgi.fr.magnumhotel.sqlitepackage;
+package android.project.esgi.fr.magnumhotel.dao;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.project.esgi.fr.magnumhotel.model.Customer;
-import android.project.esgi.fr.magnumhotel.model.Room;
-import android.util.Log;
-
-import java.util.ArrayList;
 
 /**
  * Created by Christopher on 03/07/2015.
  */
-public class MySqlLite extends SQLiteOpenHelper {
+public class DataBaseHandler extends SQLiteOpenHelper {
 
     // BASE DE DONNEES
     private static final String DATABASE_NAME = "magnum";
@@ -74,7 +67,7 @@ public class MySqlLite extends SQLiteOpenHelper {
 
 
 
-    public MySqlLite(Context context) {
+    public DataBaseHandler(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
 

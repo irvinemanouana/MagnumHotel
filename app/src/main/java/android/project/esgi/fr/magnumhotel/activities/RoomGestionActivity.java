@@ -6,16 +6,13 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.customList.RoomsListAdapter;
+import android.project.esgi.fr.magnumhotel.adapter.RoomsListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Room;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.RoomDAO;
-import android.util.Log;
+import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -25,19 +22,16 @@ import java.util.ArrayList;
 
 public class RoomGestionActivity extends Activity {
 
-    TextView textView;
-    ListView listView;
-    ActionBar actionBar;
+    TextView emptyListText;
+    ListView roomList;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_gestion);
 
+        this.initialize();
         this.actionBarSettings();
-
-        listView = (ListView) findViewById(R.id.allRom);
-        textView = (TextView) findViewById(R.id.nothing);
 
         RoomDAO roomDAO = new RoomDAO(RoomGestionActivity.this);
         roomDAO.open();
@@ -45,11 +39,10 @@ public class RoomGestionActivity extends Activity {
         roomDAO.close();
 
         if(allRom.size() <= 0){
-           textView.setText(getResources().getString(R.string.text_nothing));
+            emptyListText.setText(getResources().getString(R.string.text_nothing));
         } else {
-           ArrayAdapter adapter = new RoomsListAdapter(getApplicationContext(),allRom);
-           listView.setAdapter(adapter);
-           listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            roomList.setAdapter(new RoomsListAdapter(RoomGestionActivity.this,allRom));
+            roomList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                @Override
                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                    //String s = String.valueOf(parent.getItemAtPosition(position)) ;
@@ -62,21 +55,24 @@ public class RoomGestionActivity extends Activity {
         }
     }
 
+    private void initialize(){
+        emptyListText = (TextView) findViewById(R.id.empty_room_list_text);
+        roomList = (ListView) findViewById(R.id.room_list);
+    }
+
     public void addNewRoom(View view) {
         Intent addNewRoom = new Intent(this, AddRoomActivity.class);
         startActivity(addNewRoom);
     }
 
     private void actionBarSettings(){
-        actionBar = getActionBar();
+        ActionBar actionBar = getActionBar();
         if (actionBar != null) {
             actionBar.setIcon(R.drawable.ic_action_logo);
-        }
-        if (actionBar != null) {
             actionBar.setDisplayShowTitleEnabled(false);
+            actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
+            actionBar.setDisplayHomeAsUpEnabled(true);
         }
-        actionBar.setSplitBackgroundDrawable(new ColorDrawable(getResources().getColor(R.color.black)));
-        actionBar.setDisplayHomeAsUpEnabled(true);
     }
 
     @Override

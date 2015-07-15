@@ -10,8 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,7 +44,7 @@ public class DetailCustomerActivity extends Activity {
     }
 
     private void initialize(){
-        customerName = (TextView)findViewById(R.id.customer_name);
+        customerName = (TextView)findViewById(R.id.customer_lastname);
         customerFirstname = (TextView)findViewById(R.id.customer_firstname);
         customerEmail = (TextView)findViewById(R.id.customer_email);
         updateCustomer = (ImageView)findViewById(R.id.update_customer);
@@ -71,7 +70,7 @@ public class DetailCustomerActivity extends Activity {
     public void deleteCustomer(View view) {
         new AlertDialog.Builder(context)
         .setTitle("Supprimer le client "+ customer.getLastName() + " " + customer.getFirstName())
-        .setMessage("Etes-vous sûr de vouloir supprimer  ce client ?")
+        .setMessage(getResources().getString(R.string.delete_customer_message))
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 CustomerDAO customerDAO = new CustomerDAO(DetailCustomerActivity.this);

@@ -6,17 +6,14 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.customList.BookingsListAdapter;
-import android.project.esgi.fr.magnumhotel.customList.CustomersListAdapter;
-import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.adapter.BookingsListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.ReservationDAO;
+import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +25,9 @@ import java.util.ArrayList;
  */
 public class BookingGestionActivity extends Activity {
 
-    TextView textView;
-    ListView listView;
+    TextView emptyText;
+    ListView bookingList;
+    Button linkToAddBooking;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -41,20 +39,19 @@ public class BookingGestionActivity extends Activity {
 
         ReservationDAO reservationDAO = new ReservationDAO(this);
         reservationDAO.open();
-        final ArrayList<Reservation> allBooking = reservationDAO.getBookingList();
+        ArrayList<Reservation> allBooking = reservationDAO.getBookingList();
         reservationDAO.close();
-        int size = allBooking.size();
 
-        if(size <= 0) {
-            textView.setText(getResources().getString(R.string.no_bookings));
+        if(allBooking.size() <= 0) {
+            emptyText.setText(getResources().getString(R.string.no_bookings));
         } else {
-            ArrayAdapter adapter = new BookingsListAdapter(getApplicationContext(), allBooking);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            BookingsListAdapter adapter = new BookingsListAdapter(getApplicationContext(), allBooking);
+            bookingList.setAdapter(adapter);
+            bookingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Reservation booking = (Reservation) parent.getItemAtPosition(position);
-                    Intent intent = new Intent(getApplicationContext(), DetailBookingActivity.class);
+                    Intent intent = new Intent(BookingGestionActivity.this, DetailBookingActivity.class);
                     intent.putExtra("bookingId", booking.getId());
                     startActivity(intent);
                 }
@@ -63,8 +60,9 @@ public class BookingGestionActivity extends Activity {
     }
 
     private void initialize(){
-        listView = (ListView) findViewById(R.id.allCustomer);
-        textView = (TextView)findViewById(R.id.no_customer);
+        linkToAddBooking = (Button) findViewById(R.id.link_to_add_booking);
+        bookingList = (ListView) findViewById(R.id.booking_list);
+        emptyText = (TextView)findViewById(R.id.empty_customer_list_text);
     }
 
     private void actionBarSettings(){
@@ -77,9 +75,12 @@ public class BookingGestionActivity extends Activity {
         }
     }
 
-    public void addNewCustomer(View view) {
-        Intent addNewCustomer = new Intent(this, AddCustomerActivity.class);
-        startActivity(addNewCustomer);
+    public void addNewBooking(View view) {
+        startActivity(new Intent(this, AddBookingActivity.class));
+    }
+
+    public void selectCustomer(View view){
+        startActivityForResult(new Intent(this,SelectCustomerActivity.class), 1);
     }
 
     @Override
@@ -117,5 +118,6 @@ public class BookingGestionActivity extends Activity {
         }
         return true;
     }
+
 
 }

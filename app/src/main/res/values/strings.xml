@@ -39,6 +39,9 @@
     <string name="room_description">Description</string>
     <string name="room_price">Price<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_number">Number of room<font fgcolor="#FFFF0000">*</font></string>
+    <string name="room_title_detail">Room N° %1$s</string>
+    <string name="room_capacity_detail">Maximum %1$d person%2$s</string>
+    <string name="room_price_detail">%1$s euros the night</string>
 
     <!-- Customers -->
     <string name="add_customer">Add a customer</string>
@@ -47,6 +50,7 @@
     <string name="customer_firstName">Customer\'s firstname<font fgcolor="#FFFF0000">*</font></string>
     <string name="customer_email">Email<font fgcolor="#FFFF0000">*</font></string>
     <string name="no_customer">There is no customer</string>
+    <string name="delete_customer_message">Are you sure to delete this customer ?</string>
 
     <!-- Bookings -->
     <string name="title_activity_add_booking">Add a reservation</string>
@@ -56,7 +60,7 @@
     <string name="arrival_day">Arrival day</string>
     <string name="departure_day">Departure day</string>
     <string name="choose_customer">Choose a customer</string>
-
+    <string name="choose_room">choose a room</string>
 
     <!-- Error management-->
     <string name="required_field">Required field</string>

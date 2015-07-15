@@ -32,20 +32,65 @@
             android:layout_marginTop="25dp"
             android:layout_marginBottom="25dp"/>
 
-        <Button
-            style="?android:attr/buttonStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp"
-            android:text="@string/choose_customer"
-            android:id="@+id/choose_customer"
-            android:background="@color/black"
-            android:textColor="@color/white"
-            android:paddingLeft="20dp"
-            android:paddingRight="20dp"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:textAllCaps="true"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:id="@+id/choose_customer_text"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="4"
+                android:inputType="none"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="3"
+                android:text="@string/choose_customer"
+                android:id="@+id/choose_customer_button"
+                android:onClick="selectCustomer"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal|center_vertical"
+            android:layout_marginTop="20dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="30dp"
+                android:layout_weight="4"
+                android:id="@+id/choose_room_text"
+                android:inputType="none"/>
+
+            <Button
+                style="?android:attr/buttonStyleSmall"
+                android:layout_width="0dp"
+                android:layout_height="50dp"
+                android:layout_weight="3"
+                android:text="@string/choose_room"
+                android:id="@+id/choose_room_button"
+                android:onClick="selectCustomer"
+                android:background="@color/black"
+                android:textColor="@color/white"
+                android:paddingLeft="20dp"
+                android:paddingRight="20dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+        </LinearLayout>
 
         <TextView
             android:textSize="@dimen/label_size"
@@ -54,7 +99,7 @@
             android:text="@string/customer_name"
             android:layout_marginTop="3dp"
             android:visibility="invisible"
-            android:id="@+id/customer_name" />
+            android:id="@+id/customer_lastname" />
 
         <TextView
             android:textSize="@dimen/label_size"
@@ -91,19 +136,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/departure_day" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textSize="@dimen/label_size"
-            android:textStyle="bold"
-            android:text="@string/specify_room" />
 
-        <Spinner
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="3dp"
-            android:id="@+id/choose_room" />
+
+
 
         <Button
             android:id="@+id/submit_booking"

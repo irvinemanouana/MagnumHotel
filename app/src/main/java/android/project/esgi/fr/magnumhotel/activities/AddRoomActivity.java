@@ -7,8 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Room;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.RoomDAO;
+import android.project.esgi.fr.magnumhotel.dao.DataBaseHandler;
+import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -26,7 +26,7 @@ public class AddRoomActivity extends Activity {
                      descriptionField;
     private Button addButton;
 
-    private MySqlLite mySqlLite;
+    private DataBaseHandler DataBaseHandler;
 
     // Contenu des champs
     private String title;

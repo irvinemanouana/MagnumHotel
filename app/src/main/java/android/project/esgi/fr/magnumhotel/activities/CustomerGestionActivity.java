@@ -6,15 +6,13 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.customList.CustomersListAdapter;
+import android.project.esgi.fr.magnumhotel.adapter.CustomersListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Customer;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.CustomerDAO;
-import android.project.esgi.fr.magnumhotel.sqlitepackage.MySqlLite;
+import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,8 +24,8 @@ import java.util.ArrayList;
  */
 public class CustomerGestionActivity extends Activity {
 
-    TextView textView;
-    ListView listView;
+    TextView emptyText;
+    ListView customerList;
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -44,11 +42,11 @@ public class CustomerGestionActivity extends Activity {
         int size = allCustomer.size();
 
         if(size <= 0) {
-            textView.setText(getResources().getString(R.string.no_customer));
+            emptyText.setText(getResources().getString(R.string.no_customer));
         } else {
-            ArrayAdapter adapter = new CustomersListAdapter(getApplicationContext(), allCustomer);
-            listView.setAdapter(adapter);
-            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            CustomersListAdapter adapter = new CustomersListAdapter(CustomerGestionActivity.this, allCustomer);
+            customerList.setAdapter(adapter);
+            customerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Customer customer = (Customer) parent.getItemAtPosition(position);
@@ -61,8 +59,8 @@ public class CustomerGestionActivity extends Activity {
     }
 
     private void initialize(){
-        listView = (ListView) findViewById(R.id.allCustomer);
-        textView = (TextView)findViewById(R.id.no_customer);
+        customerList = (ListView) findViewById(R.id.customer_list);
+        emptyText = (TextView)findViewById(R.id.empty_customer_list_text);
     }
 
     private void actionBarSettings(){
@@ -76,8 +74,7 @@ public class CustomerGestionActivity extends Activity {
     }
 
     public void addNewCustomer(View view) {
-        Intent addNewCustomer = new Intent(this, AddCustomerActivity.class);
-        startActivity(addNewCustomer);
+        startActivity(new Intent(this, AddCustomerActivity.class));
     }
 
     @Override

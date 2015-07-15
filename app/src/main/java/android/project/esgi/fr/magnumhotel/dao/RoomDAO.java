@@ -1,11 +1,10 @@
-package android.project.esgi.fr.magnumhotel.sqlitepackage;
+package android.project.esgi.fr.magnumhotel.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.project.esgi.fr.magnumhotel.model.Room;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -18,12 +17,12 @@ public class RoomDAO {
     private SQLiteDatabase database = null;
 
     // Base de données inutilisable
-    private MySqlLite mySqlLite;
+    private DataBaseHandler DataBaseHandler;
 
     private static final String TABLE_ROOM = "room";
 
     public RoomDAO(Context context){
-        mySqlLite = new MySqlLite(context);
+        DataBaseHandler = new DataBaseHandler(context);
     }
 
     /**
@@ -31,7 +30,7 @@ public class RoomDAO {
      * @return Une base de données modifiable (Écriture + lecture)
      */
     public SQLiteDatabase open() {
-        this.database = mySqlLite.getWritableDatabase();
+        this.database = DataBaseHandler.getWritableDatabase();
         return database;
     }
 
@@ -39,16 +38,15 @@ public class RoomDAO {
      * Permet de fermer la base de données
      */
     public void close() {
-        mySqlLite.close();
+        DataBaseHandler.close();
     }
-
 
     public void addRoom(Room room){
         ContentValues values = new ContentValues();
-        values.put(MySqlLite.KEY_ROOM_TITLE,room.getTitle());
-        values.put(MySqlLite.KEY_ROOM_CAPACITY,room.getCapacity());
-        values.put(MySqlLite.KEY_ROOM_PRICE, room.getPrice());
-        values.put(MySqlLite.KEY_ROOM_DESCRIPTION, room.getDescription());
+        values.put(DataBaseHandler.KEY_ROOM_TITLE,room.getTitle());
+        values.put(DataBaseHandler.KEY_ROOM_CAPACITY,room.getCapacity());
+        values.put(DataBaseHandler.KEY_ROOM_PRICE, room.getPrice());
+        values.put(DataBaseHandler.KEY_ROOM_DESCRIPTION, room.getDescription());
         database.insert(TABLE_ROOM, null, values);
     }
 
@@ -61,17 +59,18 @@ public class RoomDAO {
                 allRoomArrayList.add(cursorToRoom(cursor));
             }
         }
+        cursor.close();
         return allRoomArrayList;
     }
 
     public void updateRoom(Room room){
 
         ContentValues values = new ContentValues();
-        values.put(MySqlLite.KEY_ROOM_TITLE,room.getTitle());
-        values.put(MySqlLite.KEY_ROOM_CAPACITY,room.getCapacity());
-        values.put(MySqlLite.KEY_ROOM_PRICE, room.getPrice());
-        values.put(MySqlLite.KEY_ROOM_DESCRIPTION,room.getDescription());
-        database.update(TABLE_ROOM,values, MySqlLite.KEY_ROOM_ID + " = ?",new String[] {
+        values.put(DataBaseHandler.KEY_ROOM_TITLE,room.getTitle());
+        values.put(DataBaseHandler.KEY_ROOM_CAPACITY,room.getCapacity());
+        values.put(DataBaseHandler.KEY_ROOM_PRICE, room.getPrice());
+        values.put(DataBaseHandler.KEY_ROOM_DESCRIPTION,room.getDescription());
+        database.update(TABLE_ROOM,values, DataBaseHandler.KEY_ROOM_ID + " = ?",new String[] {
                 String.valueOf(room.getId())
         });
     }
@@ -82,11 +81,11 @@ public class RoomDAO {
 
     private Room cursorToRoom(Cursor cursor){
         Room room = new Room() ;
-        room.setId(cursor.getInt(MySqlLite.POSITION_ROOM_ID));
-        room.setTitle(cursor.getString(MySqlLite.POSITION_ROOM_TITLE));
-        room.setCapacity(cursor.getInt(MySqlLite.POSITION_ROOM_CAPACITY));
-        room.setPrice(cursor.getFloat(MySqlLite.POSITION_ROOM_PRICE));
-        room.setDescription(cursor.getString(MySqlLite.POSITION_ROOM_DESCRIPTION));
+        room.setId(cursor.getInt(DataBaseHandler.POSITION_ROOM_ID));
+        room.setTitle(cursor.getString(DataBaseHandler.POSITION_ROOM_TITLE));
+        room.setCapacity(cursor.getInt(DataBaseHandler.POSITION_ROOM_CAPACITY));
+        room.setPrice(cursor.getFloat(DataBaseHandler.POSITION_ROOM_PRICE));
+        room.setDescription(cursor.getString(DataBaseHandler.POSITION_ROOM_DESCRIPTION));
         return room;
     }
 

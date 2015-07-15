@@ -1,7 +1,6 @@
-package android.project.esgi.fr.magnumhotel.customList;
+package android.project.esgi.fr.magnumhotel.adapter;
 
 import android.content.Context;
-import android.graphics.drawable.Drawable;
 import android.project.esgi.fr.magnumhotel.R;
 import android.view.LayoutInflater;
 import android.view.View;

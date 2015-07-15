@@ -1,11 +1,10 @@
-package android.project.esgi.fr.magnumhotel.sqlitepackage;
+package android.project.esgi.fr.magnumhotel.dao;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.project.esgi.fr.magnumhotel.model.Customer;
-import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -19,12 +18,12 @@ public class CustomerDAO {
     private SQLiteDatabase database = null;
 
     // Base de données inutilisable
-    private MySqlLite mySqlLite;
+    private DataBaseHandler DataBaseHandler;
 
     private static final String TABLE_CUSTOMER = "customer";
 
     public CustomerDAO(Context context){
-        mySqlLite = new MySqlLite(context);
+        DataBaseHandler = new DataBaseHandler(context);
     }
 
     /**
@@ -32,7 +31,7 @@ public class CustomerDAO {
      * @return Une base de données modifiable (Écriture + lecture)
      */
     public SQLiteDatabase open() {
-        this.database = mySqlLite.getWritableDatabase();
+        this.database = DataBaseHandler.getWritableDatabase();
         return database;
     }
 
@@ -40,14 +39,14 @@ public class CustomerDAO {
      * Permet de fermer la base de données
      */
     public void close() {
-        mySqlLite.close();
+        DataBaseHandler.close();
     }
 
     public void addCustomer(Customer customer){
         ContentValues values = new ContentValues();
-        values.put(MySqlLite.KEY_CUSTOMER_LASTNAME,customer.getLastName());
-        values.put(MySqlLite.KEY_CUSTOMER_FIRSTNAME,customer.getFirstName());
-        values.put(MySqlLite.KEY_CUSTOMER_EMAIL,customer.getEmail());
+        values.put(DataBaseHandler.KEY_CUSTOMER_LASTNAME,customer.getLastName());
+        values.put(DataBaseHandler.KEY_CUSTOMER_FIRSTNAME,customer.getFirstName());
+        values.put(DataBaseHandler.KEY_CUSTOMER_EMAIL,customer.getEmail());
         database.insert(TABLE_CUSTOMER, null, values);
     }
 
@@ -60,30 +59,31 @@ public class CustomerDAO {
                 customers.add(cursorToCustomer(cursor));
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return customers;
     }
 
     public void updateCustomer(Customer customer){
         ContentValues values = new ContentValues();
-        values.put(MySqlLite.KEY_CUSTOMER_LASTNAME, customer.getLastName());
-        values.put(MySqlLite.KEY_CUSTOMER_FIRSTNAME, customer.getFirstName());
-        values.put(MySqlLite.KEY_CUSTOMER_EMAIL,customer.getEmail());
-        database.update(TABLE_CUSTOMER, values, MySqlLite.KEY_CUSTOMER_ID + " = ?", new String[] {
+        values.put(DataBaseHandler.KEY_CUSTOMER_LASTNAME, customer.getLastName());
+        values.put(DataBaseHandler.KEY_CUSTOMER_FIRSTNAME, customer.getFirstName());
+        values.put(DataBaseHandler.KEY_CUSTOMER_EMAIL,customer.getEmail());
+        database.update(TABLE_CUSTOMER, values, DataBaseHandler.KEY_CUSTOMER_ID + " = ?", new String[] {
                 String.valueOf(customer.getId())
         });
     }
 
     public void deleteCustomer(Customer customer){
-        database.delete(TABLE_CUSTOMER, MySqlLite.KEY_CUSTOMER_ID+" = ?", new String[]{String.valueOf(customer.getId())});
+        database.delete(TABLE_CUSTOMER, DataBaseHandler.KEY_CUSTOMER_ID+" = ?", new String[]{String.valueOf(customer.getId())});
     }
 
     // Transformer un cursor en un objet Customer
     private Customer cursorToCustomer(Cursor cursor){
         Customer customer = new Customer() ;
-        customer.setId(cursor.getInt(MySqlLite.POSITION_CUSTOMER_ID));
-        customer.setLastName(cursor.getString(MySqlLite.POSITION_CUSTOMER_LASTNAME));
-        customer.setFirstName(cursor.getString(MySqlLite.POSITION_CUSTOMER_FIRSTNAME));
-        customer.setEmail(cursor.getString(MySqlLite.POSITION_CUSTOMER_EMAIL));
+        customer.setId(cursor.getInt(DataBaseHandler.POSITION_CUSTOMER_ID));
+        customer.setLastName(cursor.getString(DataBaseHandler.POSITION_CUSTOMER_LASTNAME));
+        customer.setFirstName(cursor.getString(DataBaseHandler.POSITION_CUSTOMER_FIRSTNAME));
+        customer.setEmail(cursor.getString(DataBaseHandler.POSITION_CUSTOMER_EMAIL));
         return customer;
     }
 }

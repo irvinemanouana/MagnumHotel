@@ -39,21 +39,30 @@
     <string name="room_description">Description</string>
     <string name="room_price">Prix<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_number">N° de la chambre<font fgcolor="#FFFF0000">*</font></string>
+    <string name="room_title_detail">Chambre N° %1$s</string>
+    <string name="room_capacity_detail">%1$d personne%2$s maximum</string>
+    <string name="room_price_detail">%1$s euros la nuit</string>
+
 
     <!-- Clients -->
     <string name="add_customer">Ajouter un client</string>
     <string name="update_customer">Modifier un client</string>
+    <string name="delete_customer">Supprimer le client %1$s</string>
     <string name="customer_name">Nom du client<font fgcolor="#FFFF0000">*</font></string>
     <string name="customer_firstName">Prénom du client<font fgcolor="#FFFF0000">*</font></string>
     <string name="customer_email">Email<font fgcolor="#FFFF0000">*</font></string>
     <string name="no_customer">Il n\'y a actuellement aucun client</string>
+    <string name="delete_customer_message">Etes-vous sûr de vouloir supprimer ce client ?</string>
 
     <!-- Bookings -->
     <string name="title_activity_add_booking">Ajouter une réservation</string>
+    <string name="no_bookings">Il n'y a pas de réservation</string>
     <string name="all_bookings">Réservations</string>
     <string name="specify_room">Attribution d\'une chambre</string>
     <string name="arrival_day">Date d\'arrivée</string>
     <string name="departure_day">Date de départ</string>
+    <string name="choose_customer">Choisir un utilisateur</string>
+    <string name="choose_room">Choisir une chambre</string>
 
     <!-- Gestion d'erreur-->
     <string name="required_field">Champ obligatoire</string>
