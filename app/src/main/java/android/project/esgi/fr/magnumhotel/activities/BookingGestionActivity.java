@@ -62,7 +62,7 @@ public class BookingGestionActivity extends Activity {
     private void initialize(){
         linkToAddBooking = (Button) findViewById(R.id.link_to_add_booking);
         bookingList = (ListView) findViewById(R.id.booking_list);
-        emptyText = (TextView)findViewById(R.id.empty_customer_list_text);
+        emptyText = (TextView) findViewById(R.id.empty_booking_list_text);
     }
 
     private void actionBarSettings(){

@@ -5,8 +5,11 @@ import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.adapter.CustomersListAdapter;
+import android.project.esgi.fr.magnumhotel.adapter.RoomsListAdapter;
 import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
+import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.model.Room;
 import android.view.View;
 import android.widget.ListView;
 
@@ -15,32 +18,34 @@ import java.util.ArrayList;
 /**
  * Created by Sylvain on 15/07/15.
  */
-public class SelectCustomerActivity extends ListActivity {
+public class SelectRoomActivity extends ListActivity {
 
-    ArrayList<Customer> customerArrayList;
+    ArrayList<Room> roomArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        CustomerDAO customerDAO = new CustomerDAO(this);
-        customerDAO.open();
-        customerArrayList = customerDAO.getCustomerList();
-        setListAdapter(new CustomersListAdapter(this, customerArrayList));
-        customerDAO.close();
+        RoomDAO roomDAO = new RoomDAO(this);
+        roomDAO.open();
+        roomArrayList = roomDAO.getRoomList();
+        setListAdapter(new RoomsListAdapter(this, roomArrayList));
+        roomDAO.close();
+
     }
 
     @Override
     protected void onListItemClick(ListView l, View v, int position, long id) {
         super.onListItemClick(l, v, position, id);
 
-        Customer customer = customerArrayList.get(position);
+        Room room = roomArrayList.get(position);
         Intent resultIntent = new Intent();
-        resultIntent.putExtra("customerId", customer.getId() );
-        resultIntent.putExtra("customerLastname", customer.getLastName() );
-        resultIntent.putExtra("customerFirstname", customer.getFirstName() );
-        // On retourne les informations de l'utilisateur sélectionné au formualaire de reservation
+        resultIntent.putExtra("roomId", room.getId() );
+        resultIntent.putExtra("roomTitle", room.getTitle() );
+        // On retourne les informations de la chambre sélectionné au formualaire de reservation
         setResult(Activity.RESULT_OK, resultIntent);
         finish();
+
     }
+
 }

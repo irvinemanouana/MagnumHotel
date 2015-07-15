@@ -63,10 +63,6 @@ public class DataBaseHandler extends SQLiteOpenHelper {
 
     private static final int VERSION = 1;
 
-    private SQLiteDatabase db;
-
-
-
     public DataBaseHandler(Context context) {
         super(context, DATABASE_NAME, null, VERSION);
     }
@@ -76,11 +72,11 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         // SUPPRIMER lES ANCIENNES TABLES s'il en existe
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_CUSTOMER);
         db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROOM);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_RESERVATION);
 
         // RECRÉER LA TABLE
         onCreate(db);
     }
-
 
     @Override // CREATION DES TABLES
     public void onCreate(SQLiteDatabase db) {
@@ -107,13 +103,14 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 KEY_RESERVATION_START_DAY + " TEXT," +
                 KEY_RESERVATION_END_DAY + " TEXT," +
                 KEY_RESERVATION_ROOM_ID + " INTEGER,"+
-                "FOREIGN KEY (" + KEY_RESERVATION_CUSTOMER_ID + ") REFERENCES" +
+                "FOREIGN KEY (" + KEY_RESERVATION_CUSTOMER_ID + ") REFERENCES " +
                 TABLE_CUSTOMER + "(" + KEY_CUSTOMER_ID + ")," +
-                "FOREIGN KEY (" + KEY_RESERVATION_ROOM_ID + ") REFERENCES" +
+                "FOREIGN KEY (" + KEY_RESERVATION_ROOM_ID + ") REFERENCES " +
                 TABLE_ROOM + "(" + KEY_ROOM_ID + "))";
 
         db.execSQL(create_table_room);
         db.execSQL(create_table_customer);
+        db.execSQL(create_table_booking);
 
     }
 

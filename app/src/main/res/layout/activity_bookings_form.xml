@@ -82,7 +82,7 @@
                 android:layout_weight="3"
                 android:text="@string/choose_room"
                 android:id="@+id/choose_room_button"
-                android:onClick="selectCustomer"
+                android:onClick="selectRoom"
                 android:background="@color/black"
                 android:textColor="@color/white"
                 android:paddingLeft="20dp"

@@ -56,7 +56,7 @@
 
     <!-- Bookings -->
     <string name="title_activity_add_booking">Ajouter une réservation</string>
-    <string name="no_bookings">Il n'y a pas de réservation</string>
+    <string name="no_bookings">Il n\'y a pas de réservation</string>
     <string name="all_bookings">Réservations</string>
     <string name="specify_room">Attribution d\'une chambre</string>
     <string name="arrival_day">Date d\'arrivée</string>

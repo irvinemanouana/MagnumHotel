@@ -41,16 +41,20 @@ public class MainActivity extends Activity {
                 Intent intent;
                 String item = String.valueOf(parent.getItemAtPosition(position));
                 switch ((int) id) {
+
                     case 0:
                         intent = new Intent(MainActivity.this, RoomGestionActivity.class);
                         startActivity(intent);
                         break;
+
                     case 1:
                         intent = new Intent(MainActivity.this, CustomerGestionActivity.class);
                         startActivity(intent);
                         break;
+
                     case 2:
-                        Toast.makeText(MainActivity.this, item, Toast.LENGTH_SHORT).show();
+                        intent = new Intent(MainActivity.this, BookingGestionActivity.class);
+                        startActivity(intent);
                         break;
                 }
             }

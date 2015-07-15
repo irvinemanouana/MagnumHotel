@@ -27,10 +27,12 @@ public class AddBookingActivity extends Activity {
     // ELEMENT DE VUE
     EditText customerSelected,
              roomSelected;
+
     DatePicker arrivalDay,
                departureDay;
-    Spinner selectRoom;
+
     Button selectCustomer,
+           selectRoom,
            addBookingButton;
 
     // Autres variables
@@ -45,7 +47,6 @@ public class AddBookingActivity extends Activity {
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); //Configuration de l'action bar
 
-
         addBookingButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -59,7 +60,6 @@ public class AddBookingActivity extends Activity {
                     startActivity(intent);
                     finish();
                 }
-
             }
         });
     }
@@ -83,10 +83,10 @@ public class AddBookingActivity extends Activity {
     private void initialize(){
         customerSelected = (EditText) findViewById(R.id.choose_customer_text);
         roomSelected = (EditText) findViewById(R.id.choose_room_text);
-        arrivalDay = (DatePicker)findViewById(R.id.arrival_day);
-        departureDay = (DatePicker)findViewById(R.id.departure_day);
-        selectCustomer = (Button)findViewById(R.id.choose_customer_button);
-        selectRoom = (Spinner)findViewById(R.id.choose_room_button);
+        arrivalDay = (DatePicker) findViewById(R.id.arrival_day);
+        departureDay = (DatePicker) findViewById(R.id.departure_day);
+        selectCustomer = (Button) findViewById(R.id.choose_customer_button);
+        selectRoom = (Button) findViewById(R.id.choose_room_button);
         addBookingButton = (Button) findViewById(R.id.submit_booking);
     }
 
@@ -137,9 +137,11 @@ public class AddBookingActivity extends Activity {
     }
 
     public void selectCustomer(View view) {
-
         startActivityForResult(new Intent(this,SelectCustomerActivity.class),1);
+    }
 
+    public void selectRoom(View view) {
+        startActivityForResult(new Intent(this,SelectRoomActivity.class),2);
     }
 
     @Override
@@ -153,8 +155,10 @@ public class AddBookingActivity extends Activity {
         }else if(requestCode == 2){
             if(resultCode == RESULT_OK){
                 roomId = data.getIntExtra("roomId",0);
-                customerSelected.setText(String.format(getResources().getString(R.string.room_title_detail), data.getStringExtra("roomTitle")));
+                roomSelected.setText(String.format(getResources().getString(R.string.room_title_detail), data.getStringExtra("roomTitle")));
             }
         }
     }
+
+
 }

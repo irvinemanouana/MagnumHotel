@@ -20,7 +20,7 @@ public class ReservationDAO {
     // Base de données inutilisable
     private DataBaseHandler mySqlLite;
 
-    private static final String TABLE_BOOKING = "booking";
+    public static final String TABLE_RESERVATION = "reservation";
 
     public ReservationDAO(Context context){
         mySqlLite = new DataBaseHandler(context);
@@ -48,12 +48,12 @@ public class ReservationDAO {
         values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, booking.getStartDate());
         values.put(DataBaseHandler.KEY_RESERVATION_END_DAY, booking.getEndDate());
         values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID, booking.getRoomId());
-        database.insert(TABLE_BOOKING, null, values);
+        database.insert(TABLE_RESERVATION, null, values);
     }
 
     public ArrayList<Reservation> getBookingList(){
         ArrayList<Reservation> bookings = new ArrayList<>();
-        String request = "SELECT * FROM " + TABLE_BOOKING;
+        String request = "SELECT * FROM " + TABLE_RESERVATION;
         Cursor cursor = database.rawQuery(request,null);
         if (cursor.moveToFirst()){
             do{
@@ -69,19 +69,20 @@ public class ReservationDAO {
         values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, booking.getStartDate());
         values.put(DataBaseHandler.KEY_RESERVATION_END_DAY,booking.getEndDate());
         values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID,booking.getRoomId());
-        database.update(TABLE_BOOKING, values, DataBaseHandler.KEY_RESERVATION_ID + " = ?", new String[] {
+        database.update(TABLE_RESERVATION, values, DataBaseHandler.KEY_RESERVATION_ID + " = ?", new String[] {
                 String.valueOf(booking.getId())
         });
     }
 
     public void deleteBooking(Reservation booking){
-        database.delete(TABLE_BOOKING, DataBaseHandler.KEY_RESERVATION_ID+" = ?", new String[]{String.valueOf(booking.getId())});
+        database.delete(TABLE_RESERVATION, DataBaseHandler.KEY_RESERVATION_ID+" = ?", new String[]{String.valueOf(booking.getId())});
     }
 
     // Transformer un cursor en un objet Customer
     private Reservation cursorToReservation(Cursor cursor){
         Reservation booking = new Reservation() ;
-        booking.setId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_CUSTOMER_ID));
+        booking.setId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ID));
+        booking.setCustomerId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_CUSTOMER_ID));
         booking.setStartDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_START_DAY));
         booking.setEndDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_END_DAY));
         booking.setRoomId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ROOM_ID));
