@@ -49,7 +49,6 @@ public class CustomerDAO {
         values.put(MySqlLite.KEY_CUSTOMER_FIRSTNAME,customer.getFirstName());
         values.put(MySqlLite.KEY_CUSTOMER_EMAIL,customer.getEmail());
         database.insert(TABLE_CUSTOMER, null, values);
-
     }
 
     public ArrayList<Customer> getCustomerList(){

@@ -50,10 +50,13 @@
 
     <!-- Bookings -->
     <string name="title_activity_add_booking">Add a reservation</string>
+    <string name="no_bookings">There is no bookings</string>
     <string name="all_bookings">Bookings</string>
     <string name="specify_room">Room attribution</string>
     <string name="arrival_day">Arrival day</string>
     <string name="departure_day">Departure day</string>
+    <string name="choose_customer">Choose a customer</string>
+
 
     <!-- Error management-->
     <string name="required_field">Required field</string>

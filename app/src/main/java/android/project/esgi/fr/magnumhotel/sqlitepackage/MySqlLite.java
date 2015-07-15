@@ -20,9 +20,9 @@ public class MySqlLite extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "magnum";
 
     // NOM DES TABLES
-    private static final String TABLE_ROOM = "room";
-    private static final String TABLE_CUSTOMER = "customer";
-    private static final String TABLE_RESERVATION = "reservation";
+    public static final String TABLE_ROOM = "room";
+    public static final String TABLE_CUSTOMER = "customer";
+    public static final String TABLE_RESERVATION = "reservation";
 
     // LES CHAMPS
 
@@ -106,6 +106,18 @@ public class MySqlLite extends SQLiteOpenHelper {
                 KEY_CUSTOMER_LASTNAME + " TEXT," +
                 KEY_CUSTOMER_FIRSTNAME + " TEXT," +
                 KEY_CUSTOMER_EMAIL + " TEXT)";
+
+        // RÉSERVATION
+        final String create_table_booking = "CREATE TABLE "+ TABLE_RESERVATION + "(" +
+                KEY_RESERVATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"+
+                KEY_RESERVATION_CUSTOMER_ID + " INTEGER," +
+                KEY_RESERVATION_START_DAY + " TEXT," +
+                KEY_RESERVATION_END_DAY + " TEXT," +
+                KEY_RESERVATION_ROOM_ID + " INTEGER,"+
+                "FOREIGN KEY (" + KEY_RESERVATION_CUSTOMER_ID + ") REFERENCES" +
+                TABLE_CUSTOMER + "(" + KEY_CUSTOMER_ID + ")," +
+                "FOREIGN KEY (" + KEY_RESERVATION_ROOM_ID + ") REFERENCES" +
+                TABLE_ROOM + "(" + KEY_ROOM_ID + "))";
 
         db.execSQL(create_table_room);
         db.execSQL(create_table_customer);
