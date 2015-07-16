@@ -162,6 +162,7 @@ public class ReservationDAO {
         room.setCapacity(cursor.getInt(11));
         room.setPrice(cursor.getFloat(12));
         room.setDescription(cursor.getString(13));
+        room.setImageLink(cursor.getString(14));
         return room;
     }
 }

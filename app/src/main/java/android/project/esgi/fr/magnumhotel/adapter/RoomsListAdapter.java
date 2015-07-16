@@ -1,6 +1,7 @@
 package android.project.esgi.fr.magnumhotel.adapter;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
@@ -10,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 import java.util.List;
 
@@ -52,6 +54,7 @@ public class RoomsListAdapter extends BaseAdapter {
             viewHolderRoom.title = (TextView) convertView.findViewById(R.id.RoomName);
             viewHolderRoom.capacity = (TextView) convertView.findViewById(R.id.nbperson);
             viewHolderRoom.price = (TextView) convertView.findViewById(R.id.priceRoom);
+            viewHolderRoom.cover = (ImageView) convertView.findViewById(R.id.room_cover);
             convertView.setTag(viewHolderRoom);
         }else{
             // Utilisation du viewHolder pour éviter de réutiliser le "findViewById
@@ -63,6 +66,7 @@ public class RoomsListAdapter extends BaseAdapter {
         viewHolderRoom.capacity.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
                 room.getCapacity() > 1 ? "s" : ""));
         viewHolderRoom.price.setText(String.format(context.getResources().getString(R.string.room_price_detail), String.valueOf(room.getPrice())));
+        if(room.getImageLink() != null)viewHolderRoom.cover.setImageBitmap(BitmapFactory.decodeFile(room.getImageLink()));
 
         return convertView;
     }
@@ -72,6 +76,7 @@ public class RoomsListAdapter extends BaseAdapter {
         TextView title,
                  capacity,
                  price;
+        ImageView cover;
     }
 
 }

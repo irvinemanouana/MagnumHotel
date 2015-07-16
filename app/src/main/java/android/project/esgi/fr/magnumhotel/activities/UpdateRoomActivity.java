@@ -3,16 +3,22 @@ package android.project.esgi.fr.magnumhotel.activities;
 import android.app.ActionBar;
 import android.app.Activity;
 import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +33,11 @@ public class UpdateRoomActivity extends Activity {
              capacityField;
     Button modifyButton;
 
+    // AUTRES
+    private String picturePath = null;
     private Room room;
+    private ImageView image;
+
 
     // Contenu des champs
     String title;
@@ -59,7 +69,7 @@ public class UpdateRoomActivity extends Activity {
             public void onClick(View v) {
 
                 if(checkForm()){
-                    room = new Room(room.getId(), title, capacity, price, description);
+                    room = new Room(room.getId(), title, capacity, price, description, picturePath);
                     RoomDAO roomDAO = new RoomDAO(UpdateRoomActivity.this);
                     roomDAO.open();
                     roomDAO.updateRoom(room);
@@ -71,6 +81,16 @@ public class UpdateRoomActivity extends Activity {
 
             }
         });
+
+        image.setOnClickListener( new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_PICK,android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(intent,1);
+            }
+
+        });
     }
 
     private void initialize(){
@@ -81,7 +101,7 @@ public class UpdateRoomActivity extends Activity {
         capacityField = (EditText) findViewById(R.id.edit_capacity);
         priceField = (EditText) findViewById(R.id.edit_price);
         modifyButton = (Button) findViewById(R.id.submit_room);
-
+        image = (ImageView) findViewById(R.id.room_picture);
     }
 
     private void actionBarSettings(){
@@ -161,4 +181,35 @@ public class UpdateRoomActivity extends Activity {
         }
         return true;
     }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (resultCode == Activity.RESULT_OK) {
+
+            // Récupération des informations d'une photo sélectionné dans l'album
+            if (requestCode == 1) {
+
+                // RECUPERATION DE L'ADRESSE DE LA PHOTO
+                Uri selectedImage = data.getData();
+
+                String[] filePath = {MediaStore.Images.Media.DATA};
+
+                Cursor c = this.getContentResolver().query(selectedImage, filePath, null, null, null);
+
+                c.moveToFirst();
+
+                int columnIndex = c.getColumnIndex(filePath[0]);
+
+                picturePath = c.getString(columnIndex);
+                // FIN DE LA RECUPERATION
+                c.close();
+
+                Bitmap thumbnail2 = (BitmapFactory.decodeFile(picturePath));
+
+                // Changer la photo actuel avec la nouvelle
+                image.setImageBitmap(thumbnail2);
+            }
+        }
+    }
+
 }

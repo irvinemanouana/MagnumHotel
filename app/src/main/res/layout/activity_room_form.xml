@@ -105,6 +105,21 @@
             android:gravity="top|left"
             android:background="@drawable/input_style" />
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textSize="@dimen/label_size"
+            android:textStyle="bold"
+            android:text="Image" />
+
+        <ImageView
+            android:id="@+id/room_picture"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:src="@drawable/default_journey"/>
+
         <Button
             android:id="@+id/submit_room"
             android:text="@string/add"

@@ -25,6 +25,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         public static final String KEY_ROOM_PRICE ="room_price";
         public static final String KEY_ROOM_CAPACITY = "room_capacity";
         public static final String KEY_ROOM_DESCRIPTION ="room_description";
+        public static final String KEY_ROOM_PICTURE ="room_picture";
 
         // CLIENT
         public static final String KEY_CUSTOMER_ID = "customer_id";
@@ -47,6 +48,7 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         public static final int POSITION_ROOM_CAPACITY = 2;
         public static final int POSITION_ROOM_PRICE = 3;
         public static final int POSITION_ROOM_DESCRIPTION = 4;
+        public static final int POSITION_ROOM_PICTURE = 5;
 
         // CLIENT
         public static final int POSITION_CUSTOMER_ID = 0;
@@ -87,7 +89,8 @@ public class DataBaseHandler extends SQLiteOpenHelper {
                 KEY_ROOM_TITLE + " TEXT, " +
                 KEY_ROOM_CAPACITY + " INTEGER, " +
                 KEY_ROOM_PRICE + " REAL, " +
-                KEY_ROOM_DESCRIPTION + " TEXT)";
+                KEY_ROOM_DESCRIPTION + " TEXT, " +
+                KEY_ROOM_PICTURE + " TEXT)";
 
         // CLIENT
         final String create_table_customer = "CREATE TABLE "+ TABLE_CUSTOMER + "(" +

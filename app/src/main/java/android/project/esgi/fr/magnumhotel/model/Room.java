@@ -13,22 +13,25 @@ public class Room implements Serializable {
     private String description;
     private int capacity;
     private float price;
+    private String imageLink;
 
-    public Room(){};
+    public Room(){}
 
-    public Room(String title, int capacity, float price, String description) {
+    public Room(String title, int capacity, float price, String description, String imageLink) {
         this.title = title;
         this.description = description;
         this.capacity = capacity;
         this.price = price;
+        this.imageLink = imageLink;
     }
 
-    public Room(int id, String title, int capacity, float price, String description) {
+    public Room(int id, String title, int capacity, float price, String description, String imageLink) {
         this.id = id;
         this.title = title;
         this.description = description;
         this.capacity = capacity;
         this.price = price;
+        this.imageLink = imageLink;
     }
 
     public int getId() {
@@ -66,6 +69,13 @@ public class Room implements Serializable {
         this.price = price;
     }
 
+    public String getImageLink() {
+        return imageLink;
+    }
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     @Override
     public String toString() {
         return "Room{" +
@@ -74,6 +84,7 @@ public class Room implements Serializable {
                 ", description='" + description + '\'' +
                 ", capacity=" + capacity +
                 ", price=" + price +
+                ", imageLink='" + imageLink + '\'' +
                 '}';
     }
 }

@@ -74,6 +74,7 @@
     <string name="capacity_room_error">Une chambre ne peut contenir qu\'entre 1 à 6 personnes</string>
     <string name="price_error">Prix invalide</string>
     <string name="date_error">La date d\'arrivé doit être avant celui du depart</string>
+    <string name="cover_description">room cover</string>
 
 
 </resources>
