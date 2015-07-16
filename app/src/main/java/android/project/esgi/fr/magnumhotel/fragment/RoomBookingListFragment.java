@@ -1,7 +1,9 @@
 package android.project.esgi.fr.magnumhotel.fragment;
 
+import android.app.Activity;
 import android.app.ListFragment;
 import android.os.Bundle;
+import android.project.esgi.fr.magnumhotel.activities.DetailCustomerActivity;
 import android.project.esgi.fr.magnumhotel.activities.DetailRoomActivity;
 import android.project.esgi.fr.magnumhotel.adapter.BookingsListAdapter;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
@@ -20,8 +22,16 @@ public class RoomBookingListFragment extends ListFragment {
         super.onActivityCreated(savedInstanceState);
         ReservationDAO reservationDAO = new ReservationDAO(getActivity());
         reservationDAO.open();
-        ArrayList<Reservation> reservationArrayList = reservationDAO.getBookingListByRoomId(((DetailRoomActivity) getActivity()).getRoomId());
-        if(reservationArrayList != null)
-            setListAdapter(new BookingsListAdapter(getActivity(),reservationArrayList));
+        if(getActivity() instanceof DetailRoomActivity){
+            ArrayList<Reservation> reservationArrayList = reservationDAO.getBookingListByRoomId(((DetailRoomActivity) getActivity()).getRoomId());
+            if(reservationArrayList != null)
+                setListAdapter(new BookingsListAdapter(getActivity(),reservationArrayList));
+        }
+        else{
+            ArrayList<Reservation> reservationArrayList = reservationDAO.getBookingListByCustomerId(((DetailCustomerActivity) getActivity()).getCustomerId());
+            if(reservationArrayList != null)
+                setListAdapter(new BookingsListAdapter(getActivity(),reservationArrayList));
+        }
+
     }
 }

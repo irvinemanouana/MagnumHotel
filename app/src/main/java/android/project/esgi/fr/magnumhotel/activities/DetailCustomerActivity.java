@@ -23,7 +23,6 @@ import android.widget.Toast;
  */
 public class DetailCustomerActivity extends Activity {
     private TextView customerName, customerFirstname, customerEmail;
-    private ActionBar actionBar;
     private ImageView updateCustomer, deleteCustomer;
     private final Context context = this;
     private Customer customer;
@@ -120,5 +119,9 @@ public class DetailCustomerActivity extends Activity {
                 finish();
         }
         return true;
+    }
+
+    public int getCustomerId(){
+        return customer.getId();
     }
 }
