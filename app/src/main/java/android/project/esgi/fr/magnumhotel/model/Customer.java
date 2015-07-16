@@ -11,7 +11,7 @@ public class Customer implements Serializable {
     private String firstName;
     private String email;
 
-    public Customer(){};
+    public Customer(){}
 
     public Customer(String lastName, String firstName, String email) {
         this.lastName = lastName;

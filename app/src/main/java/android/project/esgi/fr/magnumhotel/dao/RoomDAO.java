@@ -55,9 +55,9 @@ public class RoomDAO {
         String request = "SELECT * FROM " + TABLE_ROOM;
         Cursor cursor = database.rawQuery(request,null);
         if (cursor.moveToFirst()){
-            while (cursor.moveToNext()){
+            do{
                 allRoomArrayList.add(cursorToRoom(cursor));
-            }
+            }while(cursor.moveToNext());
         }
         cursor.close();
         return allRoomArrayList;

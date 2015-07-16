@@ -22,6 +22,12 @@ public class CustomerDAO {
 
     private static final String TABLE_CUSTOMER = "customer";
 
+    // LES COLONNES
+    private String[] allColumns = { DataBaseHandler.KEY_CUSTOMER_ID,
+                                    DataBaseHandler.KEY_CUSTOMER_LASTNAME,
+                                    DataBaseHandler.KEY_CUSTOMER_FIRSTNAME,
+                                    DataBaseHandler.KEY_CUSTOMER_EMAIL};
+
     public CustomerDAO(Context context){
         DataBaseHandler = new DataBaseHandler(context);
     }
@@ -61,6 +67,21 @@ public class CustomerDAO {
         }
         cursor.close();
         return customers;
+    }
+
+    public Customer getCustomer(int customerId){
+
+        Customer customer = new Customer();
+
+        Cursor cursor = database.query(TABLE_CUSTOMER, allColumns, DataBaseHandler.KEY_CUSTOMER_ID + " = " + customerId, null, null, null, null);
+        if(cursor.getCount()>0) {
+            cursor.moveToFirst();
+            customer = cursorToCustomer(cursor);
+        }
+
+        cursor.close();
+
+        return customer;
     }
 
     public void updateCustomer(Customer customer){

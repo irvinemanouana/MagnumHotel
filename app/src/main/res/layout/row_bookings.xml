@@ -17,14 +17,14 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/customer_name"
             android:layout_marginRight="10dp"
-            android:id="@+id/customer_name" />
+            android:id="@+id/customer_lastname_reservation" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/customer_firstName"
-            android:id="@+id/customer_firstName" />
+            android:id="@+id/customer_firstname_booking" />
     </LinearLayout>
 
     <LinearLayout
@@ -37,7 +37,8 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/room_number"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:id="@+id/room_number_reservation"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -58,7 +59,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/arrival_day"
             android:textStyle="bold"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:id="@+id/arrival_day_booking"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -79,7 +81,8 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="@string/departure_day"
             android:textStyle="bold"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:id="@+id/end_day_booking"/>
 
         <TextView
             android:layout_width="wrap_content"

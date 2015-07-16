@@ -99,10 +99,10 @@ public class DataBaseHandler extends SQLiteOpenHelper {
         // RÉSERVATION
         final String create_table_booking = "CREATE TABLE "+ TABLE_RESERVATION + "(" +
                 KEY_RESERVATION_ID + " INTEGER PRIMARY KEY AUTOINCREMENT ,"+
-                KEY_RESERVATION_CUSTOMER_ID + " INTEGER," +
                 KEY_RESERVATION_START_DAY + " TEXT," +
                 KEY_RESERVATION_END_DAY + " TEXT," +
-                KEY_RESERVATION_ROOM_ID + " INTEGER,"+
+                KEY_RESERVATION_ROOM_ID + " INTEGER," +
+                KEY_RESERVATION_CUSTOMER_ID + " INTEGER," +
                 "FOREIGN KEY (" + KEY_RESERVATION_CUSTOMER_ID + ") REFERENCES " +
                 TABLE_CUSTOMER + "(" + KEY_CUSTOMER_ID + ")," +
                 "FOREIGN KEY (" + KEY_RESERVATION_ROOM_ID + ") REFERENCES " +

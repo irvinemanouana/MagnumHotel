@@ -3,9 +3,11 @@ package android.project.esgi.fr.magnumhotel.dao;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
+import android.project.esgi.fr.magnumhotel.model.Room;
 
 import java.util.ArrayList;
 
@@ -52,12 +54,21 @@ public class ReservationDAO {
     }
 
     public ArrayList<Reservation> getBookingList(){
+        Reservation reservation;
         ArrayList<Reservation> bookings = new ArrayList<>();
-        String request = "SELECT * FROM " + TABLE_RESERVATION;
-        Cursor cursor = database.rawQuery(request,null);
+        String request = "SELECT * FROM "+ TABLE_RESERVATION + ","+ DataBaseHandler.TABLE_CUSTOMER + ","+ DataBaseHandler.TABLE_ROOM +
+                         " WHERE "+ TABLE_RESERVATION+"."+DataBaseHandler.KEY_RESERVATION_CUSTOMER_ID +
+                                    " = "+ DataBaseHandler.TABLE_CUSTOMER + "."+DataBaseHandler.KEY_CUSTOMER_ID +
+                         " AND "+ TABLE_RESERVATION+"."+DataBaseHandler.KEY_RESERVATION_ROOM_ID +
+                                    " = "+ DataBaseHandler.TABLE_ROOM+ "."+DataBaseHandler.KEY_ROOM_ID;
+
+        Cursor cursor = database.rawQuery(request, null);
         if (cursor.moveToFirst()){
             do{
-                bookings.add(cursorToReservation(cursor));
+                reservation = cursorToReservation(cursor);
+                reservation.setCustomer(cursorToCustomer(cursor));
+                reservation.setRoom(cursorToRoom(cursor));
+                bookings.add(reservation);
             } while (cursor.moveToNext());
         }
         return bookings;
@@ -82,10 +93,29 @@ public class ReservationDAO {
     private Reservation cursorToReservation(Cursor cursor){
         Reservation booking = new Reservation() ;
         booking.setId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ID));
-        booking.setCustomerId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_CUSTOMER_ID));
         booking.setStartDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_START_DAY));
         booking.setEndDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_END_DAY));
         booking.setRoomId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ROOM_ID));
+        booking.setCustomerId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_CUSTOMER_ID));
         return booking;
+    }
+
+    private Customer cursorToCustomer(Cursor cursor){
+        Customer customer = new Customer();
+        customer.setId(cursor.getInt(5));
+        customer.setLastName(cursor.getString(6));
+        customer.setFirstName(cursor.getString(7));
+        customer.setEmail(cursor.getString(8));
+        return customer;
+    }
+
+    private Room cursorToRoom(Cursor cursor){
+        Room room = new Room() ;
+        room.setId(cursor.getInt(9));
+        room.setTitle(cursor.getString(10));
+        room.setCapacity(cursor.getInt(11));
+        room.setPrice(cursor.getFloat(12));
+        room.setDescription(cursor.getString(13));
+        return room;
     }
 }

@@ -13,7 +13,7 @@ public class Reservation {
     String startDate;
     String endDate;
 
-    public Reservation(){};
+    public Reservation(){}
 
     public Reservation(int id, Customer customer, Room room, String startDate, String endDate) {
         this.id = id;

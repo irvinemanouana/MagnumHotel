@@ -45,7 +45,7 @@ public class BookingGestionActivity extends Activity {
         if(allBooking.size() <= 0) {
             emptyText.setText(getResources().getString(R.string.no_bookings));
         } else {
-            BookingsListAdapter adapter = new BookingsListAdapter(getApplicationContext(), allBooking);
+            BookingsListAdapter adapter = new BookingsListAdapter(this, allBooking);
             bookingList.setAdapter(adapter);
             bookingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override

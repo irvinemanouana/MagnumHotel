@@ -55,7 +55,7 @@ public class CustomersListAdapter extends BaseAdapter {
             convertView.setTag(viewHolderCustomers);
 
         }else{
-            // Utilisation du viewHolder pour éviter de réutiliser le "findViewById
+            // Utilisation du viewHolder pour éviter de réutiliser le "findViewById"
             viewHolderCustomers = (ViewHolderCustomers) convertView.getTag();
         }
 

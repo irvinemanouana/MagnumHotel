@@ -9,6 +9,7 @@ import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.project.esgi.fr.magnumhotel.others.Function;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -51,7 +52,8 @@ public class AddBookingActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if(checkForm()){
-                    final Reservation booking = new Reservation(customerId, roomId, arrivalDay.getDayOfMonth() + "/" + arrivalDay.getMonth() + "/" + arrivalDay.getYear(), departureDay.getDayOfMonth() + "/" + departureDay.getMonth() + "/" + departureDay.getYear());
+                    final Reservation booking = new Reservation(customerId, roomId, arrivalDay.getDayOfMonth() + "/" + arrivalDay.getMonth() + "/" + arrivalDay.getYear(),
+                                                                                    departureDay.getDayOfMonth() + "/" + departureDay.getMonth() + "/" + departureDay.getYear());
                     ReservationDAO bookingDAO = new ReservationDAO(AddBookingActivity.this);
                     bookingDAO.open();
                     bookingDAO.addBooking(booking);
@@ -78,7 +80,6 @@ public class AddBookingActivity extends Activity {
 
         return isCorrect;
     }
-
 
     private void initialize(){
         customerSelected = (EditText) findViewById(R.id.choose_customer_text);
