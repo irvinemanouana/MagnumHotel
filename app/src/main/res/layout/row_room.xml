@@ -40,6 +40,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/priceRoom"
+            android:drawableLeft="@drawable/ic_action_price"
             android:textColor="@color/green_900"
             android:textSize="@dimen/text_size"
             android:text="@string/room_price"
