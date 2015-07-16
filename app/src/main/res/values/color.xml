@@ -3,7 +3,10 @@
     <color name="black">#000000</color>
     <color name="black_900">#212121</color>
     <color name="white">#ffffff</color>
+    <color name="blue">#00c8df</color>
+    <color name="red">#df0034</color>
     <color name="green_900">#33691e</color>
     <color name="red_A700">#d50000</color>
     <color name="red_900">#b71c1c</color>
+    <color name="grey_background">#eaeaea</color>
 </resources>

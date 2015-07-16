@@ -3,18 +3,20 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
     <ImageView
         android:layout_gravity="center"
         android:id="@+id/icon"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_width="@dimen/icon_size"
         android:layout_height="@dimen/icon_size" />
+
     <TextView
         android:layout_gravity="center"
         android:id="@+id/item_menu"
         android:textSize="@dimen/text_size"
         android:textColor="@color/black_900"
-        android:textStyle="bold|italic"
+        android:textStyle="bold"
         android:padding="@dimen/activity_horizontal_margin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

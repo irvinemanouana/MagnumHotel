@@ -2,33 +2,36 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/grey_background"
     tools:context="android.project.esgi.fr.magnumhotel.activities.RoomGestionActivity">
-
-    <TextView
-        android:id="@+id/empty_room_list_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
 
     <Button
         style="?android:attr/buttonStyleSmall"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:drawableLeft="@drawable/add_button"
         android:onClick="addNewRoom"
-        android:background="@color/black"
-        android:layout_marginLeft="20dp"
-        android:paddingLeft="15dp"
-        android:paddingRight="15dp"
+        android:background="@color/blue"
+        android:padding="10dp"
         android:textColor="@color/white"
         android:textAllCaps="true"
         android:textStyle="bold"
         android:text="@string/add_room_title"
         android:id="@+id/link_to_add_customer" />
 
+    <TextView
+        android:id="@+id/empty_room_list_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dp"
+        android:textColor="@color/red" />
+
     <ListView
         android:id="@+id/room_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_margin="20dp"/>
+        android:background="@color/white"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="25dp"/>
 
 </LinearLayout>
