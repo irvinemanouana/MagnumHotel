@@ -71,7 +71,7 @@ public class RoomsListAdapter extends BaseAdapter {
         return convertView;
     }
 
-    // Pocesseur de vue
+    // Possesseur de vue
     static class ViewHolderRoom {
         TextView title,
                  capacity,
