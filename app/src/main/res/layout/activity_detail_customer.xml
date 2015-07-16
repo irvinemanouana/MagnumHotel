@@ -68,7 +68,19 @@
             android:onClick="deleteCustomer"
             android:src="@drawable/delete"/>
 
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/all_bookings"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:id="@+id/all_bookings_title" />
 
     <fragment
         android:layout_width="match_parent"

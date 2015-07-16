@@ -57,7 +57,9 @@
     <string name="no_bookings">There is no bookings</string>
     <string name="all_bookings">Bookings</string>
     <string name="specify_room">Room attribution</string>
+    <string name="arrival_day_title">Arrival day :</string>
     <string name="arrival_day">&lt;b>Arrival day : &lt;/b>%1$s</string>
+    <string name="departure_day_title">Departure day :</string>
     <string name="departure_day">&lt;b>Departure day : &lt;/b>%1$s</string>
     <string name="choose_customer">Choose a customer</string>
     <string name="choose_room">choose a room</string>

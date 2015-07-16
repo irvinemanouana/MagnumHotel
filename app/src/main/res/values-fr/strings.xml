@@ -59,7 +59,9 @@
     <string name="no_bookings">Il n\'y a pas de réservation</string>
     <string name="all_bookings">Réservations</string>
     <string name="specify_room">Attribution d\'une chambre</string>
+    <string name="arrival_day_title">Date d\'arrivée : </string>
     <string name="arrival_day">&lt;b>Date d\'arrivée : &lt;/b>%1$s</string>
+    <string name="departure_day_title">Date de départ : </string>
     <string name="departure_day">&lt;b>Date de départ : &lt;/b>%1$s</string>
     <string name="choose_customer">Choisir un utilisateur</string>
     <string name="choose_room">Choisir une chambre</string>

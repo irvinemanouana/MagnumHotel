@@ -1,5 +1,5 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -124,7 +124,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/label_size"
             android:textStyle="bold"
-            android:text="@string/arrival_day" />
+            android:text="@string/arrival_day_title" />
 
         <DatePicker
             android:layout_width="wrap_content"
@@ -140,7 +140,7 @@
             android:layout_gravity="center_horizontal"
             android:textSize="@dimen/label_size"
             android:textStyle="bold"
-            android:text="@string/departure_day" />
+            android:text="@string/departure_day_title" />
 
         <DatePicker
             android:layout_width="wrap_content"
@@ -148,10 +148,6 @@
             android:layout_gravity="center_horizontal"
             android:calendarViewShown="false"
             android:id="@+id/departure_day" />
-
-
-
-
 
         <Button
             android:id="@+id/submit_booking"
