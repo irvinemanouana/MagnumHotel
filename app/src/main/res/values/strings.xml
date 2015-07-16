@@ -57,10 +57,12 @@
     <string name="no_bookings">There is no bookings</string>
     <string name="all_bookings">Bookings</string>
     <string name="specify_room">Room attribution</string>
-    <string name="arrival_day">Arrival day</string>
-    <string name="departure_day">Departure day</string>
+    <string name="arrival_day">&lt;b>Arrival day : &lt;/b>%1$s</string>
+    <string name="departure_day">&lt;b>Departure day : &lt;/b>%1$s</string>
     <string name="choose_customer">Choose a customer</string>
     <string name="choose_room">choose a room</string>
+    <string name="booking_customer">&lt;b>Customer : &lt;/b>%1$s</string>
+
 
     <!-- Error management-->
     <string name="required_field">Required field</string>
@@ -68,5 +70,7 @@
     <string name="improper_email">Improper email</string>
     <string name="capacity_room_error">a room can contain only between one or two people.</string>
     <string name="price_error">Invalid price</string>
+    <string name="date_error">The arrival date must be before departure date</string>
+
 
 </resources>

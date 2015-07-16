@@ -6,6 +6,7 @@ import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,7 +55,6 @@ public class BookingsListAdapter extends BaseAdapter {
             viewHolderBookings = new ViewHolderBookings();
             convertView = inflater.inflate(R.layout.row_bookings, parent, false);
             viewHolderBookings.customerLastname = (TextView) convertView.findViewById(R.id.customer_lastname_reservation);
-            viewHolderBookings.customerFirstname = (TextView) convertView.findViewById(R.id.customer_firstname_booking);
             viewHolderBookings.roomNumber = (TextView) convertView.findViewById(R.id.room_number_reservation);
             viewHolderBookings.arrivalDay = (TextView) convertView.findViewById(R.id.arrival_day_booking);
             viewHolderBookings.departureDay = (TextView) convertView.findViewById(R.id.end_day_booking);
@@ -66,11 +66,10 @@ public class BookingsListAdapter extends BaseAdapter {
 
         final Reservation booking =  bookingsList.get(position);
 
-        viewHolderBookings.customerLastname.setText(booking.getCustomer().getLastName());
-        viewHolderBookings.customerFirstname.setText(booking.getCustomer().getFirstName());
-        viewHolderBookings.roomNumber.setText(String.valueOf(booking.getRoom().getTitle()));
-        viewHolderBookings.arrivalDay.setText(String.valueOf(booking.getStartDate()));
-        viewHolderBookings.departureDay.setText(String.valueOf(booking.getEndDate()));
+        viewHolderBookings.customerLastname.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.booking_customer), booking.getCustomer().getFirstName() + " " + booking.getCustomer().getLastName())));
+        viewHolderBookings.roomNumber.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.room_title_detail),booking.getRoom().getTitle())));
+        viewHolderBookings.arrivalDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.arrival_day),String.valueOf(booking.getStartDate()))));
+        viewHolderBookings.departureDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.departure_day),String.valueOf(booking.getEndDate()))));
 
         return convertView;
     }

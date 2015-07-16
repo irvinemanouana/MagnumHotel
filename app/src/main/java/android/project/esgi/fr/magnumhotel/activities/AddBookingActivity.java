@@ -10,6 +10,7 @@ import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.project.esgi.fr.magnumhotel.others.Function;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -45,6 +46,7 @@ public class AddBookingActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookings_form);
 
+
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); //Configuration de l'action bar
 
@@ -74,6 +76,12 @@ public class AddBookingActivity extends Activity {
              customerSelected.setError(getResources().getString(R.string.required_field));
          }else if(roomSelected.getText().toString().equals("")){
              roomSelected.setError(getResources().getString(R.string.required_field));
+         }else if(arrivalDay.getYear() > departureDay.getYear()) {
+             Toast.makeText(this, "La date d'arrivé doit être avant celui du depart", Toast.LENGTH_LONG).show();
+         }else if(arrivalDay.getMonth() > departureDay.getMonth() && arrivalDay.getYear() >= departureDay.getYear()) {
+             Toast.makeText(this, "La date d'arrivé doit être avant celui du depart", Toast.LENGTH_LONG).show();
+         }else if(arrivalDay.getDayOfMonth() > departureDay.getDayOfMonth() && arrivalDay.getMonth() >= departureDay.getMonth() && arrivalDay.getYear() >= departureDay.getYear()) {
+             Toast.makeText(this, "La date d'arrivé doit être avant celui du depart", Toast.LENGTH_LONG).show();
          }else{
              isCorrect = true;
          }

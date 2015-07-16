@@ -59,10 +59,11 @@
     <string name="no_bookings">Il n\'y a pas de réservation</string>
     <string name="all_bookings">Réservations</string>
     <string name="specify_room">Attribution d\'une chambre</string>
-    <string name="arrival_day">Date d\'arrivée</string>
-    <string name="departure_day">Date de départ</string>
+    <string name="arrival_day">&lt;b>Date d\'arrivée : &lt;/b>%1$s</string>
+    <string name="departure_day">&lt;b>Date de départ : &lt;/b>%1$s</string>
     <string name="choose_customer">Choisir un utilisateur</string>
     <string name="choose_room">Choisir une chambre</string>
+    <string name="booking_customer">&lt;b>Client : &lt;/b>%1$s</string>
 
     <!-- Gestion d'erreur-->
     <string name="required_field">Champ obligatoire</string>
@@ -70,5 +71,7 @@
     <string name="improper_email">Email non conforme</string>
     <string name="capacity_room_error">Une chambre ne peut contenir qu\'entre 1 à 6 personnes</string>
     <string name="price_error">Prix invalide</string>
+    <string name="date_error">La date d\'arrivé doit être avant celui du depart</string>
+
 
 </resources>

@@ -94,6 +94,7 @@
         <activity
             android:name=".activities.UpdateCustomerActivity"
             android:windowSoftInputMode="stateHidden"
+            android:noHistory="true"
             android:label="@string/update_customer"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
@@ -104,6 +105,7 @@
         <activity
             android:name=".activities.SelectCustomerActivity"
             android:windowSoftInputMode="stateHidden"
+            android:noHistory="true"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
@@ -113,6 +115,7 @@
         <activity
             android:name=".activities.SelectRoomActivity"
             android:windowSoftInputMode="stateHidden"
+            android:noHistory="true"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data
                 android:name="android.support.UI_OPTIONS"
