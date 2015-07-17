@@ -118,7 +118,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:src="@drawable/default_journey"/>
+            android:src="@drawable/img_room_default"/>
 
         <Button
             android:id="@+id/submit_room"
