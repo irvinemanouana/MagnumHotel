@@ -2,11 +2,16 @@ package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.adapter.BookingsListAdapter;
+import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
+import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.view.Menu;
@@ -29,6 +34,9 @@ public class BookingGestionActivity extends Activity {
     ListView bookingList;
     Button linkToAddBooking;
 
+    private final Context context = this;
+    private Reservation booking;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,6 +44,8 @@ public class BookingGestionActivity extends Activity {
 
         this.initialize();
         this.actionBarSettings();
+
+        booking = (Reservation)getIntent().getSerializableExtra("Booking");
 
         ReservationDAO reservationDAO = new ReservationDAO(this);
         reservationDAO.open();
@@ -47,15 +57,17 @@ public class BookingGestionActivity extends Activity {
         } else {
             BookingsListAdapter adapter = new BookingsListAdapter(this, allBooking);
             bookingList.setAdapter(adapter);
+            /*
             bookingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Reservation booking = (Reservation) parent.getItemAtPosition(position);
-                    Intent intent = new Intent(BookingGestionActivity.this, DetailBookingActivity.class);
+                    Intent intent = new Intent(BookingGestionActivity.this, BookingGestionActivity.class);
                     intent.putExtra("bookingId", booking.getId());
                     startActivity(intent);
                 }
             });
+            */
         }
     }
 

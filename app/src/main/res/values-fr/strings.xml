@@ -66,6 +66,7 @@
     <string name="choose_customer">Choisir un utilisateur</string>
     <string name="choose_room">Choisir une chambre</string>
     <string name="booking_customer">&lt;b>Client : &lt;/b>%1$s</string>
+    <string name="delete_booking_message">Etes-vous sûr de vouloir supprimer cette réservation ?</string>
 
     <!-- Gestion d'erreur-->
     <string name="required_field">Champ obligatoire</string>

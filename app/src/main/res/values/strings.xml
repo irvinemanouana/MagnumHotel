@@ -64,7 +64,7 @@
     <string name="choose_customer">Choose a customer</string>
     <string name="choose_room">choose a room</string>
     <string name="booking_customer">&lt;b>Customer : &lt;/b>%1$s</string>
-
+    <string name="delete_booking_message">Are you sure to delete that booking ?</string>
 
     <!-- Error management-->
     <string name="required_field">Required field</string>

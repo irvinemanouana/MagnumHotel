@@ -98,20 +98,19 @@
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:id="@+id/update_room"
+            android:id="@+id/update_booking"
             android:layout_marginRight="10dp"
             android:contentDescription="@string/update"
             android:layout_gravity="center"
-            android:onClick="updateRoom"
+            android:onClick="updateBooking"
             android:src="@drawable/settings"/>
 
         <ImageView
             android:layout_width="25dp"
             android:layout_height="25dp"
-            android:id="@+id/delete_room"
+            android:id="@+id/delete_booking"
             android:layout_gravity="center"
-            android:contentDescription="@string/update"
-            android:onClick="deleteRoom"
+            android:contentDescription="@string/delete"
             android:src="@drawable/delete"/>
 
     </LinearLayout>

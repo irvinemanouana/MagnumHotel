@@ -132,7 +132,7 @@ public class ReservationDAO {
     }
 
     public void deleteBooking(Reservation booking){
-        database.delete(TABLE_RESERVATION, DataBaseHandler.KEY_RESERVATION_ID+" = ?", new String[]{String.valueOf(booking.getId())});
+        database.delete(TABLE_RESERVATION, DataBaseHandler.KEY_RESERVATION_ID + " = ?", new String[]{String.valueOf(booking.getId())});
     }
 
     // Transformer un cursor en un objet Customer
