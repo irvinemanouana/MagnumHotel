@@ -1,40 +1,50 @@
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@color/grey_background"
     tools:context="android.project.esgi.fr.magnumhotel.activities.CustomerGestionActivity">
 
-    <Button
-        style="?android:attr/buttonStyleSmall"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:onClick="addNewCustomer"
-        android:background="@color/black"
-        android:padding="10dp"
-        android:layout_margin="15dp"
-        android:textColor="@color/white"
-        android:textAllCaps="true"
-        android:textStyle="bold"
-        android:textSize="@dimen/text_size"
-        android:text="@string/add_customer"
-        android:id="@+id/link_to_add_customer" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_gravity="top">
+        <TextView
+            android:id="@+id/empty_customer_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textColor="@color/red" />
 
-    <TextView
-        android:id="@+id/empty_customer_list_text"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="15dp"
-        android:textColor="@color/red" />
+        <ListView
+            android:id="@+id/customer_list"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="25dp"
+            android:divider="#eaeaea"
+            android:dividerHeight="10dp" />
+    </RelativeLayout>
 
-    <ListView
-        android:id="@+id/customer_list"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginRight="15dp"
-        android:layout_marginLeft="15dp"
-        android:layout_marginBottom="25dp"
-        android:divider="#eaeaea"
-        android:dividerHeight="10dp" />
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:gravity="bottom">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:onClick="addNewCustomer"
+            android:background="@color/red"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:text="@string/add_customer"
+            android:id="@+id/link_to_add_customer" />
+    </RelativeLayout>
 
-</LinearLayout>
+</RelativeLayout>

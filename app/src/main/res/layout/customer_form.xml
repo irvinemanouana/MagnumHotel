@@ -108,16 +108,16 @@
         </LinearLayout>
 
         <Button
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
             android:id="@+id/submit_customer"
             android:text="@string/add"
             android:textColor="@color/white"
             android:background="@drawable/button_add"
             android:textAllCaps="true"
             android:textStyle="bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:paddingRight="30dp"
-            android:paddingLeft="30dp"
+            android:paddingRight="20dp"
+            android:paddingLeft="20dp"
             android:textSize="14sp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="40dp"
