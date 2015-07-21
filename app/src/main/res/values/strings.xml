@@ -38,7 +38,7 @@
     <string name="bed_count">Bed count<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_description">Description</string>
     <string name="room_price">Price<font fgcolor="#FFFF0000">*</font></string>
-    <string name="room_number">Room\' N°<font fgcolor="#FFFF0000">*</font></string>
+    <string name="room_number">Room N°<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_number_field">Room Number %1$s</string>
     <string name="room_title_detail">&lt;b>Room Number &lt;/b> %1$s</string>
     <string name="room_capacity_detail">%1$d bed%2$s</string>
@@ -70,18 +70,16 @@
     <string name="available_text">Available</string>
     <string name="floor_text">Floor<font fgcolor="#FFFF0000">*</font></string>
 
-
-
     <!-- Error management-->
     <string name="required_field">Required field</string>
     <string name="improper_field">Improper field</string>
     <string name="improper_email">Improper email</string>
-    <string name="capacity_room_error">a room can contain only between one or two people.</string>
+    <string name="capacity_room_error">A room can contain only between one or two people.</string>
     <string name="price_error">Invalid price</string>
     <string name="before_date_error">The arrival date must be before departure date</string>
     <string name="before_today_date_error">The arrival date don\'t must be before today</string>
     <string name="equal_date_error">The arrival date must be different than departure date </string>
-    <string name="cover_description">room cover</string>
+    <string name="cover_description">Room cover</string>
     <string name="delete_booking_title">Delete the reservation ?</string>
     <string name="unavailable_text">Unavailable</string>
 

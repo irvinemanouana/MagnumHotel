@@ -107,7 +107,7 @@ public class BookingGestionActivity extends Activity {
                 break;
 
             case R.id.bookings:
-                Intent bookings = new Intent(this, CustomerGestionActivity.class);
+                Intent bookings = new Intent(this, BookingGestionActivity.class);
                 startActivity(bookings);
                 break;
 
