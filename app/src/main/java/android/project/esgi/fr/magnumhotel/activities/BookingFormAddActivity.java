@@ -166,11 +166,9 @@ public class BookingFormAddActivity extends Activity {
 
         if(arrivalDate.before(actualyDate)) {
             Toast.makeText(this, getResources().getString(R.string.before_today_date_error), Toast.LENGTH_LONG).show();
-        }else if(arrivalDate.after(departureDate)) {
-            Toast.makeText(this, getResources().getString(R.string.before_date_error), Toast.LENGTH_LONG).show();
-        }else if(arrivalDate.equals(departureDate)){
+        } else if(arrivalDate.equals(departureDate)) {
             Toast.makeText(this, getResources().getString(R.string.equal_date_error), Toast.LENGTH_LONG).show();
-        }else{
+        } else {
             Intent intent = new Intent(this, RoomListActivity.class);
             intent.putExtra("arrivalDate",arrivalDateField.getText().toString());
             intent.putExtra("departureDate",departureDateField.getText().toString());
