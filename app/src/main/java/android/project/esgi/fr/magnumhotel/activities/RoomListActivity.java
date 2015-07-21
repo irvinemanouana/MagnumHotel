@@ -18,6 +18,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
 
 /**
  * Created by Sylvain on 15/07/15.
@@ -47,10 +48,11 @@ public class RoomListActivity extends ListActivity {
         roomArrayList = roomDAO.getRoomList();
         reservationArrayList = roomDAO.getReservationRoomList();
         roomDAO.close();
-
+        Iterator<Room> iterator = roomArrayList.iterator();
         // Verification de la disponibilité des chambres à une date
         if(roomArrayList != null && reservationArrayList != null){
-            for(Room room : roomArrayList){
+            while (iterator.hasNext()) {
+                Room room = iterator.next();
                 for(Reservation reservation : reservationArrayList){
                     if(room.getId() == reservation.getRoomId()){
                         if(
@@ -59,16 +61,16 @@ public class RoomListActivity extends ListActivity {
                                 (departureDate.after(reservation.getStartDate())  && departureDate.before(reservation.getEndDate()))
                            ){
 
-                            roomArrayList.remove(room);
+                            iterator.remove();
                             break;
 
                         }else if(arrivalDate.equals(reservation.getStartDate()) && departureDate.equals(reservation.getEndDate())){
-                            roomArrayList.remove(room);
+                            iterator.remove();
                             break;
                         }
                     }
                 }
-                if(roomArrayList == null) break;
+
             }
             if(roomArrayList != null)setListAdapter(new RoomsListAdapter(this, roomArrayList));
 
