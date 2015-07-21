@@ -44,7 +44,7 @@ public class Function {
      */
     public static Date stringToDate(String date){
 
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",java.util.Locale.getDefault());
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
             Date convertedDate = null;
             try {
                 convertedDate = sdf.parse(date);
@@ -56,7 +56,7 @@ public class Function {
     }
 
     public static String dateToString(Date date){
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",java.util.Locale.getDefault());
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         return sdf.format(date);
     }
 

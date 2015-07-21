@@ -16,6 +16,8 @@ public class Room implements Serializable {
     private String description;
     private int floor;
     private String imageLink;
+    private boolean available = true;
+    private boolean display;
 
     public Room(){}
 
@@ -87,6 +89,24 @@ public class Room implements Serializable {
     public void setImageLink(String imageLink) {
         this.imageLink = imageLink;
     }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean isDisplay() {
+        return display;
+    }
+
+    public void setDisplay(boolean display) {
+        this.display = display;
+    }
+
+
 
     @Override
     public String toString() {

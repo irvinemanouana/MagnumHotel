@@ -9,6 +9,7 @@ import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.others.Function;
+import android.util.Log;
 
 import java.util.ArrayList;
 

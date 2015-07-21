@@ -12,6 +12,7 @@ import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.fragment.BookingListFragment;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
+import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,7 @@ public class RoomDetailActivity extends Activity {
         this.initialize();
 
         textView.setText(room.getDescription());
-        roomNumber.setText(String.format(getResources().getString(R.string.room_title_detail),room.getTitle()));
+        roomNumber.setText(Html.fromHtml(String.format(getResources().getString(R.string.room_title_detail),room.getTitle())));
         detailprice.setText(String.format(getResources().getString(R.string.room_price_detail),String.valueOf(room.getPrice())));
         detailSizeRoom.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
                 room.getCapacity() > 1 ? "s" : ""));

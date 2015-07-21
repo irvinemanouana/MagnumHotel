@@ -4,7 +4,9 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
+import android.project.esgi.fr.magnumhotel.others.Function;
 
 import java.util.ArrayList;
 
@@ -66,6 +68,25 @@ public class RoomDAO {
         return allRoomArrayList;
     }
 
+    public ArrayList<Reservation> getReservationRoomList(){
+
+        Reservation reservation;
+        ArrayList<Reservation> bookings = new ArrayList<>();
+        String request = " SELECT "+ DataBaseHandler.KEY_RESERVATION_ROOM_ID +","+ DataBaseHandler.KEY_RESERVATION_START_DAY+"," +DataBaseHandler.KEY_RESERVATION_END_DAY+
+                         " FROM "+ TABLE_ROOM + ","+ DataBaseHandler.TABLE_RESERVATION +
+                         " WHERE "+ DataBaseHandler.TABLE_RESERVATION +"."+DataBaseHandler.KEY_RESERVATION_ROOM_ID +
+                         " = "+ TABLE_ROOM + "."+DataBaseHandler.KEY_ROOM_ID;
+
+        Cursor cursor = database.rawQuery(request, null);
+        if (cursor.moveToFirst()){
+            do{
+                reservation = cursorToReservation(cursor);
+                bookings.add(reservation);
+            } while (cursor.moveToNext());
+        }
+        return bookings;
+
+    }
 
     public void updateRoom(Room room){
 
@@ -95,6 +116,14 @@ public class RoomDAO {
         room.setFloor(cursor.getInt(DataBaseHandler.POSITION_ROOM_FLOOR));
         room.setImageLink(cursor.getString(DataBaseHandler.POSITION_ROOM_PICTURE));
         return room;
+    }
+
+    private Reservation cursorToReservation(Cursor cursor){
+        Reservation booking = new Reservation() ;
+        booking.setRoomId(cursor.getInt(0));
+        booking.setStartDate(Function.stringToDate(cursor.getString(1)));
+        booking.setEndDate(Function.stringToDate(cursor.getString(2)));
+        return booking;
     }
 
 }

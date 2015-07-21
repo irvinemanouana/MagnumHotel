@@ -7,8 +7,10 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.adapter.RoomsListAdapter;
+import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -18,12 +20,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 
 public class RoomGestionActivity extends Activity {
 
+    // Element de vue
     TextView emptyListText;
     ListView roomList;
+
+
 
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
@@ -35,14 +42,28 @@ public class RoomGestionActivity extends Activity {
 
         RoomDAO roomDAO = new RoomDAO(RoomGestionActivity.this);
         roomDAO.open();
+        ArrayList<Reservation> allReservation = roomDAO.getReservationRoomList();
         ArrayList<Room> allRom = roomDAO.getRoomList();
         roomDAO.close();
+
+        Date today = new Date();
+
 
         if(allRom.size() <= 0){
             emptyListText.setText(getResources().getString(R.string.text_nothing));
         } else {
 
-
+            for(Room room : allRom){
+                for(Reservation reservation : allReservation){
+                    if(room.getId() == reservation.getRoomId()){
+                        Log.e("test chambre ", room.getId() + "   " + reservation.getRoomId());
+                        if(today.after(reservation.getStartDate()) && today.before(reservation.getEndDate())){
+                            room.setAvailable(false);
+                            break;
+                        }
+                    }
+                }
+            }
 
             roomList.setAdapter(new RoomsListAdapter(RoomGestionActivity.this,allRom));
             roomList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

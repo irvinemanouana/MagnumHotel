@@ -52,18 +52,8 @@ public class BookingGestionActivity extends Activity {
         } else {
             BookingsListAdapter adapter = new BookingsListAdapter(this, allBooking, "booking");
             bookingList.setAdapter(adapter);
-            /*
-            bookingList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    Reservation booking = (Reservation) parent.getItemAtPosition(position);
-                    Intent intent = new Intent(BookingGestionActivity.this, BookingGestionActivity.class);
-                    intent.putExtra("bookingId", booking.getId());
-                    startActivity(intent);
-                }
-            });
-            */
         }
+
     }
 
     private void initialize(){

@@ -3,29 +3,27 @@ package android.project.esgi.fr.magnumhotel.adapter;
 import android.content.Context;
 import android.graphics.BitmapFactory;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
-import android.project.esgi.fr.magnumhotel.dao.DataBaseHandler;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import java.util.List;
+
+import java.util.ArrayList;
 
 /**
  * Created by Christopher on 05/07/2015.
  */
 public class RoomsListAdapter extends BaseAdapter {
 
-    private List<Room> roomList;
+    private ArrayList<Room> roomList;
     ViewHolderRoom viewHolderRoom;
     Context context;
 
-    public RoomsListAdapter(Context context, List<Room> roomList) {
+    public RoomsListAdapter(Context context, ArrayList<Room> roomList) {
         this.roomList = roomList;
         this.context = context;
     }
@@ -62,13 +60,18 @@ public class RoomsListAdapter extends BaseAdapter {
             // Utilisation du viewHolder pour éviter de réutiliser le "findViewById
             viewHolderRoom = (ViewHolderRoom) convertView.getTag();
         }
-
         Room room = roomList.get(position);
-        viewHolderRoom.title.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.room_title_detail), room.getTitle())));
-        viewHolderRoom.capacity.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
-                room.getCapacity() > 1 ? "s" : ""));
-        viewHolderRoom.price.setText(String.format(context.getResources().getString(R.string.room_price_detail), String.valueOf(room.getPrice())));
-        if(room.getImageLink() != null)viewHolderRoom.cover.setImageBitmap(BitmapFactory.decodeFile(room.getImageLink()));
+
+            viewHolderRoom.title.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.room_title_detail), room.getTitle())));
+            viewHolderRoom.capacity.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
+                    room.getCapacity() > 1 ? "s" : ""));
+            viewHolderRoom.price.setText(String.format(context.getResources().getString(R.string.room_price_detail), String.valueOf(room.getPrice())));
+            if(room.getImageLink() != null)viewHolderRoom.cover.setImageBitmap(BitmapFactory.decodeFile(room.getImageLink()));
+
+            if(!room.isAvailable()){
+                viewHolderRoom.availability.setText(context.getResources().getString(R.string.unavailable_text));
+                viewHolderRoom.availability.setTextColor(context.getResources().getColor(R.color.unavailable));
+            }
 
         return convertView;
     }
