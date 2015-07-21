@@ -1,6 +1,7 @@
 package android.project.esgi.fr.magnumhotel.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Sylvain on 03/07/2015.
@@ -10,27 +11,30 @@ public class Room implements Serializable {
 
     private int id;
     private String title;
-    private String description;
     private int capacity;
     private float price;
+    private String description;
+    private int floor;
     private String imageLink;
 
     public Room(){}
 
-    public Room(String title, int capacity, float price, String description, String imageLink) {
+    public Room(String title, int capacity, float price, String description, int floor, String imageLink) {
         this.title = title;
-        this.description = description;
         this.capacity = capacity;
         this.price = price;
+        this.description = description;
+        this.floor = floor;
         this.imageLink = imageLink;
     }
 
-    public Room(int id, String title, int capacity, float price, String description, String imageLink) {
+    public Room(int id, String title, int capacity, float price, String description, int floor, String imageLink) {
         this.id = id;
         this.title = title;
-        this.description = description;
         this.capacity = capacity;
         this.price = price;
+        this.description = description;
+        this.floor = floor;
         this.imageLink = imageLink;
     }
 
@@ -67,6 +71,14 @@ public class Room implements Serializable {
     }
     public void setPrice(float price) {
         this.price = price;
+    }
+
+    public int getFloor() {
+        return floor;
+    }
+
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
     public String getImageLink() {

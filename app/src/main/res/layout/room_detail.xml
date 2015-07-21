@@ -4,7 +4,7 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="android.project.esgi.fr.magnumhotel.activities.DetailRoomActivity">
+    tools:context="android.project.esgi.fr.magnumhotel.activities.RoomDetailActivity">
 
     <LinearLayout
         android:layout_margin="5dp"
@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:id="@+id/dnbp"
-            android:text="@string/customers_max" />
+            android:text="@string/bed_count" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/room_bookings_list"
-        android:name="android.project.esgi.fr.magnumhotel.fragment.RoomBookingListFragment"
+        android:name="android.project.esgi.fr.magnumhotel.fragment.BookingListFragment"
         android:layout_marginTop="10dp"
         android:layout_below="@+id/all_bookings_title"
         android:layout_alignParentLeft="true"

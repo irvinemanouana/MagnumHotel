@@ -28,7 +28,7 @@ public class RoomGestionActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_gestion);
+        setContentView(R.layout.room_gestion);
 
         this.initialize();
         this.actionBarSettings();
@@ -47,7 +47,7 @@ public class RoomGestionActivity extends Activity {
                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                    //String s = String.valueOf(parent.getItemAtPosition(position)) ;
                    Room room = (Room) parent.getItemAtPosition(position);
-                   Intent intent = new Intent(getApplicationContext(),DetailRoomActivity.class);
+                   Intent intent = new Intent(getApplicationContext(),RoomDetailActivity.class);
                    intent.putExtra("Room",room);
                    startActivity(intent);
                }
@@ -61,7 +61,7 @@ public class RoomGestionActivity extends Activity {
     }
 
     public void addNewRoom(View view) {
-        Intent addNewRoom = new Intent(this, AddRoomActivity.class);
+        Intent addNewRoom = new Intent(this, RoomFormAddActivity.class);
         startActivity(addNewRoom);
     }
 

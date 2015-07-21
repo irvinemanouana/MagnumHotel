@@ -1,6 +1,7 @@
 package android.project.esgi.fr.magnumhotel.model;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created by Sylvain on 03/07/15.
@@ -12,12 +13,12 @@ public class Reservation implements Serializable {
     int customerId;
     Room room;
     int roomId;
-    String startDate;
-    String endDate;
+    Date startDate;
+    Date endDate;
 
     public Reservation(){}
 
-    public Reservation(int id, Customer customer, Room room, String startDate, String endDate) {
+    public Reservation(int id, Customer customer, Room room, Date startDate, Date endDate) {
         this.id = id;
         this.customer = customer;
         this.room = room;
@@ -25,14 +26,14 @@ public class Reservation implements Serializable {
         this.endDate = endDate;
     }
 
-    public Reservation(Customer customer, Room room, String startDate, String endDate) {
+    public Reservation(Customer customer, Room room, Date startDate, Date endDate) {
         this.customer = customer;
         this.room = room;
         this.startDate = startDate;
         this.endDate = endDate;
     }
 
-    public Reservation(int customerId, int roomId, String startDate, String endDate) {
+    public Reservation(int customerId, int roomId, Date startDate, Date endDate) {
         this.customerId = customerId;
         this.roomId = roomId;
         this.startDate = startDate;
@@ -63,19 +64,19 @@ public class Reservation implements Serializable {
         this.room = room;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

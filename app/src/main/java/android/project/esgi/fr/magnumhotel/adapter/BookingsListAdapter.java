@@ -6,23 +6,20 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.activities.BookingGestionActivity;
-import android.project.esgi.fr.magnumhotel.activities.UpdateBookingActivity;
-import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
+import android.project.esgi.fr.magnumhotel.activities.BookingFormUpdateActivity;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
-import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
-import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
+import android.project.esgi.fr.magnumhotel.others.Function;
 import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Date;
 
 /**
  * Created by Amélie on 15/07/2015.
@@ -33,10 +30,12 @@ public class BookingsListAdapter extends BaseAdapter {
     private Context context;
     private int bookingPosition;
     ViewHolderBookings viewHolderBookings;
+    private boolean isRoom;
 
-    public BookingsListAdapter(Context context, ArrayList<Reservation> bookingsList) {
+    public BookingsListAdapter(Context context, ArrayList<Reservation> bookingsList, boolean isRoom) {
         this.context = context;
         this.bookingsList = bookingsList;
+        this.isRoom = isRoom;
     }
 
     @Override
@@ -75,10 +74,15 @@ public class BookingsListAdapter extends BaseAdapter {
 
         final Reservation booking =  bookingsList.get(position);
 
+        if(isRoom){
+            viewHolderBookings.customerLastname.setVisibility(View.GONE);
+        }else{
+            viewHolderBookings.roomNumber.setVisibility(View.GONE);
+        }
         viewHolderBookings.customerLastname.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.booking_customer), booking.getCustomer().getFirstName() + " " + booking.getCustomer().getLastName())));
         viewHolderBookings.roomNumber.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.room_title_detail),booking.getRoom().getTitle())));
-        viewHolderBookings.arrivalDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.arrival_day),String.valueOf(booking.getStartDate()))));
-        viewHolderBookings.departureDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.departure_day), String.valueOf(booking.getEndDate()))));
+        viewHolderBookings.arrivalDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.arrival_day),Function.dateToFullDate(booking.getStartDate()))));
+        viewHolderBookings.departureDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.departure_day),booking.getEndDate())));
 
         bookingPosition = position;
 
@@ -107,7 +111,7 @@ public class BookingsListAdapter extends BaseAdapter {
         viewHolderBookings.updateBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context.getApplicationContext(), UpdateBookingActivity.class);
+                Intent intent = new Intent(context.getApplicationContext(), BookingFormUpdateActivity.class);
                 intent.putExtra("bookingId", bookingsList.get(bookingPosition));
                 context.startActivity(intent);
             }
@@ -118,7 +122,6 @@ public class BookingsListAdapter extends BaseAdapter {
 
     static class ViewHolderBookings{
         TextView customerLastname,
-                 customerFirstname,
                  roomNumber,
                  arrivalDay,
                  departureDay;

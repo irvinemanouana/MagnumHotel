@@ -2,22 +2,17 @@ package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.adapter.BookingsListAdapter;
-import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
-import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -40,7 +35,7 @@ public class BookingGestionActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_gestion);
+        setContentView(R.layout.booking_gestion);
 
         this.initialize();
         this.actionBarSettings();
@@ -88,11 +83,11 @@ public class BookingGestionActivity extends Activity {
     }
 
     public void addNewBooking(View view) {
-        startActivity(new Intent(this, AddBookingActivity.class));
+        startActivity(new Intent(this, BookingFormAddActivity.class));
     }
 
     public void selectCustomer(View view){
-        startActivityForResult(new Intent(this,SelectCustomerActivity.class), 1);
+        startActivityForResult(new Intent(this,CustomerListActivity.class), 1);
     }
 
     @Override

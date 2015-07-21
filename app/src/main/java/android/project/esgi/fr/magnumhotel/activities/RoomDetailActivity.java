@@ -9,45 +9,47 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
-import android.project.esgi.fr.magnumhotel.model.Customer;
-import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
+import android.project.esgi.fr.magnumhotel.fragment.BookingListFragment;
+import android.project.esgi.fr.magnumhotel.model.Room;
+import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-/**
- * Created by Amélie on 13/07/2015.
- */
-public class DetailCustomerActivity extends Activity {
-    private TextView customerName, customerFirstname, customerEmail;
-    private ImageView updateCustomer, deleteCustomer;
-    private final Context context = this;
-    private Customer customer;
+
+public class RoomDetailActivity extends Activity {
+
+    private TextView textView,
+                     roomNumber,
+                     detailprice,
+                     detailSizeRoom;
+    private final Context context=this;
+    private Room room;
+    private BookingListFragment bookingListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_customer);
-
-
-        this.initialize();
+        setContentView(R.layout.room_detail);
+        room = (Room) getIntent().getSerializableExtra("Room");
         this.actionBarSettings();
+        this.initialize();
 
-        customer = (Customer)getIntent().getSerializableExtra("Customer");
-        customerName.setText(customer.getLastName());
-        customerFirstname.setText(customer.getFirstName());
-        customerEmail.setText(customer.getEmail());
+        textView.setText(room.getDescription());
+        roomNumber.setText(String.format(getResources().getString(R.string.room_title_detail),room.getTitle()));
+        detailprice.setText(String.format(getResources().getString(R.string.room_price_detail),String.valueOf(room.getPrice())));
+        detailSizeRoom.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
+                room.getCapacity() > 1 ? "s" : ""));
     }
 
     private void initialize(){
-        customerName = (TextView)findViewById(R.id.customer_lastname);
-        customerFirstname = (TextView)findViewById(R.id.customer_firstname);
-        customerEmail = (TextView)findViewById(R.id.customer_email);
-        updateCustomer = (ImageView)findViewById(R.id.update_customer);
-        deleteCustomer = (ImageView)findViewById(R.id.delete_customer);
+        textView =(TextView)findViewById(R.id.text);
+        roomNumber = (TextView)findViewById(R.id.room_number);
+        detailprice =(TextView)findViewById(R.id.dprice);
+        detailSizeRoom =(TextView)findViewById(R.id.dnbp);
+        bookingListFragment = (BookingListFragment) getFragmentManager().findFragmentById(R.id.room_bookings_list);
     }
 
     private void actionBarSettings(){
@@ -60,27 +62,31 @@ public class DetailCustomerActivity extends Activity {
         }
     }
 
-    public void updateCustomer(View view) {
-        Intent intent = new Intent(getApplicationContext(), UpdateCustomerActivity.class);
-        intent.putExtra("customer", customer);
+    public void updateRoom(View view) {
+        Intent intent = new Intent(getApplicationContext(),RoomUpdateActivity.class);
+        intent.putExtra("room",room);
         startActivity(intent);
     }
 
-    public void deleteCustomer(View view) {
+    public void deleteRoom(View view) {
         new AlertDialog.Builder(context)
-        .setTitle("Supprimer le client "+ customer.getLastName() + " " + customer.getFirstName())
+        .setTitle(getResources().getString(R.string.delete_room_title))
         .setMessage(getResources().getString(R.string.delete_customer_message))
         .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
-                CustomerDAO customerDAO = new CustomerDAO(DetailCustomerActivity.this);
-                customerDAO.open();
-                customerDAO.deleteCustomer(customer);
-                customerDAO.close();
-                Intent back = new Intent(getApplicationContext(), CustomerGestionActivity.class);
+                RoomDAO roomDAO = new RoomDAO(RoomDetailActivity.this);
+                roomDAO.open();
+                roomDAO.deleteRoom(room);
+                roomDAO.close();
+                Intent back = new Intent(getApplicationContext(), RoomGestionActivity.class);
                 startActivity(back);
             }
         })
-        .setNegativeButton(android.R.string.no, null)
+        .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // do nothing
+            }
+        })
         .setIcon(android.R.drawable.ic_dialog_alert)
         .show();
     }
@@ -121,7 +127,7 @@ public class DetailCustomerActivity extends Activity {
         return true;
     }
 
-    public int getCustomerId(){
-        return customer.getId();
+    public int getRoomId(){
+        return room.getId();
     }
 }

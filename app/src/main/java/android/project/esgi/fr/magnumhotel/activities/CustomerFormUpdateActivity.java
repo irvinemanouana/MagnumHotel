@@ -20,7 +20,7 @@ import android.widget.Toast;
 /**
  * Created by Amélie on 14/07/2015.
  */
-public class UpdateCustomerActivity extends Activity {
+public class CustomerFormUpdateActivity extends Activity {
 
     // ELEMENT DE VUE
     TextView titleText;
@@ -37,7 +37,7 @@ public class UpdateCustomerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_form);
+        setContentView(R.layout.customer_form);
 
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); // configuration de l'action bar
@@ -61,11 +61,11 @@ public class UpdateCustomerActivity extends Activity {
                 if(checkForm()){
                     // Modification du client
                     customer = new Customer(customer.getId(), lastname, firstname, email);
-                    CustomerDAO customerDAO = new CustomerDAO(UpdateCustomerActivity.this);
+                    CustomerDAO customerDAO = new CustomerDAO(CustomerFormUpdateActivity.this);
                     customerDAO.open();
                     customerDAO.updateCustomer(customer);
                     customerDAO.close();
-                    Intent intent = new Intent(UpdateCustomerActivity.this, CustomerGestionActivity.class);
+                    Intent intent = new Intent(CustomerFormUpdateActivity.this, CustomerGestionActivity.class);
                     startActivity(intent);
                     finish();
                 }

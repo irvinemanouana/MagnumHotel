@@ -1,5 +1,12 @@
 package android.project.esgi.fr.magnumhotel.others;
 
+import android.util.Log;
+
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,6 +35,48 @@ public class Function {
         Pattern p = Pattern.compile("[a-zA-Z]+");
         Matcher matcher = p.matcher(text);
         return matcher.matches();
+    }
+
+    /**
+     * Transforme une date(String) en date(Date)
+     * @param date une date(String)
+     * @return une date(Date)
+     */
+    public static Date stringToDate(String date){
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",java.util.Locale.getDefault());
+            Date convertedDate = null;
+            try {
+                convertedDate = sdf.parse(date);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+            return convertedDate;
+    }
+
+    public static String dateToString(Date date){
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy",java.util.Locale.getDefault());
+        return sdf.format(date);
+    }
+
+    /**
+     * Convertie une simple date en date complete (1 janvier 2015)
+     * @param date une date(Date)
+     * @return une date complete (Date)
+     */
+    public static Date dateToFullDate(Date date) {
+
+        // Date sous le format complet (1 janvier 2015)
+        DateFormat dateFormat = DateFormat.getDateInstance(DateFormat.MEDIUM);
+
+        String newDate = dateFormat.format(date);
+        try {
+            date = dateFormat.parse(newDate);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 
 }

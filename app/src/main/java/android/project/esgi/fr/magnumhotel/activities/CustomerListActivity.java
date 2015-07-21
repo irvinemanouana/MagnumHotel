@@ -15,7 +15,7 @@ import java.util.ArrayList;
 /**
  * Created by Sylvain on 15/07/15.
  */
-public class SelectCustomerActivity extends ListActivity {
+public class CustomerListActivity extends ListActivity {
 
     ArrayList<Customer> customerArrayList;
 

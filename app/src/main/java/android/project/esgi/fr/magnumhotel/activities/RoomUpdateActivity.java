@@ -16,14 +16,16 @@ import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class UpdateRoomActivity extends Activity {
+public class RoomUpdateActivity extends Activity {
 
     // ELEMENT DE LA VUE
     TextView titleText;
@@ -31,12 +33,14 @@ public class UpdateRoomActivity extends Activity {
              descriptionField,
              priceField,
              capacityField;
+    Spinner floorSpinner;
     Button modifyButton;
 
     // AUTRES
     private String picturePath = null;
     private Room room;
     private ImageView image;
+    private final Integer floorList[] = new Integer[]{1,2,3};
 
 
     // Contenu des champs
@@ -44,14 +48,17 @@ public class UpdateRoomActivity extends Activity {
     int capacity = 0;
     float price = 0;
     String description;
+    private int floor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_form);
-
+        setContentView(R.layout.room_form);
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); // configuration de l'action bar
+
+        ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this,R.layout.spinner_row,floorList);
+        floorSpinner.setAdapter(adapter);
 
         // Changement du titre et du bouton du formulaire
         titleText.setText(getResources().getString(R.string.update_room_title));
@@ -69,8 +76,8 @@ public class UpdateRoomActivity extends Activity {
             public void onClick(View v) {
 
                 if(checkForm()){
-                    room = new Room(room.getId(), title, capacity, price, description, picturePath);
-                    RoomDAO roomDAO = new RoomDAO(UpdateRoomActivity.this);
+                    room = new Room(room.getId(), title, capacity, price, description, floor, picturePath);
+                    RoomDAO roomDAO = new RoomDAO(RoomUpdateActivity.this);
                     roomDAO.open();
                     roomDAO.updateRoom(room);
                     roomDAO.close();
@@ -94,11 +101,10 @@ public class UpdateRoomActivity extends Activity {
     }
 
     private void initialize(){
-        // Layout "activity_update_room"
-        titleText = (TextView) findViewById(R.id.room_form_title);
+        titleText = (TextView) findViewById(R.id.room_form_title); // Titre du formulaire
+        floorSpinner = (Spinner) findViewById(R.id.select_floor);
         titleField = (EditText) findViewById(R.id.edit_title);
         descriptionField = (EditText) findViewById(R.id.edit_description);
-        capacityField = (EditText) findViewById(R.id.edit_capacity);
         priceField = (EditText) findViewById(R.id.edit_price);
         modifyButton = (Button) findViewById(R.id.submit_room);
         image = (ImageView) findViewById(R.id.room_picture);

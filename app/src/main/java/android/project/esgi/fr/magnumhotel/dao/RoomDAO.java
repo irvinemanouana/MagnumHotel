@@ -17,12 +17,12 @@ public class RoomDAO {
     private SQLiteDatabase database = null;
 
     // Base de données inutilisable
-    private DataBaseHandler DataBaseHandler;
+    private DataBaseHandler dataBaseHandler;
 
     private static final String TABLE_ROOM = "room";
 
     public RoomDAO(Context context){
-        DataBaseHandler = new DataBaseHandler(context);
+        dataBaseHandler = new DataBaseHandler(context);
     }
 
     /**
@@ -30,7 +30,7 @@ public class RoomDAO {
      * @return Une base de données modifiable (Écriture + lecture)
      */
     public SQLiteDatabase open() {
-        this.database = DataBaseHandler.getWritableDatabase();
+        this.database = dataBaseHandler.getWritableDatabase();
         return database;
     }
 
@@ -38,7 +38,7 @@ public class RoomDAO {
      * Permet de fermer la base de données
      */
     public void close() {
-        DataBaseHandler.close();
+        dataBaseHandler.close();
     }
 
     public void addRoom(Room room){
@@ -47,6 +47,7 @@ public class RoomDAO {
         values.put(DataBaseHandler.KEY_ROOM_CAPACITY,room.getCapacity());
         values.put(DataBaseHandler.KEY_ROOM_PRICE, room.getPrice());
         values.put(DataBaseHandler.KEY_ROOM_DESCRIPTION, room.getDescription());
+        values.put(DataBaseHandler.KEY_ROOM_FLOOR, room.getImageLink());
         values.put(DataBaseHandler.KEY_ROOM_PICTURE, room.getImageLink());
 
         database.insert(TABLE_ROOM, null, values);
@@ -73,6 +74,7 @@ public class RoomDAO {
         values.put(DataBaseHandler.KEY_ROOM_CAPACITY,room.getCapacity());
         values.put(DataBaseHandler.KEY_ROOM_PRICE, room.getPrice());
         values.put(DataBaseHandler.KEY_ROOM_DESCRIPTION,room.getDescription());
+        values.put(DataBaseHandler.KEY_ROOM_FLOOR,room.getImageLink());
         values.put(DataBaseHandler.KEY_ROOM_PICTURE,room.getImageLink());
         database.update(TABLE_ROOM,values, DataBaseHandler.KEY_ROOM_ID + " = ?",new String[] {
                 String.valueOf(room.getId())
@@ -90,6 +92,7 @@ public class RoomDAO {
         room.setCapacity(cursor.getInt(DataBaseHandler.POSITION_ROOM_CAPACITY));
         room.setPrice(cursor.getFloat(DataBaseHandler.POSITION_ROOM_PRICE));
         room.setDescription(cursor.getString(DataBaseHandler.POSITION_ROOM_DESCRIPTION));
+        room.setFloor(cursor.getInt(DataBaseHandler.POSITION_ROOM_FLOOR));
         room.setImageLink(cursor.getString(DataBaseHandler.POSITION_ROOM_PICTURE));
         return room;
     }

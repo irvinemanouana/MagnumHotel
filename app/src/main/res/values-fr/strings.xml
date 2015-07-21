@@ -35,12 +35,12 @@
     <string name="add_room_title">Ajouter une chambre</string>
     <string name="update_room_title">Modifier une chambre</string>
     <string name="delete_room_title">Supprimer la chambre</string>
-    <string name="customers_max">Nombre de personnes maximum<font fgcolor="#FFFF0000">*</font></string>
+    <string name="bed_count">Nombre de lits<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_description">Description</string>
     <string name="room_price">Prix<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_number">N° de la chambre<font fgcolor="#FFFF0000">*</font></string>
-    <string name="room_title_detail">Chambre N° %1$s</string>
-    <string name="room_capacity_detail">%1$d personne%2$s maximum</string>
+    <string name="room_title_detail">&lt;b>Chambre N° &lt;/b>%1$s</string>
+    <string name="room_capacity_detail">%1$d lit%2$s</string>
     <string name="room_price_detail">%1$s euros la nuit</string>
 
 
@@ -60,13 +60,14 @@
     <string name="all_bookings">Réservations</string>
     <string name="specify_room">Attribution d\'une chambre</string>
     <string name="arrival_day_title">Date d\'arrivée : </string>
-    <string name="arrival_day">&lt;b>Date d\'arrivée : &lt;/b>%1$s</string>
+    <string name="arrival_day">&lt;b>Début : &lt;/b>%1$s</string>
     <string name="departure_day_title">Date de départ : </string>
-    <string name="departure_day">&lt;b>Date de départ : &lt;/b>%1$s</string>
-    <string name="choose_customer">Choisir un utilisateur</string>
+    <string name="departure_day">&lt;b>Fin : &lt;/b>%1$s</string>
+    <string name="choose_customer">Choisir un client</string>
     <string name="choose_room">Choisir une chambre</string>
     <string name="booking_customer">&lt;b>Client : &lt;/b>%1$s</string>
     <string name="delete_booking_message">Etes-vous sûr de vouloir supprimer cette réservation ?</string>
+    <string name="delete_booking_title">Supprimer la réservation ?</string>
 
     <!-- Gestion d'erreur-->
     <string name="required_field">Champ obligatoire</string>
@@ -74,8 +75,13 @@
     <string name="improper_email">Email non conforme</string>
     <string name="capacity_room_error">Une chambre ne peut contenir qu\'entre 1 à 6 personnes</string>
     <string name="price_error">Prix invalide</string>
-    <string name="date_error">La date d\'arrivé doit être avant celui du depart</string>
+    <string name="before_date_error">La date d\'arrivé doit être avant celui du depart</string>
+    <string name="equal_date_error">La date d\'arrivé doit être different de celui du départ</string>
     <string name="cover_description">room cover</string>
+    <string name="available_text">Disponible</string>
+    <string name="unavailable_text">Resérvé</string>
+    <string name="room_number_field">Chambre numero %1$s</string>
+    <string name="floor_text">Étage</string>
 
 
 </resources>

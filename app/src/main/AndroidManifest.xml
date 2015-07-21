@@ -31,7 +31,7 @@
         </activity>
 
         <activity
-            android:name=".activities.DetailRoomActivity"
+            android:name=".activities.RoomDetailActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_detail_room"
             android:noHistory="true"
@@ -42,7 +42,7 @@
         </activity>
 
         <activity
-            android:name=".activities.AddRoomActivity"
+            android:name=".activities.RoomFormAddActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/title_activity_new_room"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -52,7 +52,7 @@
         </activity>
 
         <activity
-            android:name=".activities.UpdateRoomActivity"
+            android:name=".activities.RoomUpdateActivity"
             android:windowSoftInputMode="stateHidden"
             android:label="@string/update_room_title"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -72,7 +72,7 @@
         </activity>
 
         <activity
-            android:name=".activities.DetailCustomerActivity"
+            android:name=".activities.CustomerDetailActivity"
             android:windowSoftInputMode="stateHidden"
             android:noHistory="true"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -82,7 +82,7 @@
         </activity>
 
         <activity
-            android:name=".activities.AddCustomerActivity"
+            android:name=".activities.CustomerFormAddActivity"
             android:windowSoftInputMode="stateHidden"
             android:noHistory="true"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -92,7 +92,7 @@
         </activity>
 
         <activity
-            android:name=".activities.UpdateCustomerActivity"
+            android:name=".activities.CustomerFormUpdateActivity"
             android:windowSoftInputMode="stateHidden"
             android:noHistory="true"
             android:label="@string/update_customer"
@@ -103,7 +103,7 @@
         </activity>
 
         <activity
-            android:name=".activities.SelectCustomerActivity"
+            android:name=".activities.CustomerListActivity"
             android:windowSoftInputMode="stateHidden"
             android:noHistory="true"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -113,7 +113,7 @@
         </activity>
 
         <activity
-            android:name=".activities.SelectRoomActivity"
+            android:name=".activities.RoomListActivity"
             android:windowSoftInputMode="stateHidden"
             android:noHistory="true"
             android:uiOptions="splitActionBarWhenNarrow">
@@ -132,7 +132,7 @@
         </activity>
 
         <activity
-            android:name=".activities.AddBookingActivity"
+            android:name=".activities.BookingFormAddActivity"
             android:windowSoftInputMode="stateHidden"
             android:uiOptions="splitActionBarWhenNarrow">
             <meta-data

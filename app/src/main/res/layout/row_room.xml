@@ -38,7 +38,7 @@
             android:textColor="@color/black_900"
             android:layout_marginBottom="5dp"
             android:textSize="@dimen/text_size"
-            android:text="@string/customers_max" />
+            android:text="@string/bed_count" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,6 +49,17 @@
             android:text="@string/room_price"
             android:textStyle="bold"
             android:gravity="center" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/room_availability"
+            android:textColor="@color/avalaible"
+            android:textSize="@dimen/text_size"
+            android:text="@string/available_text"
+            android:textStyle="bold"
+            android:gravity="center" />
+
 
     </LinearLayout>
 

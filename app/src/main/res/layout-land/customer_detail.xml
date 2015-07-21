@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/customer_lastname"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:textAllCaps="true"
+            android:text="@string/customer_name"
+            android:textColor="@color/black_900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/customer_firstname"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:textAllCaps="true"
+            android:layout_marginLeft="5dp"
+            android:text="@string/customer_firstName"
+            android:textColor="@color/black_900"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/customer_email"
+            android:textColor="@color/black"
+            android:textSize="@dimen/text_size"
+            android:text="@string/customer_email"
+            android:gravity="center" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/update_customer"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/update"
+                android:onClick="updateCustomer"
+                android:src="@drawable/settings"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_customer"
+                android:contentDescription="@string/update"
+                android:onClick="deleteCustomer"
+                android:src="@drawable/delete"/>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:text="@string/all_bookings"
+            android:textSize="14sp"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:id="@+id/all_bookings_title" />
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/room_bookings_list"
+            android:name="android.project.esgi.fr.magnumhotel.fragment.BookingListFragment"
+            android:layout_marginTop="10dp"
+            android:layout_below="@+id/all_bookings_title"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            tools:layout="@layout/row_bookings" />
+    </LinearLayout>
+
+</LinearLayout>

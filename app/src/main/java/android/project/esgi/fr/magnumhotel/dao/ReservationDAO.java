@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
+import android.project.esgi.fr.magnumhotel.others.Function;
 
 import java.util.ArrayList;
 
@@ -20,12 +21,12 @@ public class ReservationDAO {
     private SQLiteDatabase database = null;
 
     // Base de données inutilisable
-    private DataBaseHandler mySqlLite;
+    private DataBaseHandler dataBaseHandler;
 
     public static final String TABLE_RESERVATION = "reservation";
 
     public ReservationDAO(Context context){
-        mySqlLite = new DataBaseHandler(context);
+        dataBaseHandler = new DataBaseHandler(context);
     }
 
     /**
@@ -33,7 +34,7 @@ public class ReservationDAO {
      * @return Une base de données modifiable (Écriture + lecture)
      */
     public SQLiteDatabase open() {
-        this.database = mySqlLite.getWritableDatabase();
+        this.database = dataBaseHandler.getWritableDatabase();
         return database;
     }
 
@@ -41,14 +42,14 @@ public class ReservationDAO {
      * Permet de fermer la base de données
      */
     public void close() {
-        mySqlLite.close();
+        dataBaseHandler.close();
     }
 
     public void addBooking(Reservation booking){
         ContentValues values = new ContentValues();
         values.put(DataBaseHandler.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
-        values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, booking.getStartDate());
-        values.put(DataBaseHandler.KEY_RESERVATION_END_DAY, booking.getEndDate());
+        values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, Function.dateToString(booking.getStartDate()));
+        values.put(DataBaseHandler.KEY_RESERVATION_END_DAY, Function.dateToString(booking.getEndDate()));
         values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID, booking.getRoomId());
         database.insert(TABLE_RESERVATION, null, values);
     }
@@ -123,8 +124,8 @@ public class ReservationDAO {
     public void updateBooking(Reservation booking){
         ContentValues values = new ContentValues();
         values.put(DataBaseHandler.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
-        values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, booking.getStartDate());
-        values.put(DataBaseHandler.KEY_RESERVATION_END_DAY,booking.getEndDate());
+        values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, Function.dateToString(booking.getStartDate()));
+        values.put(DataBaseHandler.KEY_RESERVATION_END_DAY, Function.dateToString(booking.getEndDate()));
         values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID,booking.getRoomId());
         database.update(TABLE_RESERVATION, values, DataBaseHandler.KEY_RESERVATION_ID + " = ?", new String[] {
                 String.valueOf(booking.getId())
@@ -139,8 +140,8 @@ public class ReservationDAO {
     private Reservation cursorToReservation(Cursor cursor){
         Reservation booking = new Reservation() ;
         booking.setId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ID));
-        booking.setStartDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_START_DAY));
-        booking.setEndDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_END_DAY));
+        booking.setStartDate(Function.stringToDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_START_DAY)));
+        booking.setEndDate(Function.stringToDate(cursor.getString(DataBaseHandler.POSITION_RESERVATION_END_DAY)));
         booking.setRoomId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_ROOM_ID));
         booking.setCustomerId(cursor.getInt(DataBaseHandler.POSITION_RESERVATION_CUSTOMER_ID));
         return booking;
@@ -162,7 +163,8 @@ public class ReservationDAO {
         room.setCapacity(cursor.getInt(11));
         room.setPrice(cursor.getFloat(12));
         room.setDescription(cursor.getString(13));
-        room.setImageLink(cursor.getString(14));
+        room.setFloor(cursor.getInt(14));
+        room.setImageLink(cursor.getString(15));
         return room;
     }
 }

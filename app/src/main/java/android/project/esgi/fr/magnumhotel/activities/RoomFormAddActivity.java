@@ -2,7 +2,6 @@ package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Bitmap;
@@ -12,46 +11,56 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Room;
-import android.project.esgi.fr.magnumhotel.dao.DataBaseHandler;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 
-public class AddRoomActivity extends Activity {
+public class RoomFormAddActivity extends Activity {
 
     // Element de vue
     private EditText titleField,
-                     capacityField,
                      priceField,
                      descriptionField;
+
+    private Spinner floorSpinner,
+                    bedSpinner;
+
     private Button addButton;
     private ImageView image;
 
     // AUTRES
     private String picturePath = null;
-
-    private DataBaseHandler DataBaseHandler;
+    private final Integer floorList[] = new Integer[]{1, 2, 3};
+    private final Integer bedList[] = new Integer[]{1, 2, 3, 4, 5, 6};
 
     // Contenu des champs
     private String title;
     private int capacity = 0;
     private float price = 0;
     private String description;
+    private int floor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_room_form);
-
+        setContentView(R.layout.room_form);
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); // configuration de l'action bar
+
+        ArrayAdapter<Integer> floorAdapter = new ArrayAdapter<>(this,R.layout.spinner_row,floorList);
+        floorSpinner.setAdapter(floorAdapter);
+
+        ArrayAdapter<Integer> bedAdapter = new ArrayAdapter<>(this,R.layout.spinner_row,bedList);
+        bedSpinner.setAdapter(bedAdapter);
 
         image.setOnClickListener( new View.OnClickListener() {
 
@@ -66,10 +75,9 @@ public class AddRoomActivity extends Activity {
         addButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 if(checkForm()){
-                    Room room = new Room(title, capacity, price, description, picturePath);
-                    RoomDAO roomDAO = new RoomDAO(AddRoomActivity.this);
+                    Room room = new Room(title, capacity, price, description, floor, picturePath);
+                    RoomDAO roomDAO = new RoomDAO(RoomFormAddActivity.this);
                     roomDAO.open();
                     roomDAO.addRoom(room);
                     roomDAO.close();
@@ -77,44 +85,40 @@ public class AddRoomActivity extends Activity {
                     startActivity(intent);
                     finish();
                 }
-
             }
         });
     }
 
     private void initialize(){
         titleField = (EditText) findViewById(R.id.edit_title);
-        descriptionField = (EditText) findViewById(R.id.edit_description);
+        floorSpinner = (Spinner) findViewById(R.id.select_floor);
+        bedSpinner = (Spinner) findViewById(R.id.select_capacity);
         priceField = (EditText) findViewById(R.id.edit_price);
-        capacityField = (EditText) findViewById(R.id.edit_capacity);
-        addButton = (Button) findViewById(R.id.submit_room);
+        descriptionField = (EditText) findViewById(R.id.edit_description);
         image = (ImageView) findViewById(R.id.room_picture);
+        addButton = (Button) findViewById(R.id.submit_room);
     }
 
     private boolean checkForm(){
 
         boolean isCorrect = false;
 
-        if(!capacityField.getText().toString().equals("")){
-            capacity = Integer.parseInt(capacityField.getText().toString());
-        }
+
         if(!priceField.getText().toString().equals("")){
             price = Float.parseFloat(priceField.getText().toString());
         }
 
-        title = titleField.getText().toString();
+        title = titleField.getText().toString(); // titre
         description = descriptionField.getText().toString(); // description
+        floor = (int) floorSpinner.getSelectedItem();
+        capacity = (int) bedSpinner.getSelectedItem();
 
         if(title.equals("")){
             titleField.setError(getResources().getString(R.string.required_field));
-        }else if(capacityField.getText().toString().equals("") ){
-            capacityField.setError(getResources().getString(R.string.required_field));
         }else if(priceField.getText().toString().equals("")){
             priceField.setError(getResources().getString(R.string.required_field));
-        } else if(capacity < 1 || capacity > 6 ){
-            capacityField.setError(getResources().getString(R.string.capacity_room_error));
         }else if (price <= 0){
-            priceField.setError("Prix invalide");
+            priceField.setError(getResources().getString(R.string.price_error));
         }else{
             isCorrect = true;
         }

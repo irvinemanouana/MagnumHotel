@@ -30,7 +30,7 @@ public class CustomerGestionActivity extends Activity {
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_gestion);
+        setContentView(R.layout.customer_gestion);
 
         this.initialize();
         this.actionBarSettings();
@@ -50,7 +50,7 @@ public class CustomerGestionActivity extends Activity {
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     Customer customer = (Customer) parent.getItemAtPosition(position);
-                    Intent intent = new Intent(getApplicationContext(), DetailCustomerActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), CustomerDetailActivity.class);
                     intent.putExtra("Customer", customer);
                     startActivity(intent);
                 }
@@ -74,7 +74,7 @@ public class CustomerGestionActivity extends Activity {
     }
 
     public void addNewCustomer(View view) {
-        startActivity(new Intent(this, AddCustomerActivity.class));
+        startActivity(new Intent(this, CustomerFormAddActivity.class));
     }
 
     @Override

@@ -19,7 +19,7 @@ import android.widget.Toast;
 /**
  * Created by Amélie on 13/07/2015.
  */
-public class AddCustomerActivity extends Activity {
+public class CustomerFormAddActivity extends Activity {
 
     // ELEMENT DE VUE
     EditText lastnameField, firstnameField, emailField;
@@ -33,7 +33,7 @@ public class AddCustomerActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_customer_form);
+        setContentView(R.layout.customer_form);
 
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); // configuration de l'action bar
@@ -44,7 +44,7 @@ public class AddCustomerActivity extends Activity {
 
                 if(checkForm()){
                     final Customer customer = new Customer(lastname, firstname, email);
-                    CustomerDAO customerDAO = new CustomerDAO(AddCustomerActivity.this);
+                    CustomerDAO customerDAO = new CustomerDAO(CustomerFormAddActivity.this);
                     customerDAO.open();
                     customerDAO.addCustomer(customer);
                     customerDAO.close();

@@ -1,0 +1,107 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:orientation="horizontal"
+    tools:context="android.project.esgi.fr.magnumhotel.activities.RoomDetailActivity">
+
+    <LinearLayout
+        android:layout_margin="5dp"
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:id="@+id/room_features">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/room_number"
+            android:text="@string/room_number"
+            android:textAllCaps="true"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/dnbp"
+            android:text="@string/bed_count" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/dprice"
+            android:textColor="@color/green_900"
+            android:text="@string/room_price"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/update_room"
+                android:layout_marginRight="10dp"
+                android:contentDescription="@string/update"
+                android:onClick="updateRoom"
+                android:src="@drawable/settings"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/delete_room"
+                android:contentDescription="@string/update"
+                android:onClick="deleteRoom"
+                android:src="@drawable/delete"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/text"
+            android:text="@string/room_description"
+            android:layout_marginTop="30dp"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="@string/all_bookings"
+        android:textSize="14sp"
+        android:textAllCaps="true"
+        android:textStyle="bold"
+        android:layout_marginTop="30dp"
+        android:id="@+id/all_bookings_title"
+        android:layout_below="@+id/room_features"
+        android:layout_alignLeft="@+id/room_features"
+        android:layout_alignStart="@+id/room_features" />
+
+    <fragment
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/room_bookings_list"
+        android:name="android.project.esgi.fr.magnumhotel.fragment.BookingListFragment"
+        android:layout_marginTop="10dp"
+        android:layout_below="@+id/all_bookings_title"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        tools:layout="@layout/row_bookings" />
+    </LinearLayout>
+</LinearLayout>

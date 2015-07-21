@@ -10,4 +10,6 @@
     <color name="red_900">#b71c1c</color>
     <color name="grey_background">#eaeaea</color>
     <color name="dark_grey">#dadada</color>
+    <color name="avalaible">#b831ce11</color>
+    <color name="unavailable">#ffff4643</color>
 </resources>

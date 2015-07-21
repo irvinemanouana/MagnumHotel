@@ -5,7 +5,7 @@ import android.app.Activity;
 /**
  * Created by Amélie on 17/07/2015.
  */
-public class UpdateBookingActivity extends Activity {
+public class BookingFormUpdateActivity extends Activity {
 
 
 

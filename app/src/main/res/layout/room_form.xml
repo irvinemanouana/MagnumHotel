@@ -7,7 +7,7 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:orientation="vertical"
     android:background="@color/grey_background"
-    tools:context="android.project.esgi.fr.magnumhotel.activities.AddRoomActivity">
+    tools:context="android.project.esgi.fr.magnumhotel.activities.RoomFormAddActivity">
 
     <LinearLayout
         android:orientation="vertical"
@@ -66,17 +66,32 @@
             android:textSize="@dimen/label_size"
             android:textStyle="bold"
             android:layout_marginTop="20dp"
-            android:text="@string/customers_max" />
+            android:text="@string/floor_text" />
 
-        <EditText
-            android:id="@+id/edit_capacity"
+        <Spinner
+            android:id="@+id/select_floor"
             android:layout_width="match_parent"
             android:layout_height="30dp"
-            android:padding="5dp"
-            android:inputType="number"
             android:textSize="@dimen/input_size"
-            android:layout_marginTop="5dp"
+            android:spinnerMode="dropdown"
             android:background="@drawable/input_style"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_size"
+            android:textStyle="bold"
+            android:layout_marginTop="20dp"
+            android:text="@string/bed_count" />
+
+            <Spinner
+                android:id="@+id/select_capacity"
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:textSize="@dimen/input_size"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/input_style"/>
+
         </LinearLayout>
 
         <LinearLayout
@@ -149,7 +164,7 @@
             android:layout_marginTop="10dp"
             android:layout_width="130dp"
             android:layout_height="90dp"
-            android:src="@drawable/img_room_default"/>
+            android:src="@drawable/default_journey"/>
         </LinearLayout>
 
         <Button

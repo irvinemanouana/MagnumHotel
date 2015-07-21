@@ -10,6 +10,7 @@ import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Room;
+import android.project.esgi.fr.magnumhotel.others.Function;
 import android.view.View;
 import android.widget.ListView;
 
@@ -18,13 +19,21 @@ import java.util.ArrayList;
 /**
  * Created by Sylvain on 15/07/15.
  */
-public class SelectRoomActivity extends ListActivity {
+public class RoomListActivity extends ListActivity {
 
     ArrayList<Room> roomArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        String arrivalDate = getIntent().getStringExtra("arrivalDate");
+        String departureDate = getIntent().getStringExtra("departureDate");
+
+        if(arrivalDate != null && departureDate != null) {
+            Function.stringToDate(departureDate);
+            Function.stringToDate(arrivalDate);
+        }
 
         RoomDAO roomDAO = new RoomDAO(this);
         roomDAO.open();

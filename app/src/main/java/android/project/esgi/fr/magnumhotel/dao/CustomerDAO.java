@@ -18,7 +18,7 @@ public class CustomerDAO {
     private SQLiteDatabase database = null;
 
     // Base de données inutilisable
-    private DataBaseHandler DataBaseHandler;
+    private DataBaseHandler dataBaseHandler;
 
     private static final String TABLE_CUSTOMER = "customer";
 
@@ -29,7 +29,7 @@ public class CustomerDAO {
                                     DataBaseHandler.KEY_CUSTOMER_EMAIL};
 
     public CustomerDAO(Context context){
-        DataBaseHandler = new DataBaseHandler(context);
+        dataBaseHandler = new DataBaseHandler(context);
     }
 
     /**
@@ -37,7 +37,7 @@ public class CustomerDAO {
      * @return Une base de données modifiable (Écriture + lecture)
      */
     public SQLiteDatabase open() {
-        this.database = DataBaseHandler.getWritableDatabase();
+        this.database = dataBaseHandler.getWritableDatabase();
         return database;
     }
 
@@ -45,7 +45,7 @@ public class CustomerDAO {
      * Permet de fermer la base de données
      */
     public void close() {
-        DataBaseHandler.close();
+        dataBaseHandler.close();
     }
 
     public void addCustomer(Customer customer){

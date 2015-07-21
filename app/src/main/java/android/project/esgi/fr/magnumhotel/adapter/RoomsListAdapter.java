@@ -6,6 +6,7 @@ import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.dao.DataBaseHandler;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -54,6 +55,7 @@ public class RoomsListAdapter extends BaseAdapter {
             viewHolderRoom.title = (TextView) convertView.findViewById(R.id.RoomName);
             viewHolderRoom.capacity = (TextView) convertView.findViewById(R.id.nbperson);
             viewHolderRoom.price = (TextView) convertView.findViewById(R.id.priceRoom);
+            viewHolderRoom.availability = (TextView) convertView.findViewById(R.id.room_availability);
             viewHolderRoom.cover = (ImageView) convertView.findViewById(R.id.room_cover);
             convertView.setTag(viewHolderRoom);
         }else{
@@ -62,7 +64,7 @@ public class RoomsListAdapter extends BaseAdapter {
         }
 
         Room room = roomList.get(position);
-        viewHolderRoom.title.setText(String.format(context.getResources().getString(R.string.room_title_detail),room.getTitle()));
+        viewHolderRoom.title.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.room_title_detail), room.getTitle())));
         viewHolderRoom.capacity.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
                 room.getCapacity() > 1 ? "s" : ""));
         viewHolderRoom.price.setText(String.format(context.getResources().getString(R.string.room_price_detail), String.valueOf(room.getPrice())));
@@ -75,7 +77,8 @@ public class RoomsListAdapter extends BaseAdapter {
     static class ViewHolderRoom {
         TextView title,
                  capacity,
-                 price;
+                 price,
+                 availability;
         ImageView cover;
     }
 

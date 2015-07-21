@@ -34,6 +34,99 @@
             android:layout_height="wrap_content"
             android:textSize="@dimen/label_size"
             android:textStyle="bold"
+            android:text="@string/arrival_day_title"
+            android:paddingLeft="15dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <EditText
+                android:id="@+id/arrival_date_field"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/input_style"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="5dp"
+                android:layout_weight="5"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="text"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:id="@+id/choose_arrival_date_button"
+                android:onClick="selectArrivalDate"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_action_date"
+                android:background="@color/grey_background"
+                android:textColor="@color/white"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_size"
+            android:textStyle="bold"
+            android:text="@string/departure_day_title"
+            android:paddingLeft="15dp"/>
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:gravity="center_horizontal|center_vertical"
+            android:orientation="horizontal"
+            android:layout_marginBottom="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp">
+
+            <EditText
+                android:id="@+id/departure_date_field"
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:background="@drawable/input_style"
+                android:layout_marginRight="10dp"
+                android:paddingLeft="5dp"
+                android:layout_weight="5"
+                android:clickable="false"
+                android:cursorVisible="false"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:inputType="text"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="35dp"
+                android:id="@+id/choose_departure_date_button"
+                android:onClick="selectDepartureDate"
+                android:layout_weight="1"
+                android:drawableLeft="@drawable/ic_action_date"
+                android:background="@color/grey_background"
+                android:textColor="@color/white"
+                android:padding="15dp"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textAllCaps="true"/>
+        </LinearLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/label_size"
+            android:textStyle="bold"
             android:text="@string/add_customer"
             android:paddingLeft="15dp"/>
 
@@ -66,7 +159,7 @@
                 android:id="@+id/choose_customer_button"
                 android:onClick="selectCustomer"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/add_element"
+                android:drawableLeft="@drawable/ic_action_person"
                 android:background="@color/grey_background"
                 android:textColor="@color/white"
                 android:padding="15dp"
@@ -111,7 +204,8 @@
                 android:id="@+id/choose_room_button"
                 android:onClick="selectRoom"
                 android:layout_weight="1"
-                android:drawableLeft="@drawable/add_element"
+                android:drawableStart="@drawable/ic_action_room"
+                android:drawableLeft="@drawable/ic_action_room"
                 android:background="@color/grey_background"
                 android:textColor="@color/white"
                 android:padding="15dp"
@@ -120,46 +214,6 @@
                 android:textAllCaps="true" />
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="5dp"
-                android:textSize="@dimen/label_size"
-                android:textStyle="bold"
-                android:text="@string/arrival_day_title" />
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:id="@+id/arrival_day" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="15dp">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:textSize="@dimen/label_size"
-                android:textStyle="bold"
-                android:layout_marginBottom="5dp"
-                android:text="@string/departure_day_title" />
-
-            <DatePicker
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:calendarViewShown="false"
-                android:id="@+id/departure_day" />
-        </LinearLayout>
 
         <Button
             android:id="@+id/submit_booking"
@@ -168,6 +222,7 @@
             android:background="@drawable/button_add"
             android:textAllCaps="true"
             android:textStyle="bold"
+            android:onClick="addReservation"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingRight="30dp"
