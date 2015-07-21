@@ -82,6 +82,7 @@
     <string name="unavailable_text">Resérvé</string>
     <string name="room_number_field">Chambre numero %1$s</string>
     <string name="floor_text">Étage</string>
+    <string name="before_today_date_error">La date d\'arrivé ne doit pas être avant aujourd\'hui</string>
 
 
 </resources>

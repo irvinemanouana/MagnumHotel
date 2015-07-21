@@ -9,12 +9,15 @@ import android.project.esgi.fr.magnumhotel.adapter.RoomsListAdapter;
 import android.project.esgi.fr.magnumhotel.dao.CustomerDAO;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
 import android.project.esgi.fr.magnumhotel.model.Customer;
+import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.others.Function;
+import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Sylvain on 15/07/15.
@@ -22,24 +25,54 @@ import java.util.ArrayList;
 public class RoomListActivity extends ListActivity {
 
     ArrayList<Room> roomArrayList;
+    ArrayList<Reservation> reservationArrayList;
+
+    Date departureDate,
+         arrivalDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        String arrivalDate = getIntent().getStringExtra("arrivalDate");
-        String departureDate = getIntent().getStringExtra("departureDate");
+        String arrivalDateSelected = getIntent().getStringExtra("arrivalDate");
+        String departureDateSelected = getIntent().getStringExtra("departureDate");
 
-        if(arrivalDate != null && departureDate != null) {
-            Function.stringToDate(departureDate);
-            Function.stringToDate(arrivalDate);
+        if(arrivalDateSelected != null && departureDateSelected != null) {
+            arrivalDate = Function.stringToDate(arrivalDateSelected);
+            departureDate = Function.stringToDate(departureDateSelected);
         }
 
         RoomDAO roomDAO = new RoomDAO(this);
         roomDAO.open();
         roomArrayList = roomDAO.getRoomList();
-        setListAdapter(new RoomsListAdapter(this, roomArrayList));
+        reservationArrayList = roomDAO.getReservationRoomList();
         roomDAO.close();
+
+        // Verification de la disponibilité des chambres à une date
+        if(roomArrayList != null && reservationArrayList != null){
+            for(Room room : roomArrayList){
+                for(Reservation reservation : reservationArrayList){
+                    if(room.getId() == reservation.getRoomId()){
+                        if(
+                                (arrivalDate.after(reservation.getStartDate()) && arrivalDate.before(reservation.getEndDate()))
+                                ||
+                                (departureDate.after(reservation.getStartDate())  && departureDate.before(reservation.getEndDate()))
+                           ){
+
+                            roomArrayList.remove(room);
+                            break;
+
+                        }else if(arrivalDate.equals(reservation.getStartDate()) && departureDate.equals(reservation.getEndDate())){
+                            roomArrayList.remove(room);
+                            break;
+                        }
+                    }
+                }
+                if(roomArrayList == null) break;
+            }
+            if(roomArrayList != null)setListAdapter(new RoomsListAdapter(this, roomArrayList));
+
+        }
 
     }
 

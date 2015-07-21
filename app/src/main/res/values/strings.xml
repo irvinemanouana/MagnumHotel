@@ -79,6 +79,7 @@
     <string name="capacity_room_error">a room can contain only between one or two people.</string>
     <string name="price_error">Invalid price</string>
     <string name="before_date_error">The arrival date must be before departure date</string>
+    <string name="before_today_date_error">The arrival date don\'t must be before today</string>
     <string name="equal_date_error">The arrival date must be different than departure date </string>
     <string name="cover_description">room cover</string>
     <string name="delete_booking_title">Delete the reservation ?</string>

@@ -11,6 +11,7 @@ import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.others.Function;
 import android.text.Html;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,7 +29,7 @@ public class BookingsListAdapter extends BaseAdapter {
 
     private ArrayList<Reservation> bookingsList;
     private Context context;
-    private int bookingPosition;
+    int bookingPosition;
     ViewHolderBookings viewHolderBookings;
     private String page;
 
@@ -54,7 +55,7 @@ public class BookingsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
 
@@ -84,11 +85,11 @@ public class BookingsListAdapter extends BaseAdapter {
         viewHolderBookings.arrivalDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.arrival_day), Function.dateToString(booking.getStartDate()))));
         viewHolderBookings.departureDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.departure_day),Function.dateToString(booking.getEndDate()))));
 
-        bookingPosition = position;
-
+        Log.e("Adapter id",""+ bookingsList.get(bookingPosition).getId());
         viewHolderBookings.deleteBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.e("Adapter id",""+ bookingsList.get(position).getId());
                 new AlertDialog.Builder(context)
                 .setTitle("Supprimer la réservation ? ")
                 .setMessage(context.getResources().getString(R.string.delete_booking_message))

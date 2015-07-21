@@ -36,9 +36,6 @@ public class BookingFormAddActivity extends Activity {
              arrivalDateField,
              departureDateField;
 
-    DatePicker arrivalDatePicker,
-               departureDatePicker;
-
     Button selectCustomer,
            selectRoom,
            addBookingButton;
@@ -49,6 +46,7 @@ public class BookingFormAddActivity extends Activity {
         actualyYear,
         actualyMonth,
         actualyDay;
+
 
     Date arrivalDate,
          departureDate,
@@ -61,7 +59,7 @@ public class BookingFormAddActivity extends Activity {
 
         this.initialize(); // Initialisation des elements de la vue
         this.actionBarSettings(); //Configuration de l'action bar
-
+        actualyDate = new Date();
         // Date actuel
         Calendar c = Calendar.getInstance();
         actualyYear = c.get(Calendar.YEAR);
@@ -87,6 +85,8 @@ public class BookingFormAddActivity extends Activity {
              customerSelected.setError(getResources().getString(R.string.required_field));
          }else if(roomSelected.getText().toString().equals("")){
              roomSelected.setError(getResources().getString(R.string.required_field));
+         }else if(arrivalDate.before(new Date())) {
+             Toast.makeText(this, getResources().getString(R.string.before_today_date_error), Toast.LENGTH_LONG).show();
          }else if(arrivalDate.after(departureDate)) {
              Toast.makeText(this, getResources().getString(R.string.before_date_error), Toast.LENGTH_LONG).show();
          }else if(arrivalDate.equals(departureDate)){
@@ -163,7 +163,9 @@ public class BookingFormAddActivity extends Activity {
         arrivalDate = Function.stringToDate(arrivalDateField.getText().toString());
         departureDate = Function.stringToDate(departureDateField.getText().toString());
 
-        if(arrivalDate.after(departureDate)) {
+        if(arrivalDate.before(actualyDate)) {
+            Toast.makeText(this, getResources().getString(R.string.before_today_date_error), Toast.LENGTH_LONG).show();
+        }else if(arrivalDate.after(departureDate)) {
             Toast.makeText(this, getResources().getString(R.string.before_date_error), Toast.LENGTH_LONG).show();
         }else if(arrivalDate.equals(departureDate)){
             Toast.makeText(this, getResources().getString(R.string.equal_date_error), Toast.LENGTH_LONG).show();
