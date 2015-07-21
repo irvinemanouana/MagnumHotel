@@ -98,6 +98,27 @@ public class ReservationDAO {
         return bookings;
     }
 
+    public ArrayList<Reservation> getBookingDateListByRoomId(int roomId){
+        Reservation reservation;
+        ArrayList<Reservation> bookings = new ArrayList<>();
+        String request = "SELECT "+ DataBaseHandler.POSITION_RESERVATION_START_DAY+"," +DataBaseHandler.POSITION_RESERVATION_END_DAY+
+                " FROM "+ TABLE_RESERVATION + ","+ DataBaseHandler.TABLE_ROOM +
+                " WHERE "+ TABLE_RESERVATION+"."+DataBaseHandler.KEY_RESERVATION_ROOM_ID +
+                " = "+ DataBaseHandler.TABLE_ROOM+ "."+DataBaseHandler.KEY_ROOM_ID +
+                " AND " + TABLE_RESERVATION+"."+DataBaseHandler.KEY_RESERVATION_ROOM_ID +
+                " = " + roomId;
+
+        Cursor cursor = database.rawQuery(request, null);
+        if (cursor.moveToFirst()){
+            do{
+                reservation = cursorToReservation(cursor);
+                reservation.setRoom(cursorToRoom(cursor));
+                bookings.add(reservation);
+            } while (cursor.moveToNext());
+        }
+        return bookings;
+    }
+
     public ArrayList<Reservation> getBookingListByCustomerId(int customerId){
         Reservation reservation;
         ArrayList<Reservation> bookings = new ArrayList<>();

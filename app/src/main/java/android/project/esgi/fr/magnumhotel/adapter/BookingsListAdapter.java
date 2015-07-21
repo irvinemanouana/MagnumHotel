@@ -30,12 +30,12 @@ public class BookingsListAdapter extends BaseAdapter {
     private Context context;
     private int bookingPosition;
     ViewHolderBookings viewHolderBookings;
-    private boolean isRoom;
+    private String page;
 
-    public BookingsListAdapter(Context context, ArrayList<Reservation> bookingsList, boolean isRoom) {
+    public BookingsListAdapter(Context context, ArrayList<Reservation> bookingsList, String page) {
         this.context = context;
         this.bookingsList = bookingsList;
-        this.isRoom = isRoom;
+        this.page = page;
     }
 
     @Override
@@ -74,9 +74,9 @@ public class BookingsListAdapter extends BaseAdapter {
 
         final Reservation booking =  bookingsList.get(position);
 
-        if(isRoom){
+        if(page.equals("customer")){
             viewHolderBookings.customerLastname.setVisibility(View.GONE);
-        }else{
+        }else if(page.equals("room")){
             viewHolderBookings.roomNumber.setVisibility(View.GONE);
         }
         viewHolderBookings.customerLastname.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.booking_customer), booking.getCustomer().getFirstName() + " " + booking.getCustomer().getLastName())));

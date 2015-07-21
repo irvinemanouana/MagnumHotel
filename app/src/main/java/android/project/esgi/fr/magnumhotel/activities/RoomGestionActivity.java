@@ -41,6 +41,9 @@ public class RoomGestionActivity extends Activity {
         if(allRom.size() <= 0){
             emptyListText.setText(getResources().getString(R.string.text_nothing));
         } else {
+
+
+
             roomList.setAdapter(new RoomsListAdapter(RoomGestionActivity.this,allRom));
             roomList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                @Override

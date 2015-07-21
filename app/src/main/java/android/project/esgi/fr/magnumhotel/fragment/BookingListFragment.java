@@ -24,12 +24,12 @@ public class BookingListFragment extends ListFragment {
         if(getActivity() instanceof RoomDetailActivity){ // Liste de réservation d'une chambre
             ArrayList<Reservation> reservationArrayList = reservationDAO.getBookingListByRoomId(((RoomDetailActivity) getActivity()).getRoomId());
             if(reservationArrayList != null)
-                setListAdapter(new BookingsListAdapter(getActivity(), reservationArrayList, true));
+                setListAdapter(new BookingsListAdapter(getActivity(), reservationArrayList, "room"));
         }
         else{ // Liste de réservation d'un client
             ArrayList<Reservation> reservationArrayList = reservationDAO.getBookingListByCustomerId(((CustomerDetailActivity) getActivity()).getCustomerId());
             if(reservationArrayList != null)
-                setListAdapter(new BookingsListAdapter(getActivity(), reservationArrayList, false));
+                setListAdapter(new BookingsListAdapter(getActivity(), reservationArrayList, "customer"));
         }
 
     }
