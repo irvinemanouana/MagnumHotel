@@ -23,7 +23,7 @@
             android:layout_marginRight="15dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginBottom="70dp"
             android:divider="#eaeaea"
             android:dividerHeight="10dp" />
     </RelativeLayout>

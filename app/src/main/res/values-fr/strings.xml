@@ -19,6 +19,7 @@
     <string name="menu_element_rooms">Chambres</string>
     <string name="menu_element_customers">Clients</string>
     <string name="menu_element_bookings">Réservations</string>
+    <string name="menu_element_search">Search</string>
 
     <string-array name="menu">
         <item>GÉRER LES CHAMBRES</item>

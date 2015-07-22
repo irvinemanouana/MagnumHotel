@@ -125,6 +125,11 @@ public class RoomDetailActivity extends Activity {
                 startActivity(bookings);
                 break;
 
+            case R.id.search:
+                Intent search = new Intent(this, SearchActivity.class);
+                startActivity(search);
+                break;
+
             default:
                 finish();
         }

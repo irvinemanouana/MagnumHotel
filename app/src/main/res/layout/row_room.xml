@@ -25,7 +25,7 @@
             android:textStyle="bold"
             android:textSize="@dimen/text_size"
             android:textAllCaps="true"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:text="@string/room_number"
             android:textColor="@color/black_900"
             android:layout_width="wrap_content"
@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/nbperson"
             android:textColor="@color/black_900"
-            android:layout_marginBottom="5dp"
+            android:layout_marginBottom="3dp"
             android:textSize="@dimen/text_size"
             android:text="@string/bed_count" />
 
@@ -44,7 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/priceRoom"
-            android:textColor="@color/green_900"
+            android:layout_marginBottom="3dp"
             android:textSize="@dimen/text_size"
             android:text="@string/room_price"
             android:textStyle="bold"

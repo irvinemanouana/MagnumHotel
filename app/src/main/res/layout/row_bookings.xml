@@ -119,8 +119,8 @@
                 android:layout_gravity="center"
                 android:contentDescription="@string/delete"
                 android:src="@drawable/delete"/>
-
         </LinearLayout>
 
     </LinearLayout>
+
 </LinearLayout>

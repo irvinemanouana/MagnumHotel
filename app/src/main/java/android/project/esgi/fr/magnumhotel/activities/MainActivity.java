@@ -34,7 +34,7 @@ public class MainActivity extends Activity {
         myImageList.add(R.drawable.ic_action_room);
         myImageList.add(R.drawable.ic_action_person);
         myImageList.add(R.drawable.ic_action_date);
-        myImageList.add(android.R.drawable.ic_menu_search);
+        myImageList.add(R.drawable.ic_action_search);
 
         ArrayAdapter adapter = new CustomListMenu(getApplicationContext(),menuList,myImageList);
         ListView listView = (ListView) findViewById(R.id.list_choice);
