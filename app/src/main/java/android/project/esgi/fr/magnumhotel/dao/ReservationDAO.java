@@ -161,6 +161,7 @@ public class ReservationDAO {
     }
 
     public void updateBooking(Reservation booking){
+        Log.e("ReservationDAO", booking.toString());
         ContentValues values = new ContentValues();
         values.put(DataBaseHandler.KEY_RESERVATION_CUSTOMER_ID, booking.getCustomerId());
         values.put(DataBaseHandler.KEY_RESERVATION_START_DAY, Function.dateToString(booking.getStartDate()));

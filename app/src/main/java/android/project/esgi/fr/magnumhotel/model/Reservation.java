@@ -103,4 +103,17 @@ public class Reservation implements Serializable {
     public void setRoomId(int roomId) {
         this.roomId = roomId;
     }
+
+    @Override
+    public String toString() {
+        return "Reservation{" +
+                "id=" + id +
+                ", customer=" + customer +
+                ", customerId=" + customerId +
+                ", room=" + room +
+                ", roomId=" + roomId +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                '}';
+    }
 }

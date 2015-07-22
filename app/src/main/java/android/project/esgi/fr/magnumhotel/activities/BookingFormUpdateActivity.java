@@ -35,13 +35,13 @@ public class BookingFormUpdateActivity extends Activity {
 
     // ELEMENT DE VUE
     EditText customerSelected,
-            roomSelected,
-            arrivalDateField,
-            departureDateField;
+             roomSelected,
+             arrivalDateField,
+             departureDateField;
 
     Button selectCustomer,
-            selectRoom,
-            addBookingButton;
+           selectRoom,
+           addBookingButton;
 
     TextView title;
     // Autres variables
@@ -56,7 +56,7 @@ public class BookingFormUpdateActivity extends Activity {
 
 
     Date arrivalDate,
-            departureDate;
+         departureDate;
 
     private int bookingId;
     private Reservation reservation;
@@ -102,6 +102,8 @@ public class BookingFormUpdateActivity extends Activity {
         departureDateField.setText(Function.dateToString(reservation.getEndDate()));
         customerSelected.setText(reservation.getCustomer().getFirstName()+" "+reservation.getCustomer().getLastName());
         roomSelected.setText(String.format(getResources().getString(R.string.room_number_field),reservation.getRoom().getTitle()));
+        customerId = reservation.getCustomerId();
+        roomId = reservation.getRoomId();
 
     }
 
