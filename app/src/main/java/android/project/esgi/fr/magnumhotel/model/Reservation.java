@@ -40,6 +40,14 @@ public class Reservation implements Serializable {
         this.endDate = endDate;
     }
 
+    public Reservation(int id, int customerId, int roomId, Date startDate, Date endDate) {
+        this.id = id;
+        this.customerId = customerId;
+        this.roomId = roomId;
+        this.startDate = startDate;
+        this.endDate = endDate;
+    }
+
     public int getId() {
         return id;
     }

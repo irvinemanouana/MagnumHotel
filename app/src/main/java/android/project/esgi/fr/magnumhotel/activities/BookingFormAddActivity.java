@@ -43,14 +43,18 @@ public class BookingFormAddActivity extends Activity {
     // Autres variables
     int customerId,
         roomId,
-        actualyYear,
-        actualyMonth,
-        actualyDay;
+        arrivalYear,
+        arrivalMonth,
+        arrivalDay,
+        departureYear,
+        departureMonth,
+        departureDay;
 
 
     Date arrivalDate,
          departureDate,
-         actualyDate;
+         actualyDate,
+         yesterday;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,11 +66,16 @@ public class BookingFormAddActivity extends Activity {
         actualyDate = new Date();
         // Date actuel
         Calendar c = Calendar.getInstance();
-        actualyYear = c.get(Calendar.YEAR);
-        actualyMonth = c.get(Calendar.MONTH);
-        actualyDay = c.get(Calendar.DAY_OF_MONTH);
+        arrivalYear = c.get(Calendar.YEAR);
+        departureYear = c.get(Calendar.YEAR);
+        arrivalMonth = c.get(Calendar.MONTH);
+        departureMonth = c.get(Calendar.MONTH);
+        arrivalDay = c.get(Calendar.DAY_OF_MONTH);
+        departureDay = c.get(Calendar.DAY_OF_MONTH);
 
-        arrivalDateField.setText(actualyDay+"/"+(actualyMonth+ 1)+"/"+actualyYear);
+        actualyDate.setTime(c.getTimeInMillis());
+
+        arrivalDateField.setText(arrivalDay+"/"+(arrivalMonth+ 1)+"/"+arrivalYear);
 
         c.add(Calendar.DATE,1); // Ajout d'un jour
 
@@ -85,8 +94,6 @@ public class BookingFormAddActivity extends Activity {
              customerSelected.setError(getResources().getString(R.string.required_field));
          }else if(roomSelected.getText().toString().equals("")){
              roomSelected.setError(getResources().getString(R.string.required_field));
-         }else if(arrivalDate.before(new Date())) {
-             Toast.makeText(this, getResources().getString(R.string.before_today_date_error), Toast.LENGTH_LONG).show();
          }else if(arrivalDate.after(departureDate)) {
              Toast.makeText(this, getResources().getString(R.string.before_date_error), Toast.LENGTH_LONG).show();
          }else if(arrivalDate.equals(departureDate)){
@@ -163,12 +170,11 @@ public class BookingFormAddActivity extends Activity {
 
         arrivalDate = Function.stringToDate(arrivalDateField.getText().toString());
         departureDate = Function.stringToDate(departureDateField.getText().toString());
-
-        if(arrivalDate.before(actualyDate)) {
-            Toast.makeText(this, getResources().getString(R.string.before_today_date_error), Toast.LENGTH_LONG).show();
-        } else if(arrivalDate.equals(departureDate)) {
+        if(arrivalDate.after(departureDate)) {
+            Toast.makeText(this, getResources().getString(R.string.before_date_error), Toast.LENGTH_LONG).show();
+        }else if(arrivalDate.equals(departureDate)){
             Toast.makeText(this, getResources().getString(R.string.equal_date_error), Toast.LENGTH_LONG).show();
-        } else {
+        }else{
             Intent intent = new Intent(this, RoomListActivity.class);
             intent.putExtra("arrivalDate",arrivalDateField.getText().toString());
             intent.putExtra("departureDate",departureDateField.getText().toString());
@@ -177,21 +183,20 @@ public class BookingFormAddActivity extends Activity {
     }
 
     public void selectArrivalDate(View view) {
-        Log.e("test date", actualyDay+" " + actualyMonth + " " + actualyYear);
         final DatePickerDialog datePicker = new DatePickerDialog(this,2, new DatePickerDialog.OnDateSetListener() {
             @Override
             public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
             }
-        },actualyYear,actualyMonth,actualyDay);
+        },arrivalYear,arrivalMonth,arrivalDay);
         datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE,"VALIDER", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                int day = datePicker.getDatePicker().getDayOfMonth();
-                int month = datePicker.getDatePicker().getMonth();
-                int year = datePicker.getDatePicker().getYear();
-                arrivalDateField.setText(day+"/"+(month+ 1)+"/"+year);
+                arrivalDay = datePicker.getDatePicker().getDayOfMonth();
+                arrivalMonth = datePicker.getDatePicker().getMonth();
+                arrivalYear = datePicker.getDatePicker().getYear();
+                arrivalDateField.setText(arrivalDay+"/"+(arrivalMonth+ 1)+"/"+arrivalYear);
                 roomSelected.setText("");
 
             }
@@ -210,17 +215,17 @@ public class BookingFormAddActivity extends Activity {
         // CREATION DE LA BOITE DE DIALOGUE qui étend la classe DatePickerDialog
         // INITIALISER LA DATE AVEC CELUI DE LA DATE
 
-        final DatePickerDialog datePicker = new DatePickerDialog(this,2,null,actualyYear,actualyMonth,actualyDay+1);
+        final DatePickerDialog datePicker = new DatePickerDialog(this,2,null,departureYear,departureMonth,departureDay+1);
 
         // configuration du bouton "valider" qui permet de changer le contenu de l'edittext de la date de naissance avec la date sélectionner
         datePicker.setButton(DatePickerDialog.BUTTON_POSITIVE,"VALIDER", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
-                int day = datePicker.getDatePicker().getDayOfMonth();
-                int month = datePicker.getDatePicker().getMonth();
-                int year = datePicker.getDatePicker().getYear();
-                departureDateField.setText(day+"/"+(month+ 1)+"/"+year);
+                departureDay = datePicker.getDatePicker().getDayOfMonth();
+                departureMonth = datePicker.getDatePicker().getMonth();
+                departureYear = datePicker.getDatePicker().getYear();
+                departureDateField.setText(departureDay+"/"+(departureMonth+ 1)+"/"+departureYear);
                 roomSelected.setText("");
 
             }

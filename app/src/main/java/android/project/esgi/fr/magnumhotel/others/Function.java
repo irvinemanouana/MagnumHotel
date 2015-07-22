@@ -1,5 +1,7 @@
 package android.project.esgi.fr.magnumhotel.others;
 
+import android.content.Context;
+import android.project.esgi.fr.magnumhotel.R;
 import android.util.Log;
 
 import java.text.DateFormat;
@@ -77,6 +79,23 @@ public class Function {
             e.printStackTrace();
         }
         return date;
+    }
+
+    public static String differenceDate(Date date1, Date date2, Context context){
+
+        String dateDisplay;
+
+        long diffDays = (date2.getTime() - date1.getTime()) / (1000 * 60 * 60 * 24);
+        if(diffDays > 7){
+            long diffWeeks = (date2.getTime() - date1.getTime()) /   ((1000 * 60 * 60) * (24 * 7));
+            if(diffDays > 8)dateDisplay = diffWeeks +" "+ context.getResources().getString(R.string.weeks);
+            else dateDisplay = diffWeeks +" "+ context.getResources().getString(R.string.week);
+        }else{
+            if(diffDays > 1)dateDisplay = diffDays +" "+context.getResources().getString(R.string.days);
+            else dateDisplay = diffDays +" "+context.getResources().getString(R.string.day);
+        }
+
+        return dateDisplay;
     }
 
 }

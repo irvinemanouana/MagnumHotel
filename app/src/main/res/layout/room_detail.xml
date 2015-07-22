@@ -26,8 +26,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:gravity="center"
-            android:id="@+id/dnbp"
+            android:id="@+id/capacity_text"
             android:text="@string/bed_count" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:id="@+id/floor_text"
+            android:text="@string/floor_text" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -66,7 +73,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/text"
+            android:id="@+id/description_text"
             android:text="@string/room_description"
             android:layout_marginTop="30dp"
             android:textSize="13sp" />

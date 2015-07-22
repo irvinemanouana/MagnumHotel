@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="bottom">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="addNewRoom"
+            android:background="@color/red"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:text="@string/add_room_title"
+            android:id="@+id/link_to_add_customer" />
+    </LinearLayout>
+
+
+    <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="5"
+            android:orientation="vertical"
+            android:gravity="center_vertical">
+            <TextView
+                android:id="@+id/empty_room_list_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:textColor="@color/red" />
+
+            <ListView
+                android:id="@+id/room_list"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginLeft="15dp"
+                android:divider="#eaeaea"
+                android:dividerHeight="10dp"/>
+        </LinearLayout>
+
+
+
+</LinearLayout>

@@ -44,7 +44,7 @@ public class RoomFormAddActivity extends Activity {
 
     // Contenu des champs
     private String title;
-    private int capacity = 0;
+    private int capacity;
     private float price = 0;
     private String description;
     private int floor;
@@ -110,8 +110,8 @@ public class RoomFormAddActivity extends Activity {
 
         title = titleField.getText().toString(); // titre
         description = descriptionField.getText().toString(); // description
-        floor = (int) floorSpinner.getSelectedItem();
-        capacity = (int) bedSpinner.getSelectedItem();
+        floor = Integer.parseInt(floorSpinner.getSelectedItem().toString());
+        capacity = Integer.parseInt(bedSpinner.getSelectedItem().toString());
 
         if(title.equals("")){
             titleField.setError(getResources().getString(R.string.required_field));

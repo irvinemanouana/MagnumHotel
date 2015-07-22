@@ -65,12 +65,15 @@ public class RoomsListAdapter extends BaseAdapter {
             viewHolderRoom.title.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.room_title_detail), room.getTitle())));
             viewHolderRoom.capacity.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
                     room.getCapacity() > 1 ? "s" : ""));
-            viewHolderRoom.price.setText(String.format(context.getResources().getString(R.string.room_price_detail), String.valueOf(room.getPrice())));
+            viewHolderRoom.price.setText(String.format(context.getResources().getString(R.string.room_price_detail), String.valueOf(room.getPrice()).replace('.',',').replace(",0","")));
             if(room.getImageLink() != null)viewHolderRoom.cover.setImageBitmap(BitmapFactory.decodeFile(room.getImageLink()));
 
             if(!room.isAvailable()){
-                viewHolderRoom.availability.setText(context.getResources().getString(R.string.unavailable_text));
+                viewHolderRoom.availability.setText(context.getResources().getString(R.string.unavailable_text)+"("+room.getReservationDayCount()+")");
                 viewHolderRoom.availability.setTextColor(context.getResources().getColor(R.color.unavailable));
+            }else{
+                viewHolderRoom.availability.setText(context.getResources().getString(R.string.available_text));
+                viewHolderRoom.availability.setTextColor(context.getResources().getColor(R.color.avalaible));
             }
 
         return convertView;

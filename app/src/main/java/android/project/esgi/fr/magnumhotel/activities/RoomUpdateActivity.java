@@ -31,17 +31,17 @@ public class RoomUpdateActivity extends Activity {
     TextView titleText;
     EditText titleField,
              descriptionField,
-             priceField,
-             capacityField;
-    Spinner floorSpinner;
+             priceField;
+    Spinner floorSpinner,
+            bedSpinner;
     Button modifyButton;
 
     // AUTRES
     private String picturePath = null;
     private Room room;
     private ImageView image;
-    private final Integer floorList[] = new Integer[]{1,2,3};
-
+    private final Integer floorList[] = new Integer[]{1, 2, 3};
+    private final Integer bedList[] = new Integer[]{1, 2, 3, 4, 5, 6};
 
     // Contenu des champs
     String title;
@@ -60,6 +60,9 @@ public class RoomUpdateActivity extends Activity {
         ArrayAdapter<Integer> adapter = new ArrayAdapter<>(this,R.layout.spinner_row,floorList);
         floorSpinner.setAdapter(adapter);
 
+        ArrayAdapter<Integer> bedAdapter = new ArrayAdapter<>(this,R.layout.spinner_row,bedList);
+        bedSpinner.setAdapter(bedAdapter);
+
         // Changement du titre et du bouton du formulaire
         titleText.setText(getResources().getString(R.string.update_room_title));
         modifyButton.setText(getResources().getString(R.string.update));
@@ -68,7 +71,7 @@ public class RoomUpdateActivity extends Activity {
 
         // Mise à jour des champs avec les informations de la chambre
         titleField.setText(room.getTitle());
-        capacityField.setText(String.valueOf(room.getCapacity()));
+        //bedSpinner.setText(String.valueOf(room.getCapacity()));
         descriptionField.setText(room.getDescription());
         priceField.setText(String.valueOf(room.getPrice()));
         modifyButton.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +106,7 @@ public class RoomUpdateActivity extends Activity {
     private void initialize(){
         titleText = (TextView) findViewById(R.id.room_form_title); // Titre du formulaire
         floorSpinner = (Spinner) findViewById(R.id.select_floor);
+        bedSpinner = (Spinner) findViewById(R.id.select_capacity);
         titleField = (EditText) findViewById(R.id.edit_title);
         descriptionField = (EditText) findViewById(R.id.edit_description);
         priceField = (EditText) findViewById(R.id.edit_price);
@@ -124,27 +128,25 @@ public class RoomUpdateActivity extends Activity {
 
         boolean isCorrect = false;
 
-        if(!capacityField.getText().toString().equals("")){
+        /*if(!capacityField.getText().toString().equals("")){
             capacity = Integer.parseInt(capacityField.getText().toString());
-        }
+        }*/
         if(!priceField.getText().toString().equals("")){
             price = Float.parseFloat(priceField.getText().toString());
         }
 
         title = titleField.getText().toString();
         description = descriptionField.getText().toString(); // description
+        floor = Integer.parseInt(floorSpinner.getSelectedItem().toString());
+        capacity = Integer.parseInt(bedSpinner.getSelectedItem().toString());
 
         if(!(room.getTitle().equals(title) && room.getCapacity() == capacity && room.getPrice() == price && room.getDescription().equals(description))){
             if(title.equals("")){
                 titleField.setError(getResources().getString(R.string.required_field));
-            }else if(capacityField.getText().toString().equals("") ){
-                capacityField.setError(getResources().getString(R.string.required_field));
             }else if(priceField.getText().toString().equals("")){
                 priceField.setError(getResources().getString(R.string.required_field));
-            } else if(capacity < 1 || capacity > 6 ){
-                capacityField.setError("Une chambre ne peut contenir qu'entre 1 à 6 personnes");
             }else if (price <= 0){
-                priceField.setError("Prix invalide");
+                priceField.setError(getResources().getString(R.string.price_error));
             }else{
                 isCorrect = true;
             }

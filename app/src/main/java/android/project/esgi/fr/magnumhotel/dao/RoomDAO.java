@@ -55,6 +55,20 @@ public class RoomDAO {
         database.insert(TABLE_ROOM, null, values);
     }
 
+    public Room getRoom(int roomId){
+        Room room = null;
+
+        String request = "SELECT * FROM " + TABLE_ROOM+
+                         " WHERE "+DataBaseHandler.KEY_ROOM_ID+
+                         " = "+ roomId;
+        Cursor cursor = database.rawQuery(request,null);
+        if (cursor.moveToFirst()){
+            room = cursorToRoom(cursor);
+        }
+        cursor.close();
+        return room;
+    }
+
     public ArrayList<Room> getRoomList(){
         ArrayList<Room> allRoomArrayList = new ArrayList<>();
         String request = "SELECT * FROM " + TABLE_ROOM;

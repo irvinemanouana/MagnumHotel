@@ -10,6 +10,7 @@ import android.project.esgi.fr.magnumhotel.adapter.RoomsListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
+import android.project.esgi.fr.magnumhotel.others.Function;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -52,13 +53,13 @@ public class RoomGestionActivity extends Activity {
         if(allRom.size() <= 0){
             emptyListText.setText(getResources().getString(R.string.text_nothing));
         } else {
-
+            emptyListText.setVisibility(View.GONE);
             for(Room room : allRom){
                 for(Reservation reservation : allReservation){
                     if(room.getId() == reservation.getRoomId()){
-                        Log.e("test chambre ", room.getId() + "   " + reservation.getRoomId());
                         if(today.after(reservation.getStartDate()) && today.before(reservation.getEndDate())){
                             room.setAvailable(false);
+                            room.setReservationDayCount(Function.differenceDate(reservation.getStartDate(),reservation.getEndDate(),this));
                             break;
                         }
                     }
@@ -71,7 +72,7 @@ public class RoomGestionActivity extends Activity {
                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                    //String s = String.valueOf(parent.getItemAtPosition(position)) ;
                    Room room = (Room) parent.getItemAtPosition(position);
-                   Intent intent = new Intent(getApplicationContext(),RoomDetailActivity.class);
+                   Intent intent = new Intent(RoomGestionActivity.this,RoomDetailActivity.class);
                    intent.putExtra("Room",room);
                    startActivity(intent);
                }

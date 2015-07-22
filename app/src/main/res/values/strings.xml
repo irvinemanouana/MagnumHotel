@@ -9,6 +9,10 @@
     <string name="add">Add</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="day">day</string>
+    <string name="days">days</string>
+    <string name="week">week</string>
+    <string name="weeks">weeks</string>
 
     <!-- Menu -->
     <string name="menu_element_home">Home</string>
@@ -20,6 +24,7 @@
         <item>ROOMS MANAGEMENT</item>
         <item>CUSTOMERS MANAGEMENT</item>
         <item>BOOKINGS CONSULATION</item>
+        <item>ROOM SEARCH</item>
     </string-array>
 
     <string name="title_activity_room_gestion">Rooms</string>
@@ -36,13 +41,13 @@
     <string name="update_room_title">Modify a room</string>
     <string name="delete_room_title">Delete a room</string>
     <string name="bed_count">Bed count<font fgcolor="#FFFF0000">*</font></string>
-    <string name="room_description">Description</string>
+    <string name="room_description">No description</string>
     <string name="room_price">Price<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_number">Room N°<font fgcolor="#FFFF0000">*</font></string>
     <string name="room_number_field">Room Number %1$s</string>
     <string name="room_title_detail">&lt;b>Room Number &lt;/b> %1$s</string>
     <string name="room_capacity_detail">%1$d bed%2$s</string>
-    <string name="room_price_detail">%1$s euros the night</string>
+    <string name="room_price_detail">%1$s € the night</string>
 
     <!-- Customers -->
     <string name="add_customer">Add a customer</string>
@@ -82,6 +87,8 @@
     <string name="cover_description">Room cover</string>
     <string name="delete_booking_title">Delete the reservation ?</string>
     <string name="unavailable_text">Unavailable</string>
+    <string name="search">Search</string>
+    <string name="title_activity_modify_booking">Modify a reservation</string>
 
 
 </resources>

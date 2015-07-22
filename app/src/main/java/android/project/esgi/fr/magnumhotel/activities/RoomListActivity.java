@@ -48,7 +48,10 @@ public class RoomListActivity extends ListActivity {
         roomArrayList = roomDAO.getRoomList();
         reservationArrayList = roomDAO.getReservationRoomList();
         roomDAO.close();
+
+        // Permet de parcourir un arrayList tout en le modifiant (supprimer un element)
         Iterator<Room> iterator = roomArrayList.iterator();
+
         // Verification de la disponibilité des chambres à une date
         if(roomArrayList != null && reservationArrayList != null){
             while (iterator.hasNext()) {

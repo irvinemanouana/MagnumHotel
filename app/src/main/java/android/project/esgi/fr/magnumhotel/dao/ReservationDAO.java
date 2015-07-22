@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
+import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.model.Customer;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.model.Room;
@@ -53,6 +54,22 @@ public class ReservationDAO {
         values.put(DataBaseHandler.KEY_RESERVATION_END_DAY, Function.dateToString(booking.getEndDate()));
         values.put(DataBaseHandler.KEY_RESERVATION_ROOM_ID, booking.getRoomId());
         database.insert(TABLE_RESERVATION, null, values);
+    }
+
+    public Reservation getBooking(int reservationId){
+        Reservation reservation = null;
+
+        String request = " SELECT * " +
+                         " FROM "+ TABLE_RESERVATION +
+                         " WHERE "+DataBaseHandler.KEY_RESERVATION_ID +
+                         " = " + reservationId;
+
+        Cursor cursor = database.rawQuery(request, null);
+        if (cursor.getCount()>0){
+            cursor.moveToFirst();
+            reservation = cursorToReservation(cursor);
+        }
+        return reservation;
     }
 
     public ArrayList<Reservation> getBookingList(){

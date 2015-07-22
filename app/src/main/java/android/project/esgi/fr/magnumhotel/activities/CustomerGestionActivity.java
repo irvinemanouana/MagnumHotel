@@ -44,6 +44,7 @@ public class CustomerGestionActivity extends Activity {
         if(size <= 0) {
             emptyText.setText(getResources().getString(R.string.no_customer));
         } else {
+            emptyText.setVisibility(View.GONE);
             CustomersListAdapter adapter = new CustomersListAdapter(CustomerGestionActivity.this, allCustomer);
             customerList.setAdapter(adapter);
             customerList.setOnItemClickListener(new AdapterView.OnItemClickListener() {

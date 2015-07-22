@@ -1,0 +1,55 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/grey_background"
+    tools:context="android.project.esgi.fr.magnumhotel.activities.CustomerGestionActivity">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="2"
+        android:orientation="vertical">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="addNewCustomer"
+            android:background="@color/red"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:textSize="@dimen/text_size"
+            android:text="@string/add_customer"
+            android:id="@+id/link_to_add_customer" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:gravity="center_vertical|center_horizontal"
+        android:orientation="vertical">
+        <TextView
+            android:id="@+id/empty_customer_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textColor="@color/red" />
+
+        <ListView
+            android:id="@+id/customer_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:divider="#eaeaea"
+            android:dividerHeight="10dp" />
+    </LinearLayout>
+
+
+
+</LinearLayout>

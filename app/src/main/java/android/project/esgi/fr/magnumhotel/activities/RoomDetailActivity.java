@@ -17,12 +17,12 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 
 public class RoomDetailActivity extends Activity {
 
-    private TextView textView,
+    private TextView description,
+                     floor,
                      roomNumber,
                      detailprice,
                      detailSizeRoom;
@@ -38,7 +38,8 @@ public class RoomDetailActivity extends Activity {
         this.actionBarSettings();
         this.initialize();
 
-        textView.setText(room.getDescription());
+        if(!room.getDescription().equals(""))description.setText(room.getDescription());
+        floor.setText(getResources().getString(R.string.floor_text)+" "+room.getFloor());
         roomNumber.setText(Html.fromHtml(String.format(getResources().getString(R.string.room_title_detail),room.getTitle())));
         detailprice.setText(String.format(getResources().getString(R.string.room_price_detail),String.valueOf(room.getPrice())));
         detailSizeRoom.setText(String.format(context.getResources().getString(R.string.room_capacity_detail), room.getCapacity(),
@@ -46,10 +47,11 @@ public class RoomDetailActivity extends Activity {
     }
 
     private void initialize(){
-        textView =(TextView)findViewById(R.id.text);
+        description =(TextView)findViewById(R.id.description_text);
         roomNumber = (TextView)findViewById(R.id.room_number);
+        floor = (TextView)findViewById(R.id.floor_text);
         detailprice =(TextView)findViewById(R.id.dprice);
-        detailSizeRoom =(TextView)findViewById(R.id.dnbp);
+        detailSizeRoom =(TextView)findViewById(R.id.capacity_text);
         bookingListFragment = (BookingListFragment) getFragmentManager().findFragmentById(R.id.room_bookings_list);
     }
 

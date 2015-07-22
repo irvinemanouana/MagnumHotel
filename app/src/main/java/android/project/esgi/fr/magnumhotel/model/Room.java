@@ -18,6 +18,7 @@ public class Room implements Serializable {
     private String imageLink;
     private boolean available = true;
     private boolean display;
+    private String reservationDayCount;
 
     public Room(){}
 
@@ -106,7 +107,13 @@ public class Room implements Serializable {
         this.display = display;
     }
 
+    public String getReservationDayCount() {
+        return reservationDayCount;
+    }
 
+    public void setReservationDayCount(String reservationDayCount) {
+        this.reservationDayCount = reservationDayCount;
+    }
 
     @Override
     public String toString() {

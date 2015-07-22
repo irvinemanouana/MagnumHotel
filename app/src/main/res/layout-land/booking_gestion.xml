@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:background="@color/grey_background" >
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_weight="2">
+        <Button
+            style="?android:attr/buttonStyleSmall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:onClick="addNewBooking"
+            android:background="@color/red"
+            android:padding="10dp"
+            android:textColor="@color/white"
+            android:textAllCaps="true"
+            android:textStyle="bold"
+            android:text="@string/title_activity_add_booking"
+            android:id="@+id/link_to_add_booking" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="8"
+        android:orientation="vertical"
+        android:gravity="center_horizontal|center_vertical">
+        <TextView
+            android:id="@+id/empty_booking_list_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:textColor="@color/red" />
+
+        <ListView
+            android:id="@+id/booking_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:divider="#eaeaea"
+            android:dividerHeight="10dp"/>
+    </LinearLayout>
+
+
+
+</LinearLayout>

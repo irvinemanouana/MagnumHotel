@@ -50,6 +50,7 @@ public class BookingGestionActivity extends Activity {
         if(allBooking.size() <= 0) {
             emptyText.setText(getResources().getString(R.string.no_bookings));
         } else {
+            emptyText.setVisibility(View.GONE);
             BookingsListAdapter adapter = new BookingsListAdapter(this, allBooking, "booking");
             bookingList.setAdapter(adapter);
         }

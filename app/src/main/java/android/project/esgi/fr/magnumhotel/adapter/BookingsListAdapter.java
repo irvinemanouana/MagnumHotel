@@ -29,7 +29,6 @@ public class BookingsListAdapter extends BaseAdapter {
 
     private ArrayList<Reservation> bookingsList;
     private Context context;
-    int bookingPosition;
     ViewHolderBookings viewHolderBookings;
     private String page;
 
@@ -55,7 +54,7 @@ public class BookingsListAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, final ViewGroup parent) {
 
         if(convertView == null){
 
@@ -68,6 +67,41 @@ public class BookingsListAdapter extends BaseAdapter {
             viewHolderBookings.departureDay = (TextView) convertView.findViewById(R.id.end_day_booking);
             viewHolderBookings.updateBooking = (ImageView) convertView.findViewById(R.id.update_booking);
             viewHolderBookings.deleteBooking = (ImageView) convertView.findViewById(R.id.delete_booking);
+            viewHolderBookings.position = position;
+
+
+            viewHolderBookings.deleteBooking.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    new AlertDialog.Builder(context)
+                            .setTitle("Supprimer la réservation ? ")
+                            .setMessage(context.getResources().getString(R.string.delete_booking_message))
+                            .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ReservationDAO bookingDAO = new ReservationDAO(context);
+                                    bookingDAO.open();
+                                    bookingDAO.deleteBooking(bookingsList.get(viewHolderBookings.position ));
+                                    bookingDAO.close();
+                                    Intent back = new Intent(context.getApplicationContext(), BookingGestionActivity.class);
+                                    context.startActivity(back);
+                                }
+                            })
+                            .setNegativeButton(android.R.string.no, null)
+                            .setIcon(android.R.drawable.ic_dialog_alert)
+                            .show();
+                }
+            });
+
+            viewHolderBookings.updateBooking.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Integer position = (Integer)v.getTag();
+                    Log.e("BookingAdapter",position+"");
+                    Intent intent = new Intent(context.getApplicationContext(), BookingFormUpdateActivity.class);
+                    intent.putExtra("bookingId", bookingsList.get(position).getId());
+                    context.startActivity(intent);
+                }
+            });
             convertView.setTag(viewHolderBookings);
         } else {
             viewHolderBookings = (ViewHolderBookings) convertView.getTag();
@@ -85,39 +119,8 @@ public class BookingsListAdapter extends BaseAdapter {
         viewHolderBookings.arrivalDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.arrival_day), Function.dateToString(booking.getStartDate()))));
         viewHolderBookings.departureDay.setText(Html.fromHtml(String.format(context.getResources().getString(R.string.departure_day),Function.dateToString(booking.getEndDate()))));
 
-        Log.e("Adapter id",""+ bookingsList.get(bookingPosition).getId());
-        viewHolderBookings.deleteBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.e("Adapter id",""+ bookingsList.get(position).getId());
-                new AlertDialog.Builder(context)
-                .setTitle("Supprimer la réservation ? ")
-                .setMessage(context.getResources().getString(R.string.delete_booking_message))
-                .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int which) {
-                        ReservationDAO bookingDAO = new ReservationDAO(context);
-                        bookingDAO.open();
-                        bookingDAO.deleteBooking(bookingsList.get(bookingPosition));
-                        bookingDAO.close();
-                        Intent back = new Intent(context.getApplicationContext(), BookingGestionActivity.class);
-                        context.startActivity(back);
-                    }
-                })
-                .setNegativeButton(android.R.string.no, null)
-                .setIcon(android.R.drawable.ic_dialog_alert)
-                .show();
-            }
-        });
 
-        viewHolderBookings.updateBooking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context.getApplicationContext(), BookingFormUpdateActivity.class);
-                intent.putExtra("bookingId", bookingsList.get(bookingPosition));
-                context.startActivity(intent);
-            }
-        });
-
+        viewHolderBookings.updateBooking.setTag(position);
         return convertView;
     }
 
@@ -128,6 +131,8 @@ public class BookingsListAdapter extends BaseAdapter {
                  departureDay;
 
         ImageView updateBooking, deleteBooking;
+
+        int position;
     }
 
 }
