@@ -34,7 +34,6 @@ public class MainActivity extends Activity {
         myImageList.add(R.drawable.ic_action_room);
         myImageList.add(R.drawable.ic_action_person);
         myImageList.add(R.drawable.ic_action_date);
-        myImageList.add(R.drawable.ic_action_search);
         myImageList.add(android.R.drawable.ic_menu_search);
         myImageList.add(android.R.drawable.ic_menu_sort_by_size);
 
