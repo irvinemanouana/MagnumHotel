@@ -2,7 +2,9 @@ package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -10,6 +12,7 @@ import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.adapter.BookingsListAdapter;
 import android.project.esgi.fr.magnumhotel.model.Reservation;
 import android.project.esgi.fr.magnumhotel.dao.ReservationDAO;
+import android.project.esgi.fr.magnumhotel.others.MenuHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -90,38 +93,26 @@ public class BookingGestionActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-
-        switch(item.getItemId()){
-            case R.id.home:
-                Intent home = new Intent(this, MainActivity.class);
-                startActivity(home);
-                break;
-
-            case R.id.rooms:
-                Intent rooms = new Intent(this, RoomGestionActivity.class);
-                startActivity(rooms);
-                break;
-
-            case R.id.customers:
-                Intent customers = new Intent(this, CustomerGestionActivity.class);
-                startActivity(customers);
-                break;
-
-            case R.id.bookings:
-                Intent bookings = new Intent(this, BookingGestionActivity.class);
-                startActivity(bookings);
-                break;
-
-            case R.id.search:
-                Intent search = new Intent(this, SearchActivity.class);
-                startActivity(search);
-                break;
-
-            default:
-                finish();
-        }
-        return true;
+        return MenuHelper.handleOnItemSelected(item, this);
     }
 
+    @Override // Fermer l'application lorsque l'on appuie sur le bouton "back"
+    public void onBackPressed() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setCancelable(true);
+        alertDialog.setMessage("Êtes vous sûr de vouloir quitter l'application ?");
+        alertDialog.setPositiveButton("oui",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(BookingGestionActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Exit", true);
+                startActivity(intent);
+                finish();
+            }
+        });
+        alertDialog.setNegativeButton("non", null);
+        alertDialog.show();
+    }
 
 }

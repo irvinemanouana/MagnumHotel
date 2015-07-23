@@ -2,6 +2,7 @@ package android.project.esgi.fr.magnumhotel.activities;
 
 import android.app.ActionBar;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -11,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.fragment.RoomListFragment;
+import android.project.esgi.fr.magnumhotel.others.MenuHelper;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -119,37 +121,26 @@ public class SearchActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
+        return MenuHelper.handleOnItemSelected(item, this);
+    }
 
-        switch(item.getItemId()){
-            case R.id.home:
-                Intent home = new Intent(this, MainActivity.class);
-                startActivity(home);
-                break;
-
-            case R.id.rooms:
-                Intent rooms = new Intent(this, RoomGestionActivity.class);
-                startActivity(rooms);
-                break;
-
-            case R.id.customers:
-                Intent customers = new Intent(this, CustomerGestionActivity.class);
-                startActivity(customers);
-                break;
-
-            case R.id.bookings:
-                Intent bookings = new Intent(this, BookingGestionActivity.class);
-                startActivity(bookings);
-                break;
-
-            case R.id.search:
-                Intent search = new Intent(this, SearchActivity.class);
-                startActivity(search);
-                break;
-
-            default:
+    @Override // Fermer l'application lorsque l'on appuie sur le bouton "back"
+    public void onBackPressed() {
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(this);
+        alertDialog.setCancelable(true);
+        alertDialog.setMessage("Êtes vous sûr de vouloir quitter l'application ?");
+        alertDialog.setPositiveButton("oui",new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(SearchActivity.this, MainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.putExtra("Exit", true);
+                startActivity(intent);
                 finish();
-        }
-        return true;
+            }
+        });
+        alertDialog.setNegativeButton("non", null);
+        alertDialog.show();
     }
 
 }

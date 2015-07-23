@@ -23,6 +23,11 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
+        if(getIntent().getBooleanExtra("Exit", false)){
+            finish();
+        }
+
+
         this.actionBarSettings();
 
         ArrayList menuList = new ArrayList();
@@ -82,5 +87,6 @@ public class MainActivity extends Activity {
             actionBar.setDisplayShowTitleEnabled(false);
         }
     }
+
 
 }

@@ -12,6 +12,7 @@ import android.project.esgi.fr.magnumhotel.R;
 import android.project.esgi.fr.magnumhotel.fragment.BookingListFragment;
 import android.project.esgi.fr.magnumhotel.model.Room;
 import android.project.esgi.fr.magnumhotel.dao.RoomDAO;
+import android.project.esgi.fr.magnumhotel.others.MenuHelper;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -103,37 +104,7 @@ public class RoomDetailActivity extends Activity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         super.onOptionsItemSelected(item);
-
-        switch(item.getItemId()){
-            case R.id.home:
-                Intent home = new Intent(this, MainActivity.class);
-                startActivity(home);
-                break;
-
-            case R.id.rooms:
-                Intent rooms = new Intent(this, RoomGestionActivity.class);
-                startActivity(rooms);
-                break;
-
-            case R.id.customers:
-                Intent customers = new Intent(this, CustomerGestionActivity.class);
-                startActivity(customers);
-                break;
-
-            case R.id.bookings:
-                Intent bookings = new Intent(this, BookingGestionActivity.class);
-                startActivity(bookings);
-                break;
-
-            case R.id.search:
-                Intent search = new Intent(this, SearchActivity.class);
-                startActivity(search);
-                break;
-
-            default:
-                finish();
-        }
-        return true;
+        return MenuHelper.handleOnItemSelected(item, this);
     }
 
     public int getRoomId(){
