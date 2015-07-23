@@ -69,6 +69,16 @@ public class RoomDAO {
         return room;
     }
 
+    public int getRoomCount(){
+
+        String request = " SELECT "+DataBaseHandler.KEY_ROOM_ID +
+                         " FROM " + TABLE_ROOM;
+        Cursor cursor = database.rawQuery(request,null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
     public ArrayList<Room> getRoomList(){
         ArrayList<Room> allRoomArrayList = new ArrayList<>();
         String request = "SELECT * FROM " + TABLE_ROOM;

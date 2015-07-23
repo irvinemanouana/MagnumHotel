@@ -25,6 +25,7 @@
         <item>GÉRER LES CLIENTS</item>
         <item>CONSULTER LES RÉSERVATIONS</item>
         <item>RECHERCHE DE CHAMBRES</item>
+        <item>STATISTICS</item>
     </string-array>
 
     <string name="title_activity_room_gestion">Chambres</string>
@@ -90,6 +91,9 @@
     <string name="floor_text">Étage</string>
     <string name="before_today_date_error">La date d\'arrivé ne doit pas être avant aujourd\'hui</string>
     <string name="search">Recherche</string>
-
+    <string name="statistics_title">Statistique</string>
+    <string name="rooms_total">Nombre de chambres : </string>
+    <string name="customers_total">Nombre de clients : </string>
+    <string name="booking_total">Nombre de reservation : </string>
 
 </resources>

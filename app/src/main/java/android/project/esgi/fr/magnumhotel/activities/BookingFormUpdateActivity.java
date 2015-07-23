@@ -87,7 +87,6 @@ public class BookingFormUpdateActivity extends Activity {
         reservation.setRoom(roomDAO.getRoom(reservation.getRoomId()));
         roomDAO.close();
 
-
         Calendar c = Calendar.getInstance();
         c.setTime(reservation.getStartDate());
         arrivalYear = c.get(Calendar.YEAR);

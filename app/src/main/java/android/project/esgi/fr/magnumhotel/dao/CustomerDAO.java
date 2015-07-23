@@ -69,6 +69,16 @@ public class CustomerDAO {
         return customers;
     }
 
+    public int getCustomerCount(){
+
+        String request = " SELECT "+DataBaseHandler.KEY_CUSTOMER_ID+
+                         " FROM " + TABLE_CUSTOMER;
+        Cursor cursor = database.rawQuery(request,null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
     public Customer getCustomer(int customerId){
 
         Customer customer = new Customer();

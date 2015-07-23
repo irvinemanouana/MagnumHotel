@@ -25,6 +25,7 @@
         <item>CUSTOMERS MANAGEMENT</item>
         <item>BOOKINGS CONSULATION</item>
         <item>ROOM SEARCH</item>
+        <item>STATISTICS</item>
     </string-array>
 
     <string name="title_activity_room_gestion">Rooms</string>
@@ -89,6 +90,10 @@
     <string name="unavailable_text">Unavailable</string>
     <string name="search">Search</string>
     <string name="title_activity_modify_booking">Modify a reservation</string>
+    <string name="statistics_title">Statistics</string>
+    <string name="rooms_total">Rooms count : </string>
+    <string name="customers_total">Customers count : </string>
+    <string name="booking_total">Nombre de reservation : </string>
 
 
 </resources>

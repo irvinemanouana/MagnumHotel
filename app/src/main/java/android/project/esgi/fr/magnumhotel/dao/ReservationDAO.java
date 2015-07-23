@@ -93,6 +93,16 @@ public class ReservationDAO {
         return bookings;
     }
 
+    public int getReservationCount(){
+
+        String request = " SELECT "+DataBaseHandler.KEY_RESERVATION_ID+
+                         " FROM " + TABLE_RESERVATION;
+        Cursor cursor = database.rawQuery(request,null);
+        int count = cursor.getCount();
+        cursor.close();
+        return count;
+    }
+
     public ArrayList<Reservation> getBookingListByRoomId(int roomId){
         Reservation reservation;
         ArrayList<Reservation> bookings = new ArrayList<>();
