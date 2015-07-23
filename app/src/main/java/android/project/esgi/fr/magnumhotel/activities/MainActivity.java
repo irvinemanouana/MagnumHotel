@@ -18,8 +18,6 @@ import java.util.Collections;
 
 public class MainActivity extends Activity {
 
-    TextView itemMenu;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +61,11 @@ public class MainActivity extends Activity {
 
                     case 3:
                         intent = new Intent(MainActivity.this, SearchActivity.class);
+                        startActivity(intent);
+                        break;
+
+                    case 4:
+                        intent = new Intent(MainActivity.this, StatisticsActivity.class);
                         startActivity(intent);
                         break;
                 }

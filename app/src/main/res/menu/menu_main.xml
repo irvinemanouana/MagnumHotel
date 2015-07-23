@@ -29,7 +29,7 @@
 
     <item
         android:id="@+id/search"
-        android:icon="@drawable/menu_elem_search"
+        android:icon="@android:drawable/ic_menu_search"
         android:title="@string/menu_element_bookings"
         android:showAsAction="always" />
 </menu>
