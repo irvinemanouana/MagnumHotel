@@ -34,6 +34,7 @@ public class MainActivity extends Activity {
         myImageList.add(R.drawable.ic_action_room);
         myImageList.add(R.drawable.ic_action_person);
         myImageList.add(R.drawable.ic_action_date);
+        myImageList.add(R.drawable.ic_action_search);
         myImageList.add(android.R.drawable.ic_menu_search);
         myImageList.add(android.R.drawable.ic_menu_sort_by_size);
 
@@ -63,11 +64,6 @@ public class MainActivity extends Activity {
 
                     case 3:
                         intent = new Intent(MainActivity.this, SearchActivity.class);
-                        startActivity(intent);
-                        break;
-
-                    case 4:
-                        intent = new Intent(MainActivity.this, StatisticsActivity.class);
                         startActivity(intent);
                         break;
                 }

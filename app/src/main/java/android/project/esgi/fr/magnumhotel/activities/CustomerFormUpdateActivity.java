@@ -157,6 +157,11 @@ public class CustomerFormUpdateActivity extends Activity {
                 Intent bookings = new Intent(this, BookingGestionActivity.class);
                 startActivity(bookings);
                 break;
+
+            case R.id.search:
+                Intent search = new Intent(this, SearchActivity.class);
+                startActivity(search);
+                break;
         }
         return true;
     }

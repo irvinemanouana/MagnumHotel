@@ -73,10 +73,8 @@ public class RoomListActivity extends ListActivity {
                         }
                     }
                 }
-
             }
             if(roomArrayList != null)setListAdapter(new RoomsListAdapter(this, roomArrayList));
-
         }
 
     }
